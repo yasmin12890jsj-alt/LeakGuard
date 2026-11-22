@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RevenueGuard AI | نظام مراقبة وكشف تسرب الإيرادات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Cairo', 'Plus Jakarta Sans', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .tabular-nums {
+        font-variant-numeric: tabular-nums;
+      }
+      @keyframes pulseGlow {
+        0%, 100% { transform: scale(1); opacity: 0.75; }
+        50% { transform: scale(1.08); opacity: 1; }
+      }
+      .glow-orb {
+        animation: pulseGlow 3.2s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .glow-orb { animation: none; }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased min-h-screen transition-colors">
+    <!-- شاشة الافتتاح Intro / Splash -->
+    <div id="splashScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#050d1a] text-white px-6 overflow-hidden">
+      <div class="glow-orb absolute w-80 h-80 rounded-full bg-sky-500/20 blur-3xl pointer-events-none"></div>
+      <div class="glow-orb absolute w-64 h-64 rounded-full bg-indigo-500/20 blur-3xl translate-x-24 -translate-y-16 pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-xl text-center space-y-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-semibold">
+          <span>AI Financial Shield</span>
+          <span>•</span>
+          <span>v1.0</span>
+        </div>
+
+        <h1 id="splashTitle" class="text-4xl sm:text-5xl font-extrabold tracking-tight bg-gradient-to-l from-sky-300 via-white to-indigo-300 bg-clip-text text-transparent drop-shadow">
+          REVENUEGUARD AI
+        </h1>
+        <p id="splashSubTitle" class="text-lg font-bold text-sky-300">
+          ريڨنيو غارد الذكي — نظام مراقبة وكشف تسرب الإيرادات
+        </p>
+        <p id="splashTagline" class="text-slate-300 text-base sm:text-lg leading-relaxed">
+          احمِ إيراداتك، اكتشف التسرب، وسيطر على مستقبلك المالي.
+        </p>
+
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+          <button id="enterAppBtn" onclick="closeSplash()" class="px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold transition shadow-lg shadow-sky-500/25">
+            الدخول إلى النظام
+          </button>
+          <button id="muteToggleBtn" onclick="toggleMute()" class="px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-sm text-slate-200 transition">
+            🔊 الصوت: مفعل
+          </button>
+          <button id="skipBtn" onclick="closeSplash()" class="px-4 py-2.5 rounded-xl text-sm text-slate-400 hover:text-white transition">
+            تخطي (Skip) ←
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- التطبيق الرئيسي -->
+    <div id="appShell" class="min-h-screen flex flex-col">
+      <!-- الشريط العلوي -->
+      <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-900/85 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center font-extrabold text-slate-950 shadow">
+              RG
+            </div>
+            <div>
+              <div id="brandName" class="font-extrabold text-base sm:text-lg leading-tight">REVENUEGUARD AI</div>
+              <div id="brandRole" class="text-xs text-slate-400">مراقبة الإيرادات والتحليل المالي</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- اختيار اللغة -->
+            <select id="langSelect" onchange="setLanguage(this.value)" class="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-sky-400">
+              <option value="ar">العربية (RTL)</option>
+              <option value="en">English (LTR)</option>
+              <option value="fr">Français (LTR)</option>
+            </select>
+
+            <!-- اختيار العملة -->
+            <select id="currencySelect" onchange="setCurrency(this.value)" class="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-sky-400">
+              <option value="DZD">DZD (د.ج)</option>
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+            </select>
+
+            <!-- إعادة عرض الافتتاحية -->
+            <button onclick="openSplash()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs transition">
+              Intro
+            </button>
+          </div>
+        </div>
+
+        <!-- شريط التنقل والفترة الزمنية -->
+        <div class="border-t border-slate-800/60 bg-slate-950/50">
+          <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <nav class="flex flex-wrap items-center gap-1.5">
+              <button data-tab="dashboard" onclick="switchTab('dashboard')" class="nav-btn px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 font-bold">لوحة التحكم</button>
+              <button data-tab="invoices" onclick="switchTab('invoices')" class="nav-btn px-3 py-1.5 rounded-lg bg-slate-800/70 hover:bg-slate-800 text-slate-200 font-semibold">الفواتير</button>
+              <button data-tab="leakage" onclick="switchTab('leakage')" class="nav-btn px-3 py-1.5 rounded-lg bg-slate-800/70 hover:bg-slate-800 text-slate-200 font-semibold">كشف التسرب</button>
+              <button data-tab="ai" onclick="switchTab('ai')" class="nav-btn px-3 py-1.5 rounded-lg bg-slate-800/70 hover:bg-slate-800 text-slate-200 font-semibold">المساعد الذكي</button>
+            </nav>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <select id="yearFilter" onchange="renderAll()" class="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1 font-semibold">
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+              </select>
+              <select id="monthFilter" onchange="renderAll()" class="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1 font-semibold">
+                <option value="ALL">كل الأشهر</option>
+                <option value="01">يناير / Jan / Janv</option>
+                <option value="02">فبراير / Feb / Févr</option>
+                <option value="03">مارس / Mar / Mars</option>
+                <option value="04">أبريل / Apr / Avr</option>
+                <option value="05">مايو / May / Mai</option>
+                <option value="06">يونيو / Jun / Juin</option>
+                <option value="07">يوليو / Jul / Juil</option>
+                <option value="08">أغسطس / Aug / Août</option>
+                <option value="09">سبتمبر / Sep / Sept</option>
+                <option value="10">أكتوبر / Oct / Oct</option>
+                <option value="11">نوفمبر / Nov / Nov</option>
+                <option value="12">ديسمبر / Dec / Déc</option>
+              </select>
+              <button onclick="loadDemoData()" class="px-2.5 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/40 text-indigo-200 font-semibold">
+                + بيانات تجريبية
+              </button>
+              <button onclick="clearData()" class="px-2.5 py-1 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-400/30 text-rose-200 font-semibold">
+                تفريغ
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- المحتوى -->
+      <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 space-y-6">
+        <!-- تبويب لوحة التحكم -->
+        <section id="tab-dashboard" class="tab-panel space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+              <div class="text-xs text-slate-400">الإيرادات المتوقعة</div>
+              <div id="kpiExpected" class="text-2xl font-extrabold mt-1 tabular-nums text-white">0.00</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+              <div class="text-xs text-slate-400">الإيرادات المحصلة</div>
+              <div id="kpiCollected" class="text-2xl font-extrabold mt-1 tabular-nums text-emerald-400">0.00</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+              <div class="text-xs text-slate-400">الفرق الأولي / التسرب المحتمل</div>
+              <div id="kpiVariance" class="text-2xl font-extrabold mt-1 tabular-nums text-amber-400">0.00</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+              <div class="text-xs text-slate-400">نسبة الفرق الأولي</div>
+              <div id="kpiRate" class="text-2xl font-extrabold mt-1 tabular-nums text-rose-400">0.0%</div>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 text-xs text-slate-300 leading-relaxed">
+            <strong class="text-sky-300">تنبيه محاسبي:</strong> الفرق بين الإيرادات المتوقعة والمحصلة يُعدّ <em>فرقاً أولياً</em> ولا يُعتبر تسرباً مؤكداً أو تلاعباً دون مراجعة بشرية والتحقق من آجال الاستحقاق والتسويات المحاسبية.
+          </div>
+        </section>
+
+        <!-- تبويب الفواتير -->
+        <section id="tab-invoices" class="tab-panel hidden space-y-4">
+          <form id="invoiceForm" onsubmit="addInvoice(event)" class="grid grid-cols-1 sm:grid-cols-5 gap-3 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+            <input id="invCode" required placeholder="رقم الفاتورة (INV-01)" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm" />
+            <input id="invClient" required placeholder="اسم العميل" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm" />
+            <input id="invExpected" type="number" step="0.01" required placeholder="المبلغ المتوقع (DZD)" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm" />
+            <input id="invPaid" type="number" step="0.01" required placeholder="المبلغ المحصل (DZD)" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm" />
+            <button type="submit" class="rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm py-2">
+              + إضافة فاتورة
+            </button>
+          </form>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-900">
+            <table class="w-full text-sm text-right">
+              <thead class="bg-slate-800/80 text-slate-300 text-xs">
+                <tr>
+                  <th class="p-3">الرقم</th>
+                  <th class="p-3">العميل</th>
+                  <th class="p-3">المتوقع</th>
+                  <th class="p-3">المحصل</th>
+                  <th class="p-3">الفرق</th>
+                  <th class="p-3">الحالة</th>
+                </tr>
+              </thead>
+              <tbody id="invoicesBody" class="divide-y divide-slate-800 tabular-nums"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- تبويب كشف التسرب -->
+        <section id="tab-leakage" class="tab-panel hidden space-y-4">
+          <div id="leakageList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </section>
+
+        <!-- تبويب المساعد الذكي -->
+        <section id="tab-ai" class="tab-panel hidden space-y-4">
+          <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <div class="text-sm font-bold text-sky-300">مساعد RevenueGuard الذكي (مرتبط ببيانات الفترة الحالية فقط)</div>
+            <div id="aiMessages" class="space-y-2 max-h-72 overflow-y-auto text-sm">
+              <div class="p-3 rounded-xl bg-slate-800/80 text-slate-200">
+                اسألني عن إجمالي الإيرادات المتوقعة، المحصلة، الفرق الأولي، أو الفواتير غير المكتملة التحصيل في الفترة المختارة.
+              </div>
+            </div>
+            <form onsubmit="askAI(event)" class="flex gap-2">
+              <input id="aiInput" required placeholder="مثال: ما قيمة الفرق الأولي في الفترة الحالية؟" class="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-sm" />
+              <button type="submit" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm">إرسال</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const STORAGE_KEY = 'revenueguard_v1_data';
+      // أسعار التحويل انطلاقاً من الدينار الجزائري DZD كعملة أساسية
+      const RATES_FROM_DZD = {
+        DZD: 1,
+        USD: 1 / 135,
+        EUR: 1 / 146,
+        GBP: 1 / 172,
+      };
+      const SYMBOLS = { DZD: 'د.ج', USD: '$', EUR: '€', GBP: '£' };
+
+      let state = {
+        lang: 'ar',
+        currency: 'DZD',
+        muted: false,
+        invoices: [],
+      };
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) state = { ...state, ...JSON.parse(raw) };
+        } catch (e) {
+          console.error(e);
+        }
+        document.getElementById('langSelect').value = state.lang;
+        document.getElementById('currencySelect').value = state.currency;
+        applyLangDir();
+        renderAll();
+      }
+
+      function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function applyLangDir() {
+        const html = document.documentElement;
+        if (state.lang === 'ar') {
+          html.lang = 'ar';
+          html.dir = 'rtl';
+        } else {
+          html.lang = state.lang;
+          html.dir = 'ltr';
+        }
+      }
+
+      function setLanguage(lang) {
+        state.lang = lang;
+        applyLangDir();
+        saveState();
+      }
+
+      function setCurrency(curr) {
+        state.currency = curr;
+        saveState();
+        renderAll();
+      }
+
+      function toggleMute() {
+        state.muted = !state.muted;
+        document.getElementById('muteToggleBtn').textContent = state.muted ? '🔇 الصوت: مكتوم' : '🔊 الصوت: مفعل';
+      }
+
+      function closeSplash() {
+        document.getElementById('splashScreen').classList.add('hidden');
+      }
+
+      function openSplash() {
+        document.getElementById('splashScreen').classList.remove('hidden');
+      }
+
+      function switchTab(tab) {
+        document.querySelectorAll('.tab-panel').forEach((p) => p.classList.add('hidden'));
+        document.getElementById('tab-' + tab).classList.remove('hidden');
+        document.querySelectorAll('.nav-btn').forEach((b) => {
+          const active = b.dataset.tab === tab;
+          b.className = active
+            ? 'nav-btn px-3 py-1.5 rounded-lg bg-sky-500 text-slate-950 font-bold'
+            : 'nav-btn px-3 py-1.5 rounded-lg bg-slate-800/70 hover:bg-slate-800 text-slate-200 font-semibold';
+        });
+      }
+
+      function fmtMoney(amountInDZD) {
+        const rate = RATES_FROM_DZD[state.currency] || 1;
+        const val = (amountInDZD * rate).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+        return `${val} ${SYMBOLS[state.currency] || state.currency}`;
+      }
+
+      function getFilteredInvoices() {
+        const y = document.getElementById('yearFilter').value;
+        const m = document.getElementById('monthFilter').value;
+        return state.invoices.filter((inv) => {
+          const [iy, im] = inv.date.split('-');
+          if (y && iy !== y) return false;
+          if (m !== 'ALL' && im !== m) return false;
+          return true;
+        });
+      }
+
+      function addInvoice(e) {
+        e.preventDefault();
+        const y = document.getElementById('yearFilter').value;
+        const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
+        const inv = {
+          id: Date.now(),
+          code: document.getElementById('invCode').value.trim(),
+          client: document.getElementById('invClient').value.trim(),
+          expected: parseFloat(document.getElementById('invExpected').value) || 0,
+          paid: parseFloat(document.getElementById('invPaid').value) || 0,
+          date: `${y}-${m}-15`,
+          isDemo: false,
+        };
+        state.invoices.push(inv);
+        saveState();
+        e.target.reset();
+        renderAll();
+      }
+
+      function loadDemoData() {
+        state.invoices = [
+          { id: 1, code: 'INV-2026-101', client: 'مؤسسة الأمل (تجريبي)', expected: 250000, paid: 250000, date: '2026-11-03', isDemo: true },
+          { id: 2, code: 'INV-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, date: '2026-11-10', isDemo: true },
+          { id: 3, code: 'INV-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, date: '2026-11-18', isDemo: true },
+        ];
+        saveState();
+        renderAll();
+      }
+
+      function clearData() {
+        state.invoices = [];
+        saveState();
+        renderAll();
+      }
+
+      function renderAll() {
+        const list = getFilteredInvoices();
+        const expected = list.reduce((s, i) => s + i.expected, 0);
+        const collected = list.reduce((s, i) => s + i.paid, 0);
+        const variance = Math.max(0, expected - collected);
+        const rate = expected > 0 ? ((variance / expected) * 100).toFixed(1) : '0.0';
+
+        document.getElementById('kpiExpected').textContent = fmtMoney(expected);
+        document.getElementById('kpiCollected').textContent = fmtMoney(collected);
+        document.getElementById('kpiVariance').textContent = fmtMoney(variance);
+        document.getElementById('kpiRate').textContent = rate + '%';
+
+        const tbody = document.getElementById('invoicesBody');
+        if (!list.length) {
+          tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-slate-400">لا توجد فواتير في هذه الفترة. أضف فاتورة أو اضغط "+ بيانات تجريبية".</td></tr>`;
+        } else {
+          tbody.innerHTML = list.map((inv) => {
+            const diff = inv.expected - inv.paid;
+            const status = inv.paid >= inv.expected ? 'مدفوعة' : inv.paid > 0 ? 'مدفوعة جزئياً' : 'غير مدفوعة';
+            return `<tr>
+              <td class="p-3 font-semibold">${inv.code}</td>
+              <td class="p-3">${inv.client}</td>
+              <td class="p-3">${fmtMoney(inv.expected)}</td>
+              <td class="p-3 text-emerald-400">${fmtMoney(inv.paid)}</td>
+              <td class="p-3 ${diff > 0 ? 'text-amber-400 font-bold' : 'text-slate-400'}">${fmtMoney(diff)}</td>
+              <td class="p-3 text-xs">${status}</td>
+            </tr>`;
+          }).join('');
+        }
+
+        const leakageBox = document.getElementById('leakageList');
+        const flagged = list.filter((i) => i.paid < i.expected);
+        if (!flagged.length) {
+          leakageBox.innerHTML = `<div class="col-span-full p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center text-slate-400 text-sm">لا توجد فروقات تحصيل مسجلة في الفترة المختارة.</div>`;
+        } else {
+          leakageBox.innerHTML = flagged.map((inv) => {
+            const diff = inv.expected - inv.paid;
+            return `<div class="p-4 rounded-2xl bg-slate-900 border border-amber-500/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-300">${inv.code} — ${inv.client}</span>
+                <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300">فرق أولي / متابعة</span>
+              </div>
+              <div class="text-sm tabular-nums">المبلغ غير المحصل: <strong>${fmtMoney(diff)}</strong></div>
+              <div class="text-xs text-slate-400">الإجراء المقترح: مراجعة حالة السداد وتأكيد تاريخ الاستحقاق قبل اتخاذ أي قرار.</div>
+            </div>`;
+          }).join('');
+        }
+      }
+
+      function askAI(e) {
+        e.preventDefault();
+        const input = document.getElementById('aiInput');
+        const q = input.value.trim();
+        if (!q) return;
+        const box = document.getElementById('aiMessages');
+        box.innerHTML += `<div class="p-3 rounded-xl bg-sky-500/15 border border-sky-400/30 text-sky-100">${q}</div>`;
+
+        const list = getFilteredInvoices();
+        const expected = list.reduce((s, i) => s + i.expected, 0);
+        const collected = list.reduce((s, i) => s + i.paid, 0);
+        const variance = Math.max(0, expected - collected);
+
+        const reply = list.length
+          ? `بناءً على بيانات الفترة المختارة (${list.length} فاتورة): الإيرادات المتوقعة ${fmtMoney(expected)}، المحصلة ${fmtMoney(collected)}، والفرق الأولي ${fmtMoney(variance)}. يُنصح بمراجعة الفواتير غير المدفوعة أو المدفوعة جزئياً والتحقق من آجال التحصيل.`
+          : `لا توجد بيانات كافية في الفترة الزمنية المختارة للإجابة بدقة. يرجى إضافة فواتير أو تحميل بيانات تجريبية.`;
+
+        box.innerHTML += `<div class="p-3 rounded-xl bg-slate-800 text-slate-200 leading-relaxed">${reply}</div>`;
+        box.scrollTop = box.scrollHeight;
+        input.value = '';
+      }
+
+      loadState();
+    </script>
+  </body>
+</html>
