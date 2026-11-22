@@ -42,7 +42,7 @@
         font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
         background-color: var(--bg-main);
         color: var(--text-main);
-        padding-bottom: 96px;
+        padding-bottom: 98px;
         transition: background-color 0.25s ease, color 0.25s ease;
       }
 
@@ -51,7 +51,7 @@
       }
 
       .container {
-        max-width: 1200px;
+        max-width: 1220px;
         margin: 0 auto;
         padding: 16px;
       }
@@ -109,7 +109,7 @@
         justify-content: space-between;
         gap: 10px;
         padding: 12px 16px;
-        max-width: 1200px;
+        max-width: 1220px;
         margin: 0 auto;
       }
 
@@ -183,7 +183,7 @@
       }
 
       .filter-bar-inner {
-        max-width: 1200px;
+        max-width: 1220px;
         margin: 0 auto;
         padding: 8px 16px;
         display: flex;
@@ -280,16 +280,6 @@
         line-height: 1.75;
       }
 
-      .rec-list {
-        margin: 10px 0 0;
-        padding-inline-start: 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        font-size: 13px;
-        line-height: 1.65;
-      }
-
       .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -302,7 +292,7 @@
       }
 
       .bottom-nav-inner {
-        max-width: 1050px;
+        max-width: 1120px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(7, 1fr);
@@ -427,20 +417,21 @@
     </header>
 
     <main class="container">
+      <!-- نظام الإنذارات الفورية -->
       <div id="globalAlertBox" class="alert-banner alert-ok">
-        التنبيهات الذكية: لا توجد مشاكل مالية أو مبالغ غير محصلة في الفترة المختارة.
+        نظام الإنذارات: لا توجد فروقات مالية أو تأخر في التحصيل في الفترة المختارة.
       </div>
 
-      <!-- إعداد سريع للعملات وأسعار الصرف مقابل الدينار الجزائري DZD -->
+      <!-- إعداد العملات وسعر الصرف مقابل الدينار الجزائري DZD -->
       <div class="card" style="margin-bottom: 14px;">
         <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 8px;" id="fxTitleText">
-          العملة الرئيسية: الدينار الجزائري (DZD) — إدارة العملات وسعر الصرف (كم وحدة عملة تساوي 1 DZD)
+          العملة الرئيسية: الدينار الجزائري (DZD) — إدارة العملات وسعر الصرف (مقابل 1 DZD)
         </div>
         <div class="controls-row">
           <span style="font-size: 12px; color: var(--text-muted);" id="fxRateLabel">سعر التحويل للعملة المختارة:</span>
           <input id="fxRateInput" type="number" step="0.000001" style="width: 150px;" />
           <button type="button" class="btn btn-primary" id="saveFxRateBtn">تحديث السعر</button>
-          <input id="customCurrCode" type="text" placeholder="رمز عملة أخرى (مثال: CAD)" style="width: 165px;" />
+          <input id="customCurrCode" type="text" placeholder="رمز عملة (CAD)" style="width: 140px;" />
           <input id="customCurrSymbol" type="text" placeholder="الرمز (C$)" style="width: 90px;" />
           <input id="customCurrRate" type="number" step="0.000001" placeholder="السعر / DZD" style="width: 125px;" />
           <button type="button" class="btn" id="addCustomCurrBtn">+ إضافة عملة</button>
@@ -482,7 +473,7 @@
             <div class="kpi-value tabular-nums" id="kpiLeakRate" style="color: #ef4444;">0.0%</div>
           </div>
           <div class="card">
-            <div class="kpi-label" data-i18n="anomalies">حالات النقص غير الطبيعي</div>
+            <div class="kpi-label" data-i18n="anomalies">فروقات غير طبيعية</div>
             <div class="kpi-value tabular-nums" id="kpiAnomalyCount" style="color: #f59e0b;">0</div>
           </div>
         </div>
@@ -492,18 +483,17 @@
       <section id="tab-calculator" class="tab-panel">
         <div class="card">
           <h2 style="margin: 0 0 14px; font-size: 17px;" data-i18n="calcHeading">حاسبة كشف التسرب والتحليل الاستنتاجي</h2>
-
           <div class="grid-2">
             <div>
-              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="clientName">اسم العميل (أدخليه يدوياً)</label>
-              <input id="calcClient" type="text" placeholder="مثال: شركة الهدى التجارية" style="width: 100%;" />
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="clientName">اسم العميل (إدخال يدوي)</label>
+              <input id="calcClient" type="text" placeholder="مثال: شركة الهدى" style="width: 100%;" />
             </div>
             <div>
               <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="causeLabel">السبب المحتمل للنقص</label>
               <select id="calcCause" style="width: 100%;">
-                <option value="تأخر سداد المستحقات">تأخر سداد المستحقات</option>
+                <option value="تأخر في التحصيل">تأخر في التحصيل</option>
                 <option value="تحصيل جزئي دون تسوية">تحصيل جزئي دون تسوية</option>
-                <option value="خصم غير موثق أو خطأ تسعير">خصم غير موثق أو خطأ تسعير</option>
+                <option value="خصم غير موثق أو فرق تسعير">خصم غير موثق أو فرق تسعير</option>
                 <option value="مستحقات لم يحن أجلها">مستحقات لم يحن أجلها</option>
               </select>
             </div>
@@ -531,7 +521,7 @@
           <div id="calcDirectResult" class="analysis-box" style="margin-top: 14px; border: 1px solid var(--border-color);"></div>
 
           <div class="controls-row" style="margin-top: 12px;">
-            <button type="button" class="btn btn-primary" id="saveCalcBtn" data-i18n="saveToLedger">+ حفظ هذه العملية في السجل</button>
+            <button type="button" class="btn btn-primary" id="saveCalcBtn" data-i18n="saveToLedger">+ حفظ في السجل</button>
           </div>
         </div>
       </section>
@@ -539,7 +529,7 @@
       <!-- 3. المطابقة المالية -->
       <section id="tab-reconcile" class="tab-panel">
         <div class="card" style="overflow-x: auto;">
-          <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="recHeading">المطابقة المالية</h2>
+          <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="recHeading">المطابقة المالية (الفواتير والمدفوعات والإيرادات)</h2>
           <table>
             <thead>
               <tr>
@@ -556,13 +546,13 @@
         </div>
       </section>
 
-      <!-- 4. التسرب -->
+      <!-- 4. كشف التسرب التلقائي وتحديد المصدر وتحليل الأسباب -->
       <section id="tab-leakage" class="tab-panel">
         <div id="leakageAlertDetail" class="alert-banner alert-ok"></div>
         <div id="leakageList" class="grid-2"></div>
       </section>
 
-      <!-- 5. السجل و Excel -->
+      <!-- 5. السجل + استيراد Excel + تعديل العمليات -->
       <section id="tab-ledger" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
           <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px;" data-i18n="importHeading">استيراد بيانات من Excel (ملف CSV)</div>
@@ -577,16 +567,16 @@
           <div style="font-weight: 800; font-size: 15px; margin-bottom: 10px;" data-i18n="addOpHeading">إضافة عملية جديدة إلى السجل</div>
           <div class="grid-4" style="margin-bottom: 10px;">
             <input id="invCode" required placeholder="OP-01" />
-            <input id="invClient" required placeholder="اسم العميل / Client / Client" />
+            <input id="invClient" required placeholder="اسم العميل / Client" />
             <input id="invExpected" type="number" step="0.01" required placeholder="0.00" />
             <input id="invPaid" type="number" step="0.01" required placeholder="0.00" />
           </div>
           <div class="controls-row" style="margin-bottom: 10px;">
             <select id="invReason">
-              <option value="تأخر سداد المستحقات">تأخر سداد المستحقات</option>
-              <option value="تحصيل جزئي دون تسوية">تحصيل جزئي دون تسوية</option>
-              <option value="خصم غير موثق أو خطأ تسعير">خصم غير موثق أو خطأ تسعير</option>
-              <option value="مستحقات لم يحن أجلها">مستحقات لم يحن أجلها</option>
+              <option value="تأخر في التحصيل">السبب: تأخر في التحصيل</option>
+              <option value="تحصيل جزئي دون تسوية">السبب: تحصيل جزئي دون تسوية</option>
+              <option value="خصم غير موثق أو فرق تسعير">السبب: خصم غير موثق أو فرق تسعير</option>
+              <option value="مستحقات لم يحن أجلها">السبب: مستحقات لم يحن أجلها</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary" data-i18n="addBtn">+ إضافة إلى السجل</button>
@@ -603,7 +593,7 @@
                 <th data-i18n="collected">المحصل</th>
                 <th data-i18n="uncollected">غير المحصل</th>
                 <th data-i18n="colReason">السبب</th>
-                <th data-i18n="colDelete">حذف</th>
+                <th>تعديل / حذف</th>
               </tr>
             </thead>
             <tbody id="ledgerBody" class="tabular-nums"></tbody>
@@ -611,35 +601,38 @@
         </div>
       </section>
 
-      <!-- 6. التقارير -->
+      <!-- 6. التقارير (PDF و Excel) + النسخ الاحتياطي ونقل البيانات بين الأجهزة -->
       <section id="tab-reports" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
-          <h2 style="margin: 0 0 8px; font-size: 17px;" data-i18n="repHeading">تقارير PDF و Excel</h2>
-          <div class="controls-row no-print">
-            <button type="button" class="btn btn-primary" id="exportExcelBtn">📊 Excel (CSV)</button>
-            <button type="button" class="btn" id="exportPdfBtn">📄 PDF / Print</button>
+          <h2 style="margin: 0 0 8px; font-size: 17px;" data-i18n="repHeading">تصدير PDF و Excel + حفظ البيانات بين الأجهزة</h2>
+          <div class="controls-row no-print" style="margin-bottom: 12px;">
+            <button type="button" class="btn btn-primary" id="exportExcelBtn">📊 تصدير Excel (CSV)</button>
+            <button type="button" class="btn" id="exportPdfBtn">📄 تصدير / طباعة PDF</button>
+            <button type="button" class="btn" id="exportJsonBtn">💾 حفظ نسخة بيانات (JSON)</button>
           </div>
+          <div class="controls-row no-print">
+            <input type="file" id="jsonRestoreInput" accept=".json,application/json" />
+            <button type="button" class="btn" id="restoreJsonBtn">📥 استعادة نسخة البيانات</button>
+          </div>
+          <div id="backupStatusMsg" style="margin-top: 8px; font-size: 12.5px;"></div>
         </div>
         <div class="card" id="reportPreviewBox" style="font-size: 13px; line-height: 1.8;"></div>
       </section>
 
-      <!-- 7. الذكاء AI -->
-      <section id="tab-ai" class="tab-panel">
-        <div class="card" style="margin-bottom: 14px;">
-          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
-            <div style="font-weight: 800; font-size: 15px;" data-i18n="aiHeading">تحليل ذكي بالـAI وتفسير وحلول التسرب</div>
-            <button type="button" class="btn btn-primary" id="generateSuggestionsBtn" data-i18n="genSolutions">توليد تحليل وحلول</button>
-          </div>
-          <ul class="rec-list" id="aiSuggestionsList"></ul>
-        </div>
-
-        <div class="card">
-          <div style="font-weight: 700; margin-bottom: 10px;" data-i18n="aiChatTitle">محادثة مساعد RevenueGuard الذكي</div>
-          <div id="aiMessages" style="max-height: 210px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;"></div>
-          <form id="aiForm" style="display: flex; gap: 8px;">
-            <input id="aiInput" required placeholder="..." style="flex: 1;" />
-            <button type="submit" class="btn btn-primary" data-i18n="sendBtn">إرسال</button>
-          </form>
+      <!-- 7. سجل التعديلات -->
+      <section id="tab-audit" class="tab-panel">
+        <div class="card" style="overflow-x: auto;">
+          <h2 style="margin: 0 0 12px; font-size: 17px;">سجل التعديلات والعمليات</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>الوقت</th>
+                <th>النوع</th>
+                <th>التفاصيل</th>
+              </tr>
+            </thead>
+            <tbody id="auditBody"></tbody>
+          </table>
         </div>
       </section>
     </main>
@@ -670,15 +663,15 @@
           <span class="icon">📄</span>
           <span data-i18n="navRep">التقارير</span>
         </button>
-        <button type="button" class="nav-item" data-tab="ai">
-          <span class="icon">🤖</span>
-          <span data-i18n="navAi">الذكاء AI</span>
+        <button type="button" class="nav-item" data-tab="audit">
+          <span class="icon">📝</span>
+          <span>التعديلات</span>
         </button>
       </div>
     </nav>
 
     <script>
-      const STORAGE_KEY = 'revenueguard_v1_8_state';
+      const STORAGE_KEY = 'revenueguard_v1_9_state';
 
       const I18N = {
         ar: {
@@ -700,15 +693,15 @@
           collRate: 'نسبة تحصيل الإيرادات',
           leakedVal: 'قيمة الإيرادات المتسربة / المفقودة',
           leakRate: 'نسبة التسرب المالي',
-          anomalies: 'حالات النقص غير الطبيعي',
+          anomalies: 'فروقات غير طبيعية',
           calcHeading: 'حاسبة كشف التسرب والتحليل الاستنتاجي',
-          clientName: 'اسم العميل (أدخليه يدوياً)',
+          clientName: 'اسم العميل (إدخال يدوي)',
           causeLabel: 'السبب المحتمل للنقص',
           pending: 'مستحقات مؤجلة / تسويات',
           calcBtn: 'احسب الآن',
           clearBtn: 'مسح',
-          saveToLedger: '+ حفظ هذه العملية في السجل',
-          recHeading: 'المطابقة المالية',
+          saveToLedger: '+ حفظ في السجل',
+          recHeading: 'المطابقة المالية (الفواتير والمدفوعات والإيرادات)',
           colCode: 'الرقم',
           colClient: 'العميل',
           colDiff: 'الفارق',
@@ -719,19 +712,13 @@
           addBtn: '+ إضافة إلى السجل',
           colDate: 'التاريخ',
           colReason: 'السبب',
-          colDelete: 'حذف',
-          repHeading: 'تقارير PDF و Excel',
-          aiHeading: 'تحليل ذكي بالـAI وتفسير وحلول التسرب',
-          genSolutions: 'توليد تحليل وحلول',
-          aiChatTitle: 'محادثة مساعد RevenueGuard الذكي',
-          sendBtn: 'إرسال',
+          repHeading: 'تصدير PDF و Excel + حفظ البيانات بين الأجهزة',
           navDash: 'المؤشرات',
           navCalc: 'الحاسبة',
           navRec: 'المطابقة',
           navLeak: 'التسرب',
           navLedger: 'السجل',
           navRep: 'التقارير',
-          navAi: 'الذكاء AI',
         },
         en: {
           splashSub: 'Smart System for Revenue Leakage Monitoring & Detection',
@@ -748,98 +735,85 @@
           expected: 'Expected Revenue',
           collected: 'Collected Revenue',
           uncollected: 'Uncollected Receivables',
-          casesCount: 'Detected Variance / Leakage Cases',
+          casesCount: 'Detected Variance Cases',
           collRate: 'Collection Rate',
-          leakedVal: 'Leaked / Lost Revenue Value',
+          leakedVal: 'Leaked / Lost Revenue',
           leakRate: 'Financial Leakage Rate',
-          anomalies: 'Abnormal Gap Cases',
-          calcHeading: 'Leakage Calculator & Deductive Analysis',
-          clientName: 'Client Name (Manual Input)',
-          causeLabel: 'Likely Gap Cause',
-          pending: 'Deferred / Valid Settlements',
-          calcBtn: 'Calculate Now',
+          anomalies: 'Abnormal Variances',
+          calcHeading: 'Leakage Calculator & Analysis',
+          clientName: 'Client Name (Manual)',
+          causeLabel: 'Likely Cause',
+          pending: 'Deferred / Settlements',
+          calcBtn: 'Calculate',
           clearBtn: 'Reset',
           saveToLedger: '+ Save to Ledger',
           recHeading: 'Financial Reconciliation',
           colCode: 'Code',
           colClient: 'Client',
           colDiff: 'Variance',
-          colMatch: 'Match Status',
-          importHeading: 'Import Data from Excel (CSV File)',
+          colMatch: 'Status',
+          importHeading: 'Import from Excel (CSV)',
           importBtn: 'Import & Analyze',
-          addOpHeading: 'Add New Operation to Ledger',
-          addBtn: '+ Add to Ledger',
+          addOpHeading: 'Add Operation to Ledger',
+          addBtn: '+ Add',
           colDate: 'Date',
           colReason: 'Cause',
-          colDelete: 'Delete',
-          repHeading: 'PDF & Excel Reports',
-          aiHeading: 'AI Smart Analysis, Explanation & Solutions',
-          genSolutions: 'Generate Analysis & Solutions',
-          aiChatTitle: 'RevenueGuard AI Assistant',
-          sendBtn: 'Send',
+          repHeading: 'PDF & Excel Export + Cross-Device Backup',
           navDash: 'KPIs',
           navCalc: 'Calculator',
           navRec: 'Reconcile',
           navLeak: 'Leakage',
           navLedger: 'Ledger',
           navRep: 'Reports',
-          navAi: 'AI Assistant',
         },
         fr: {
           splashSub: 'Système Intelligent de Détection des Fuites de Revenus',
           splashDesc: 'Protégez vos revenus, détectez les fuites et maîtrisez votre avenir financier.',
-          enterBtn: 'Entrer dans le système',
+          enterBtn: 'Entrer',
           skipBtn: 'Passer',
           headerSub: 'Suivi des Revenus & Analyse Financière',
-          demoBtn: '+ Données démo',
+          demoBtn: '+ Démo',
           clearAllBtn: 'Effacer',
           fxTitle: 'Devise de base : Dinar algérien (DZD) — Devises & Taux (par 1 DZD)',
-          fxRateLabel: 'Taux de la devise sélectionnée :',
+          fxRateLabel: 'Taux de la devise :',
           updateFxBtn: 'Mettre à jour',
-          addCurrBtn: '+ Ajouter devise',
+          addCurrBtn: '+ Ajouter',
           expected: 'Revenus prévus',
           collected: 'Revenus encaissés',
           uncollected: 'Créances non encaissées',
-          casesCount: 'Cas d’écart / fuite détectés',
+          casesCount: 'Cas d’écart détectés',
           collRate: 'Taux de recouvrement',
-          leakedVal: 'Valeur des revenus perdus / fuyants',
-          leakRate: 'Taux de fuite financière',
+          leakedVal: 'Revenus perdus / fuyants',
+          leakRate: 'Taux de fuite',
           anomalies: 'Écarts anormaux',
-          calcHeading: 'Calculateur de Fuite & Analyse Déductive',
-          clientName: 'Nom du client (saisie manuelle)',
-          causeLabel: 'Cause probable de l’écart',
-          pending: 'Échéances futures / régularisations',
+          calcHeading: 'Calculateur & Analyse',
+          clientName: 'Client (manuel)',
+          causeLabel: 'Cause probable',
+          pending: 'Échéances / régularisations',
           calcBtn: 'Calculer',
           clearBtn: 'Effacer',
-          saveToLedger: '+ Enregistrer dans le journal',
+          saveToLedger: '+ Enregistrer',
           recHeading: 'Rapprochement Financier',
           colCode: 'Réf',
           colClient: 'Client',
           colDiff: 'Écart',
           colMatch: 'Statut',
-          importHeading: 'Importer depuis Excel (Fichier CSV)',
-          importBtn: 'Importer & Analyser',
-          addOpHeading: 'Ajouter une opération au journal',
+          importHeading: 'Importer depuis Excel (CSV)',
+          importBtn: 'Importer',
+          addOpHeading: 'Ajouter une opération',
           addBtn: '+ Ajouter',
           colDate: 'Date',
           colReason: 'Cause',
-          colDelete: 'Supprimer',
-          repHeading: 'Rapports PDF et Excel',
-          aiHeading: 'Analyse IA, Explication & Solutions',
-          genSolutions: 'Générer analyse & solutions',
-          aiChatTitle: 'Assistant IA RevenueGuard',
-          sendBtn: 'Envoyer',
+          repHeading: 'Export PDF & Excel + Sauvegarde',
           navDash: 'Indicateurs',
           navCalc: 'Calculateur',
           navRec: 'Rapprochement',
           navLeak: 'Fuites',
           navLedger: 'Journal',
           navRep: 'Rapports',
-          navAi: 'IA',
         },
       };
 
-      // العملة الرئيسية: DZD (1) ثم عملات أخرى (قيمة العملة مقابل 1 DZD)
       let state = {
         lang: 'ar',
         currency: 'DZD',
@@ -856,7 +830,14 @@
           TND: { symbol: 'د.ت', rateFromDZD: 1 / 43 },
         },
         invoices: [],
+        auditLog: [],
       };
+
+      function logAudit(type, details) {
+        const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
+        state.auditLog.unshift({ id: Date.now() + Math.random(), time: now, type, details });
+        if (state.auditLog.length > 100) state.auditLog.length = 100;
+      }
 
       function closeSplash() {
         const s = document.getElementById('splashScreen');
@@ -887,8 +868,8 @@
 
       function toggleTheme() {
         state.theme = state.theme === 'dark' ? 'light' : 'dark';
-        applyTheme();
         saveState();
+        applyTheme();
       }
 
       function applyLanguage() {
@@ -959,6 +940,7 @@
           state.currencies[state.currency] = { symbol: state.currency, rateFromDZD: 1 };
         }
         state.currencies[state.currency].rateFromDZD = state.currency === 'DZD' ? 1 : val;
+        logAudit('تحديث عملة', `${state.currency} -> ${state.currencies[state.currency].rateFromDZD}`);
         saveState();
         rebuildCurrencySelect();
         renderAll();
@@ -972,6 +954,7 @@
         if (!code || !rate || rate <= 0) return;
         state.currencies[code] = { symbol: sym, rateFromDZD: rate };
         state.currency = code;
+        logAudit('إضافة عملة', `${code} (${sym}) = ${rate}`);
         saveState();
         rebuildCurrencySelect();
         renderAll();
@@ -1022,12 +1005,18 @@
       function analyzeCase(inv, avgGap) {
         const gap = Math.max(0, inv.expected - inv.paid);
         const abnormal = gap > 0 && avgGap > 0 && gap > avgGap * 1.35;
+        const monthStr = inv.date.slice(0, 7);
         const how = inv.paid === 0
-          ? 'لم يُسجل أي مبلغ محصل مقابل الإيراد المتوقع.'
+          ? 'لم يُسجل تحصيل مقابل الإيراد المتوقع.'
           : 'تم تحصيل جزء من المبلغ وبقي رصيد غير محصل.';
-        const why = inv.reason || 'تأخر سداد المستحقات';
-        const fix = 'مراجعة الفاتورة وسندات التحصيل وآجال الاستحقاق والتسويات قبل أي إجراء.';
-        return { gap, abnormal, source: `${inv.client} (${inv.code} | ${inv.date})`, why, how, fix };
+        const why = inv.reason || 'تأخر في التحصيل';
+        return {
+          gap,
+          abnormal,
+          source: `العميل: ${inv.client} | العملية: ${inv.code} | الشهر: ${monthStr}`,
+          why,
+          how,
+        };
       }
 
       function calculateLeakage() {
@@ -1043,10 +1032,9 @@
 
         document.getElementById('calcDirectResult').innerHTML = `
           <div><strong>${client}</strong> — <span class="tabular-nums">${fmtMoney(lost)} (${pct}%)</span></div>
-          <div>• <strong>أين / المصدر:</strong> ${client} | <strong>الفرق الأولي:</strong> ${fmtMoney(diff)}</div>
-          <div>• <strong>لماذا / السبب:</strong> ${cause}</div>
-          <div>• <strong>كيف وقع:</strong> ${col === 0 && diff > 0 ? 'عدم تحصيل كامل مقابل الإيراد المتوقع.' : diff > 0 ? 'فارق بين المبلغ المتوقع والمحصل.' : 'لا يوجد فارق.'}</div>
-          <div>• <strong>الحل:</strong> التحقق من الفاتورة وتاريخ الاستحقاق والتسويات قبل اعتماد أي قرار.</div>
+          <div>• <strong>المصدر:</strong> ${client} | <strong>الفرق الأولي:</strong> ${fmtMoney(diff)}</div>
+          <div>• <strong>السبب:</strong> ${cause}</div>
+          <div>• <strong>التفسير:</strong> ${col === 0 && diff > 0 ? 'عدم تحصيل كامل مقابل الإيراد المتوقع.' : diff > 0 ? 'فرق بين المبلغ المتوقع والمحصل.' : 'لا يوجد فرق.'}</div>
         `;
       }
 
@@ -1067,15 +1055,9 @@
 
         const y = document.getElementById('yearFilter').value;
         const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
-        state.invoices.push({
-          id: Date.now(),
-          code: 'OP-' + String(Date.now()).slice(-4),
-          client,
-          expected: exp,
-          paid: col,
-          reason: cause,
-          date: `${y}-${m}-22`,
-        });
+        const code = 'OP-' + String(Date.now()).slice(-4);
+        state.invoices.push({ id: Date.now(), code, client, expected: exp, paid: col, reason: cause, date: `${y}-${m}-22` });
+        logAudit('إضافة من الحاسبة', `${code} | ${client} | ${exp.toFixed(2)}`);
         saveState();
         renderAll();
         switchTab('ledger');
@@ -1085,22 +1067,38 @@
         e.preventDefault();
         const y = document.getElementById('yearFilter').value;
         const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
-        state.invoices.push({
-          id: Date.now(),
-          code: document.getElementById('invCode').value.trim(),
-          client: document.getElementById('invClient').value.trim(),
-          expected: toDZD(document.getElementById('invExpected').value),
-          paid: toDZD(document.getElementById('invPaid').value),
-          reason: document.getElementById('invReason').value,
-          date: `${y}-${m}-15`,
-        });
+        const code = document.getElementById('invCode').value.trim();
+        const client = document.getElementById('invClient').value.trim();
+        const exp = toDZD(document.getElementById('invExpected').value);
+        const col = toDZD(document.getElementById('invPaid').value);
+        const reason = document.getElementById('invReason').value;
+
+        state.invoices.push({ id: Date.now(), code, client, expected: exp, paid: col, reason, date: `${y}-${m}-15` });
+        logAudit('إضافة عملية', `${code} | ${client} | ${exp.toFixed(2)}`);
         saveState();
         e.target.reset();
         renderAll();
       }
 
+      function editInvoice(id) {
+        const item = state.invoices.find((x) => x.id === id);
+        if (!item) return;
+        const newPaidInput = prompt(`تعديل المبلغ المحصل للعملية ${item.code} (${item.client}) بالعملة الحالية:`, (item.paid * (state.currencies[state.currency]?.rateFromDZD || 1)).toFixed(2));
+        if (newPaidInput === null) return;
+        const parsed = parseFloat(newPaidInput);
+        if (Number.isNaN(parsed) || parsed < 0) return;
+
+        const oldPaid = item.paid;
+        item.paid = toDZD(parsed);
+        logAudit('تعديل تحصيل', `${item.code} | ${item.client}: ${oldPaid.toFixed(2)} -> ${item.paid.toFixed(2)}`);
+        saveState();
+        renderAll();
+      }
+
       function deleteInvoice(id) {
+        const item = state.invoices.find((x) => x.id === id);
         state.invoices = state.invoices.filter((item) => item.id !== id);
+        if (item) logAudit('حذف عملية', `${item.code} | ${item.client}`);
         saveState();
         renderAll();
       }
@@ -1109,10 +1107,8 @@
         const fileInput = document.getElementById('csvFileInput');
         const msgEl = document.getElementById('importStatusMsg');
         const file = fileInput.files && fileInput.files[0];
-        if (!file) {
-          msgEl.textContent = 'CSV';
-          return;
-        }
+        if (!file) return;
+
         const reader = new FileReader();
         reader.onload = function (ev) {
           const lines = String(ev.target.result || '').split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
@@ -1130,9 +1126,45 @@
             state.invoices.push({ id: Date.now() + i, code, client, expected: exp, paid: col, reason, date: validDate });
             added++;
           }
+          logAudit('استيراد CSV', `${file.name} (+${added})`);
           saveState();
           renderAll();
           msgEl.textContent = `+${added}`;
+        };
+        reader.readAsText(file, 'utf-8');
+      }
+
+      function exportBackupJSON() {
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `revenueguard-backup-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        document.getElementById('backupStatusMsg').textContent = 'JSON';
+      }
+
+      function restoreBackupJSON() {
+        const fileInput = document.getElementById('jsonRestoreInput');
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          try {
+            const parsed = JSON.parse(String(ev.target.result || '{}'));
+            if (Array.isArray(parsed.invoices)) {
+              state = { ...state, ...parsed };
+              logAudit('استعادة نسخة بيانات', file.name);
+              saveState();
+              rebuildCurrencySelect();
+              applyLanguage();
+              renderAll();
+              document.getElementById('backupStatusMsg').textContent = '✓';
+            }
+          } catch (e) {
+            document.getElementById('backupStatusMsg').textContent = '!';
+          }
         };
         reader.readAsText(file, 'utf-8');
       }
@@ -1141,32 +1173,18 @@
         state.invoices = [
           { id: 1, code: 'OP-2026-101', client: 'مؤسسة الأمل (تجريبي)', expected: 250000, paid: 250000, reason: 'تحصيل كامل', date: '2026-10-05' },
           { id: 2, code: 'OP-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, reason: 'تحصيل جزئي دون تسوية', date: '2026-11-10' },
-          { id: 3, code: 'OP-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, reason: 'تأخر سداد المستحقات', date: '2026-11-18' },
+          { id: 3, code: 'OP-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, reason: 'تأخر في التحصيل', date: '2026-11-18' },
         ];
+        logAudit('بيانات تجريبية', '3');
         saveState();
         renderAll();
       }
 
       function clearData() {
         state.invoices = [];
+        logAudit('تفريغ السجل', '0');
         saveState();
         renderAll();
-      }
-
-      function generateSuggestions() {
-        const list = getFilteredInvoices();
-        const ul = document.getElementById('aiSuggestionsList');
-        const gaps = list.map((i) => Math.max(0, i.expected - i.paid)).filter((g) => g > 0);
-        const avgGap = gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0;
-        const flagged = list.filter((i) => i.paid < i.expected);
-        if (!flagged.length) {
-          ul.innerHTML = '<li>—</li>';
-          return;
-        }
-        ul.innerHTML = flagged.map((inv) => {
-          const a = analyzeCase(inv, avgGap);
-          return `<li><strong>${a.source}</strong> — ${fmtMoney(a.gap)} | ${a.why} | ${a.fix}</li>`;
-        }).join('');
       }
 
       function exportCSV() {
@@ -1183,7 +1201,7 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `revenueguard-${document.getElementById('yearFilter').value}.csv`;
+        a.download = `revenueguard-report-${document.getElementById('yearFilter').value}.csv`;
         a.click();
         URL.revokeObjectURL(url);
       }
@@ -1249,12 +1267,11 @@
           ? '<div class="card" style="color:var(--text-muted); font-size:13px;">—</div>'
           : analyzed.map(({ inv, info }) => `
               <div class="card">
-                <div style="font-weight:800; font-size:15px;">${info.source}</div>
+                <div style="font-weight:800; font-size:14px;">${info.source}</div>
                 <div class="analysis-box">
-                  <div>• <strong>القيمة:</strong> ${fmtMoney(info.gap)} ${info.abnormal ? '• <strong>نقص غير طبيعي</strong>' : ''}</div>
-                  <div>• <strong>لماذا:</strong> ${info.why}</div>
-                  <div>• <strong>كيف:</strong> ${info.how}</div>
-                  <div>• <strong>الحل:</strong> ${info.fix}</div>
+                  <div>• <strong>الفارق:</strong> ${fmtMoney(info.gap)} ${info.abnormal ? '• <strong>فارق غير طبيعي</strong>' : ''}</div>
+                  <div>• <strong>التفسير / السبب:</strong> ${info.why}</div>
+                  <div>• <strong>كيف وقع:</strong> ${info.how}</div>
                 </div>
               </div>
             `).join('');
@@ -1272,7 +1289,10 @@
                 <td style="color:#10b981;">${fmtMoney(inv.paid)}</td>
                 <td style="color:${rem > 0 ? '#f59e0b' : 'inherit'};">${fmtMoney(rem)}</td>
                 <td>${inv.reason || '—'}</td>
-                <td><button type="button" class="btn btn-danger" onclick="deleteInvoice(${inv.id})" style="padding:4px 8px; font-size:11px;">×</button></td>
+                <td style="white-space:nowrap;">
+                  <button type="button" class="btn" onclick="editInvoice(${inv.id})" style="padding:4px 8px; font-size:11px;">✎</button>
+                  <button type="button" class="btn btn-danger" onclick="deleteInvoice(${inv.id})" style="padding:4px 8px; font-size:11px;">×</button>
+                </td>
               </tr>`;
             }).join('');
 
@@ -1281,27 +1301,15 @@
           <div>${fmtMoney(exp)} | ${fmtMoney(col)} | ${fmtMoney(uncollected)}</div>
           <div>${collRate}% | ${leakRate}%</div>
         `;
-      }
 
-      function askAI(e) {
-        e.preventDefault();
-        const input = document.getElementById('aiInput');
-        const q = input.value.trim();
-        if (!q) return;
-        const box = document.getElementById('aiMessages');
-        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; border-color:#38bdf8;">${q}</div>`;
-
-        const list = getFilteredInvoices();
-        const exp = list.reduce((a, b) => a + b.expected, 0);
-        const col = list.reduce((a, b) => a + b.paid, 0);
-        const uncollected = Math.max(0, exp - col);
-        const reply = list.length
-          ? `${fmtMoney(exp)} / ${fmtMoney(col)} / ${fmtMoney(uncollected)}`
-          : '—';
-
-        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; background:var(--bg-soft);">${reply}</div>`;
-        box.scrollTop = box.scrollHeight;
-        input.value = '';
+        const auditBody = document.getElementById('auditBody');
+        auditBody.innerHTML = !state.auditLog.length
+          ? '<tr><td colspan="3" style="text-align:center; padding:18px; color:var(--text-muted);">—</td></tr>'
+          : state.auditLog.map((a) => `<tr>
+              <td>${a.time}</td>
+              <td><strong>${a.type}</strong></td>
+              <td>${a.details}</td>
+            </tr>`).join('');
       }
 
       function initApp() {
@@ -1345,9 +1353,8 @@
 
         document.getElementById('exportExcelBtn').addEventListener('click', exportCSV);
         document.getElementById('exportPdfBtn').addEventListener('click', () => window.print());
-
-        document.getElementById('generateSuggestionsBtn').addEventListener('click', generateSuggestions);
-        document.getElementById('aiForm').addEventListener('submit', askAI);
+        document.getElementById('exportJsonBtn').addEventListener('click', exportBackupJSON);
+        document.getElementById('restoreJsonBtn').addEventListener('click', restoreBackupJSON);
 
         document.querySelectorAll('.nav-item').forEach((btn) => {
           btn.addEventListener('click', () => switchTab(btn.dataset.tab));
