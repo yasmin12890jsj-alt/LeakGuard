@@ -42,7 +42,7 @@
         font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
         background-color: var(--bg-main);
         color: var(--text-main);
-        padding-bottom: 84px;
+        padding-bottom: 92px;
         transition: background-color 0.25s ease, color 0.25s ease;
       }
 
@@ -51,7 +51,7 @@
       }
 
       .container {
-        max-width: 1120px;
+        max-width: 1180px;
         margin: 0 auto;
         padding: 16px;
       }
@@ -111,7 +111,7 @@
         justify-content: space-between;
         gap: 10px;
         padding: 12px 16px;
-        max-width: 1120px;
+        max-width: 1180px;
         margin: 0 auto;
       }
 
@@ -173,13 +173,19 @@
         border-color: transparent;
       }
 
+      .btn-danger {
+        background-color: rgba(239, 68, 68, 0.14);
+        color: #ef4444;
+        border-color: rgba(239, 68, 68, 0.35);
+      }
+
       .filter-bar {
         border-top: 1px solid var(--border-color);
         background-color: var(--bg-main);
       }
 
       .filter-bar-inner {
-        max-width: 1120px;
+        max-width: 1180px;
         margin: 0 auto;
         padding: 8px 16px;
         display: flex;
@@ -191,14 +197,14 @@
 
       .grid-4 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
         gap: 12px;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
 
       .grid-3 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
         gap: 12px;
         margin-bottom: 14px;
       }
@@ -216,7 +222,7 @@
       }
 
       .kpi-value {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 800;
         margin-top: 6px;
       }
@@ -247,6 +253,98 @@
         font-size: 12px;
       }
 
+      .alert-banner {
+        border-radius: 14px;
+        padding: 12px 14px;
+        margin-bottom: 14px;
+        font-size: 13px;
+        line-height: 1.6;
+        border: 1px solid rgba(245, 158, 11, 0.45);
+        background-color: rgba(245, 158, 11, 0.12);
+      }
+
+      .alert-ok {
+        border-color: rgba(16, 185, 129, 0.4);
+        background-color: rgba(16, 185, 129, 0.1);
+      }
+
+      /* رسم بياني مقارنة المتوقع بالمحصل شهرياً */
+      .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(46px, 1fr));
+        gap: 8px;
+        align-items: end;
+        min-height: 190px;
+        padding-top: 12px;
+        overflow-x: auto;
+      }
+
+      .month-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .bars-pair {
+        height: 135px;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 4px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 4px;
+      }
+
+      .bar-exp {
+        width: 11px;
+        min-height: 2px;
+        background-color: #38bdf8;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .bar-col {
+        width: 11px;
+        min-height: 2px;
+        background-color: #10b981;
+        border-radius: 4px 4px 0 0;
+      }
+
+      .month-lbl {
+        font-size: 11px;
+        color: var(--text-muted);
+        font-weight: 700;
+      }
+
+      .legend-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-top: 10px;
+      }
+
+      .legend-dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-inline-end: 5px;
+      }
+
+      .rec-list {
+        margin: 10px 0 0;
+        padding-inline-start: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      /* الشريط السفلي بالأيقونات */
       .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -255,40 +353,54 @@
         z-index: 50;
         background-color: var(--bg-card);
         border-top: 1px solid var(--border-color);
-        padding: 6px 8px;
+        padding: 6px 4px;
       }
 
       .bottom-nav-inner {
-        max-width: 760px;
+        max-width: 980px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 4px;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
       }
 
       .nav-item {
         background: transparent;
         border: none;
         color: var(--text-muted);
-        border-radius: 12px;
-        padding: 6px 4px;
+        border-radius: 10px;
+        padding: 6px 2px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 3px;
-        font-size: 11px;
+        gap: 2px;
+        font-size: 10px;
         font-weight: 700;
         cursor: pointer;
       }
 
       .nav-item .icon {
-        font-size: 17px;
+        font-size: 16px;
         line-height: 1;
       }
 
       .nav-item.active {
         background-color: rgba(56, 189, 248, 0.16);
         color: var(--accent);
+      }
+
+      @media print {
+        header,
+        .bottom-nav,
+        #splashScreen,
+        .no-print {
+          display: none !important;
+        }
+        body {
+          padding-bottom: 0;
+          background: #ffffff;
+          color: #000000;
+        }
       }
     </style>
   </head>
@@ -368,7 +480,12 @@
     </header>
 
     <main class="container">
-      <!-- 1. الرئيسية / لوحة التحكم -->
+      <!-- شريط التنبيهات الذكية للمبالغ غير المحصلة -->
+      <div id="globalAlertBox" class="alert-banner alert-ok">
+        لا توجد مبالغ غير محصلة مسجلة في الفترة المختارة حالياً.
+      </div>
+
+      <!-- 1. الرئيسية / لوحة المؤشرات -->
       <section id="tab-dashboard" class="tab-panel active">
         <div class="grid-4">
           <div class="card">
@@ -380,24 +497,43 @@
             <div class="kpi-value tabular-nums" id="kpiCollected" style="color: #10b981;">0.00 د.ج</div>
           </div>
           <div class="card">
-            <div class="kpi-label">الفرق الأولي</div>
-            <div class="kpi-value tabular-nums" id="kpiVariance" style="color: #f59e0b;">0.00 د.ج</div>
+            <div class="kpi-label">المستحقات غير المحصلة</div>
+            <div class="kpi-value tabular-nums" id="kpiReceivables" style="color: #f59e0b;">0.00 د.ج</div>
           </div>
           <div class="card">
-            <div class="kpi-label">نسبة الفرق الأولي</div>
-            <div class="kpi-value tabular-nums" id="kpiRate" style="color: #ef4444;">0.0%</div>
+            <div class="kpi-label">الإيرادات المتأخرة عن الدفع</div>
+            <div class="kpi-value tabular-nums" id="kpiOverdue" style="color: #ef4444;">0.00 د.ج</div>
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <div class="card">
+            <div class="kpi-label">نسبة تحصيل الإيرادات</div>
+            <div class="kpi-value tabular-nums" id="kpiCollectionRate" style="color: #10b981;">0.0%</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">قيمة الإيرادات المتسربة / المفقودة</div>
+            <div class="kpi-value tabular-nums" id="kpiLeakedValue" style="color: #ef4444;">0.00 د.ج</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">نسبة التسرب المالي</div>
+            <div class="kpi-value tabular-nums" id="kpiLeakRate" style="color: #ef4444;">0.0%</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">الإيرادات المفقودة (بعد استبعاد المؤجل)</div>
+            <div class="kpi-value tabular-nums" id="kpiLostRevenue" style="color: #f59e0b;">0.00 د.ج</div>
           </div>
         </div>
 
         <div class="card" style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
-          <strong>ملاحظة محاسبية:</strong> الفرق الأولي لا يُعدّ تسرباً مؤكداً أو تلاعباً دون مراجعة بشرية والتحقق من آجال الاستحقاق والتسويات المحاسبية. اضغط على أيقونة <strong>الحاسبة</strong> في الأسفل لحساب الفروقات مباشرة.
+          <strong>تنبيه محاسبي:</strong> الفروقات المالية والمستحقات غير المحصلة لا تُعدّ تسرباً مؤكداً أو تلاعباً دون مراجعة بشرية والتحقق من آجال الاستحقاق والتسويات المحاسبية.
         </div>
       </section>
 
-      <!-- 2. حاسبة كشف التسرب -->
+      <!-- 2. الحاسبة -->
       <section id="tab-calculator" class="tab-panel">
         <div class="card">
-          <h2 style="margin: 0 0 14px; font-size: 17px;">حاسبة كشف تسرب الإيرادات</h2>
+          <h2 style="margin: 0 0 14px; font-size: 17px;">حاسبة الإيرادات والتسرب المالي</h2>
           <div class="grid-3">
             <div>
               <label style="display: block; font-size: 12px; margin-bottom: 6px;">الإيرادات المتوقعة</label>
@@ -415,67 +551,174 @@
 
           <div class="grid-3">
             <div class="card" style="margin-bottom: 0;">
-              <div class="kpi-label">الفرق الأولي</div>
+              <div class="kpi-label">المستحقات غير المحصلة</div>
               <div class="kpi-value tabular-nums" id="calcDiff">0.00 د.ج</div>
             </div>
             <div class="card" style="margin-bottom: 0;">
-              <div class="kpi-label">تسرب محتمل</div>
-              <div class="kpi-value tabular-nums" id="calcSuspect" style="color: #f59e0b;">0.00 د.ج</div>
+              <div class="kpi-label">الإيرادات المفقودة / المتسربة</div>
+              <div class="kpi-value tabular-nums" id="calcSuspect" style="color: #ef4444;">0.00 د.ج</div>
             </div>
             <div class="card" style="margin-bottom: 0;">
-              <div class="kpi-label">نسبة التسرب المحتمل</div>
-              <div class="kpi-value tabular-nums" id="calcPct" style="color: #ef4444;">0.0%</div>
+              <div class="kpi-label">نسبة التسرب المالي</div>
+              <div class="kpi-value tabular-nums" id="calcPct" style="color: #f59e0b;">0.0%</div>
             </div>
           </div>
 
           <div class="controls-row" style="margin-top: 14px;">
-            <button type="button" class="btn btn-primary" id="saveCalcBtn">حفظ في الفواتير</button>
+            <button type="button" class="btn btn-primary" id="saveCalcBtn">حفظ في سجل العمليات</button>
             <button type="button" class="btn" id="resetCalcBtn">إعادة ضبط</button>
           </div>
         </div>
       </section>
 
-      <!-- 3. الفواتير -->
-      <section id="tab-invoices" class="tab-panel">
-        <form class="card" id="invoiceForm" style="margin-bottom: 14px;">
-          <div class="grid-4" style="margin-bottom: 10px;">
-            <input id="invCode" required placeholder="رقم الفاتورة (INV-01)" />
-            <input id="invClient" required placeholder="اسم العميل" />
-            <input id="invExpected" type="number" step="0.01" required placeholder="المبلغ المتوقع" />
-            <input id="invPaid" type="number" step="0.01" required placeholder="المبلغ المحصل" />
+      <!-- 3. تحليل الإيرادات والرسوم البيانية -->
+      <section id="tab-analytics" class="tab-panel">
+        <div class="grid-4">
+          <div class="card">
+            <div class="kpi-label">نسبة التحصيل</div>
+            <div class="kpi-value tabular-nums" id="anCollRate" style="color: #10b981;">0.0%</div>
           </div>
-          <button type="submit" class="btn btn-primary">+ إضافة فاتورة</button>
+          <div class="card">
+            <div class="kpi-label">نسبة التسرب المالي</div>
+            <div class="kpi-value tabular-nums" id="anLeakRate" style="color: #ef4444;">0.0%</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">الإيرادات المحصلة</div>
+            <div class="kpi-value tabular-nums" id="anCollected" style="color: #10b981;">0.00 د.ج</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">الإيرادات المفقودة</div>
+            <div class="kpi-value tabular-nums" id="anLost" style="color: #f59e0b;">0.00 د.ج</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 14px;">
+          <h3 style="margin: 0 0 8px; font-size: 16px;">رسم بياني: مقارنة الإيرادات المتوقعة بالمحصلة (حسب الأشهر)</h3>
+          <div class="chart-grid" id="monthlyChart"></div>
+          <div class="legend-row">
+            <span><span class="legend-dot" style="background:#38bdf8;"></span>الإيرادات المتوقعة</span>
+            <span><span class="legend-dot" style="background:#10b981;"></span>الإيرادات المحصلة</span>
+          </div>
+        </div>
+
+        <div class="card" style="overflow-x: auto;">
+          <h3 style="margin: 0 0 10px; font-size: 15px;">تحليل الإيرادات حسب كل شهر وسنة</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>السنة</th>
+                <th>الشهر</th>
+                <th>المتوقع</th>
+                <th>المحصل</th>
+                <th>غير المحصل</th>
+                <th>نسبة التحصيل</th>
+              </tr>
+            </thead>
+            <tbody id="monthlyTableBody" class="tabular-nums"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. كشف التسرب والتنبيهات -->
+      <section id="tab-leakage" class="tab-panel">
+        <div id="leakageAlertDetail" class="alert-banner alert-ok">
+          لا توجد تنبيهات لمبالغ غير محصلة في الفترة المختارة.
+        </div>
+        <div id="leakageList" class="grid-3"></div>
+      </section>
+
+      <!-- 5. سجل العمليات -->
+      <section id="tab-ledger" class="tab-panel">
+        <form class="card" id="invoiceForm" style="margin-bottom: 14px;">
+          <div style="font-weight: 800; font-size: 15px; margin-bottom: 10px;">إضافة عملية / إيراد جديد</div>
+          <div class="grid-4" style="margin-bottom: 10px;">
+            <input id="invCode" required placeholder="رقم العملية (OP-01)" />
+            <input id="invClient" required placeholder="العميل / البيان" />
+            <input id="invExpected" type="number" step="0.01" required placeholder="الإيراد المتوقع" />
+            <input id="invPaid" type="number" step="0.01" required placeholder="الإيراد المحصل" />
+          </div>
+          <div class="controls-row" style="margin-bottom: 10px;">
+            <select id="invReason">
+              <option value="تأخر دفع من العميل">سبب الفارق: تأخر دفع من العميل</option>
+              <option value="دفعة جزئية قيد المتابعة">سبب الفارق: دفعة جزئية قيد المتابعة</option>
+              <option value="خصم غير موثق / مراجعة">سبب الفارق: خصم غير موثق / مراجعة</option>
+              <option value="فرق تسوية / استحقاق">سبب الفارق: فرق تسوية / استحقاق</option>
+            </select>
+            <label style="font-size: 12px; display: flex; align-items: center; gap: 6px;">
+              <input id="invOverdue" type="checkbox" />
+              متأخرة عن موعد الدفع
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">+ إضافة إلى السجل</button>
         </form>
+
+        <div class="card" style="margin-bottom: 14px;">
+          <div class="controls-row">
+            <input id="ledgerSearch" type="search" placeholder="بحث برقم العملية أو العميل..." style="flex: 1; min-width: 200px;" />
+            <select id="ledgerStatusFilter">
+              <option value="ALL">كل الحالات</option>
+              <option value="PAID">مدفوعة</option>
+              <option value="PARTIAL">مدفوعة جزئياً</option>
+              <option value="UNPAID">غير مدفوعة</option>
+            </select>
+          </div>
+        </div>
 
         <div class="card" style="overflow-x: auto;">
           <table>
             <thead>
               <tr>
                 <th>الرقم</th>
+                <th>التاريخ</th>
                 <th>العميل</th>
                 <th>المتوقع</th>
                 <th>المحصل</th>
-                <th>الفرق</th>
-                <th>الحالة</th>
+                <th>غير المحصل</th>
+                <th>السبب / الحالة</th>
+                <th>حذف</th>
               </tr>
             </thead>
-            <tbody id="invoicesBody" class="tabular-nums"></tbody>
+            <tbody id="ledgerBody" class="tabular-nums"></tbody>
           </table>
         </div>
       </section>
 
-      <!-- 4. حالات التسرب -->
-      <section id="tab-leakage" class="tab-panel">
-        <div id="leakageList" class="grid-3"></div>
+      <!-- 6. التقارير (PDF و Excel) -->
+      <section id="tab-reports" class="tab-panel">
+        <div class="card" style="margin-bottom: 14px;">
+          <h2 style="margin: 0 0 8px; font-size: 17px;">استخراج وتصدير التقارير المالية</h2>
+          <p style="margin: 0 0 14px; font-size: 13px; color: var(--text-muted);">
+            تصدير تقرير الفترة المختارة بصيغة Excel (CSV) أو حفظه/طباعته كـ PDF.
+          </p>
+          <div class="controls-row no-print">
+            <button type="button" class="btn btn-primary" id="exportExcelBtn">📊 تصدير Excel (CSV)</button>
+            <button type="button" class="btn" id="exportPdfBtn">📄 استخراج تقرير PDF / طباعة</button>
+          </div>
+        </div>
+
+        <div class="card" id="reportPreviewBox" style="font-size: 13px; line-height: 1.8;"></div>
       </section>
 
-      <!-- 5. المساعد الذكي -->
+      <!-- 7. الذكاء الاصطناعي واقتراحات تقليل التسرب -->
       <section id="tab-ai" class="tab-panel">
+        <div class="card" style="margin-bottom: 14px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+            <div>
+              <div style="font-weight: 800; font-size: 15px;">اقتراحات الذكاء الاصطناعي لتقليل التسرب المالي</div>
+              <div style="font-size: 12px; color: var(--text-muted);">مبنية على بيانات الفترة المختارة فقط</div>
+            </div>
+            <button type="button" class="btn btn-primary" id="generateSuggestionsBtn">توليد اقتراحات</button>
+          </div>
+          <ul class="rec-list" id="aiSuggestionsList">
+            <li>اضغط على "توليد اقتراحات" لتحليل بيانات الفترة الحالية وتقديم خطوات عملية لتقليل التسرب المالي.</li>
+          </ul>
+        </div>
+
         <div class="card">
-          <div style="font-weight: 700; margin-bottom: 10px;">مساعد RevenueGuard الذكي</div>
-          <div id="aiMessages" style="max-height: 240px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-weight: 700; margin-bottom: 10px;">محادثة مساعد RevenueGuard الذكي</div>
+          <div id="aiMessages" style="max-height: 210px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;">
             <div class="card" style="padding: 10px; margin-bottom: 0; font-size: 13px;">
-              اسألني عن إجمالي الإيرادات المتوقعة، المحصلة، أو الفرق الأولي للفترة المختارة.
+              اسألني عن نسبة التحصيل، نسبة التسرب، المبالغ غير المحصلة، أو الإيرادات المتأخرة.
             </div>
           </div>
           <form id="aiForm" style="display: flex; gap: 8px;">
@@ -486,36 +729,49 @@
       </section>
     </main>
 
-    <!-- شريط الأيقونات السفلي لكاشف تسرب الإيرادات -->
+    <!-- شريط الأيقونات السفلي الكامل لكاشف تسرب الإيرادات -->
     <nav class="bottom-nav" aria-label="أقسام كاشف تسرب الإيرادات">
       <div class="bottom-nav-inner">
         <button type="button" class="nav-item active" data-tab="dashboard">
           <span class="icon">📊</span>
-          <span>الرئيسية</span>
+          <span>المؤشرات</span>
         </button>
         <button type="button" class="nav-item" data-tab="calculator">
           <span class="icon">🧮</span>
           <span>الحاسبة</span>
         </button>
-        <button type="button" class="nav-item" data-tab="invoices">
-          <span class="icon">🧾</span>
-          <span>الفواتير</span>
+        <button type="button" class="nav-item" data-tab="analytics">
+          <span class="icon">📈</span>
+          <span>التحليل</span>
         </button>
         <button type="button" class="nav-item" data-tab="leakage">
           <span class="icon">🛡️</span>
           <span>التسرب</span>
         </button>
+        <button type="button" class="nav-item" data-tab="ledger">
+          <span class="icon">🧾</span>
+          <span>السجل</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="reports">
+          <span class="icon">📄</span>
+          <span>التقارير</span>
+        </button>
         <button type="button" class="nav-item" data-tab="ai">
           <span class="icon">🤖</span>
-          <span>المساعد</span>
+          <span>الذكاء</span>
         </button>
       </div>
     </nav>
 
     <script>
-      const STORAGE_KEY = 'revenueguard_v1_3_state';
+      const STORAGE_KEY = 'revenueguard_v1_5_state';
       const RATES_FROM_DZD = { DZD: 1, USD: 1 / 135, EUR: 1 / 146, GBP: 1 / 172 };
       const SYMBOLS = { DZD: 'د.ج', USD: '$', EUR: '€', GBP: '£' };
+      const MONTHS = [
+        ['01', 'يناير'], ['02', 'فبراير'], ['03', 'مارس'], ['04', 'أبريل'],
+        ['05', 'مايو'], ['06', 'يونيو'], ['07', 'يوليو'], ['08', 'أغسطس'],
+        ['09', 'سبتمبر'], ['10', 'أكتوبر'], ['11', 'نوفمبر'], ['12', 'ديسمبر']
+      ];
 
       let state = {
         lang: 'ar',
@@ -526,19 +782,19 @@
       };
 
       function closeSplash() {
-        const splash = document.getElementById('splashScreen');
-        if (splash) splash.style.display = 'none';
+        const s = document.getElementById('splashScreen');
+        if (s) s.style.display = 'none';
       }
 
       function openSplash() {
-        const splash = document.getElementById('splashScreen');
-        if (splash) splash.style.display = 'flex';
+        const s = document.getElementById('splashScreen');
+        if (s) s.style.display = 'flex';
       }
 
       function saveState() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-        } catch (err) {}
+        } catch (e) {}
       }
 
       function applyTheme() {
@@ -578,14 +834,14 @@
 
       function toggleMute() {
         state.muted = !state.muted;
-        const muteBtn = document.getElementById('muteBtn');
-        if (muteBtn) muteBtn.textContent = state.muted ? '🔇 الصوت: مكتوم' : '🔊 الصوت: مفعل';
+        const b = document.getElementById('muteBtn');
+        if (b) b.textContent = state.muted ? '🔇 الصوت: مكتوم' : '🔊 الصوت: مفعل';
       }
 
       function switchTab(tabName) {
-        document.querySelectorAll('.tab-panel').forEach((el) => el.classList.remove('active'));
-        const target = document.getElementById('tab-' + tabName);
-        if (target) target.classList.add('active');
+        document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+        const el = document.getElementById('tab-' + tabName);
+        if (el) el.classList.add('active');
 
         document.querySelectorAll('.nav-item').forEach((btn) => {
           btn.classList.toggle('active', btn.dataset.tab === tabName);
@@ -604,6 +860,12 @@
       function toDZD(amountInCurrent) {
         const rate = RATES_FROM_DZD[state.currency] || 1;
         return (parseFloat(amountInCurrent) || 0) / rate;
+      }
+
+      function getInvoiceStatus(inv) {
+        if (inv.paid >= inv.expected && inv.expected > 0) return 'PAID';
+        if (inv.paid > 0 && inv.paid < inv.expected) return 'PARTIAL';
+        return 'UNPAID';
       }
 
       function calculateLeakage() {
@@ -640,11 +902,13 @@
           client: 'عملية حاسبة التسرب',
           expected: exp,
           paid: col,
+          reason: 'مراجعة فرق الحاسبة',
+          overdue: exp > col,
           date: `${y}-${m}-22`,
         });
         saveState();
         renderAll();
-        switchTab('invoices');
+        switchTab('ledger');
       }
 
       function getFilteredInvoices() {
@@ -668,6 +932,8 @@
           client: document.getElementById('invClient').value.trim(),
           expected: toDZD(document.getElementById('invExpected').value),
           paid: toDZD(document.getElementById('invPaid').value),
+          reason: document.getElementById('invReason').value,
+          overdue: document.getElementById('invOverdue').checked,
           date: `${y}-${m}-15`,
         });
         saveState();
@@ -675,11 +941,17 @@
         renderAll();
       }
 
+      function deleteInvoice(id) {
+        state.invoices = state.invoices.filter((item) => item.id !== id);
+        saveState();
+        renderAll();
+      }
+
       function loadDemoData() {
         state.invoices = [
-          { id: 1, code: 'INV-2026-101', client: 'مؤسسة الأمل (تجريبي)', expected: 250000, paid: 250000, date: '2026-11-03' },
-          { id: 2, code: 'INV-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, date: '2026-11-10' },
-          { id: 3, code: 'INV-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, date: '2026-11-18' },
+          { id: 1, code: 'OP-2026-101', client: 'مؤسسة الأمل (تجريبي)', expected: 250000, paid: 250000, reason: 'تحصيل كامل', overdue: false, date: '2026-10-05' },
+          { id: 2, code: 'OP-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, reason: 'دفعة جزئية قيد المتابعة', overdue: true, date: '2026-11-10' },
+          { id: 3, code: 'OP-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, reason: 'تأخر دفع من العميل', overdue: true, date: '2026-11-18' },
         ];
         saveState();
         renderAll();
@@ -691,50 +963,187 @@
         renderAll();
       }
 
-      function renderAll() {
+      function generateSuggestions() {
         const list = getFilteredInvoices();
+        const ul = document.getElementById('aiSuggestionsList');
+        if (!list.length) {
+          ul.innerHTML = '<li>لا توجد بيانات كافية في الفترة المختارة لتقديم اقتراحات دقيقة. أضف عمليات أو حمّل بيانات تجريبية.</li>';
+          return;
+        }
+        const exp = list.reduce((a, b) => a + b.expected, 0);
+        const col = list.reduce((a, b) => a + b.paid, 0);
+        const uncollected = Math.max(0, exp - col);
+        const overdueList = list.filter((i) => i.overdue && i.paid < i.expected);
+        const collRate = exp > 0 ? ((col / exp) * 100).toFixed(1) : '0.0';
+        const leakRate = exp > 0 ? ((uncollected / exp) * 100).toFixed(1) : '0.0';
+
+        const recs = [
+          `نسبة التحصيل الحالية ${collRate}% ونسبة الفارق/التسرب ${leakRate}% بقيمة إجمالية غير محصلة ${fmtMoney(uncollected)}.`,
+          overdueList.length
+            ? `يوجد ${overdueList.length} عملية متأخرة عن الدفع؛ يُنصح بإعطاء أولوية للمتابعة والاتصال بالعملاء المعنيين.`
+            : 'لا توجد عمليات متأخرة عن الدفع ضمن الفترة المختارة.',
+          'راجع أسباب النقص المسجلة (تأخر دفع، دفعات جزئية، أو خصومات) وتأكد من سندات الإثبات قبل اعتبار أي فرق تسرباً مؤكداً.',
+        ];
+        ul.innerHTML = recs.map((r) => `<li>${r}</li>`).join('');
+      }
+
+      function exportCSV() {
+        const list = getFilteredInvoices();
+        const rows = [
+          ['رقم العملية', 'التاريخ', 'العميل', 'المتوقع (DZD)', 'المحصل (DZD)', 'غير المحصل (DZD)', 'السبب', 'متأخرة'],
+          ...list.map((i) => [
+            i.code,
+            i.date,
+            i.client,
+            i.expected.toFixed(2),
+            i.paid.toFixed(2),
+            Math.max(0, i.expected - i.paid).toFixed(2),
+            i.reason || '',
+            i.overdue ? 'نعم' : 'لا',
+          ]),
+        ];
+        const csv = '\uFEFF' + rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `revenueguard-report-${document.getElementById('yearFilter').value}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function renderAll() {
+        const year = document.getElementById('yearFilter').value;
+        const month = document.getElementById('monthFilter').value;
+        const list = getFilteredInvoices();
+
         const exp = list.reduce((acc, item) => acc + item.expected, 0);
         const col = list.reduce((acc, item) => acc + item.paid, 0);
-        const diff = Math.max(0, exp - col);
-        const rate = exp > 0 ? ((diff / exp) * 100).toFixed(1) : '0.0';
+        const uncollected = Math.max(0, exp - col);
+        const overdueSum = list.filter((i) => i.overdue && i.paid < i.expected).reduce((acc, i) => acc + (i.expected - i.paid), 0);
+        const collRate = exp > 0 ? ((col / exp) * 100).toFixed(1) : '0.0';
+        const leakRate = exp > 0 ? ((uncollected / exp) * 100).toFixed(1) : '0.0';
 
+        // المؤشرات الرئيسية
         document.getElementById('kpiExpected').textContent = fmtMoney(exp);
         document.getElementById('kpiCollected').textContent = fmtMoney(col);
-        document.getElementById('kpiVariance').textContent = fmtMoney(diff);
-        document.getElementById('kpiRate').textContent = rate + '%';
+        document.getElementById('kpiReceivables').textContent = fmtMoney(uncollected);
+        document.getElementById('kpiOverdue').textContent = fmtMoney(overdueSum);
+        document.getElementById('kpiCollectionRate').textContent = collRate + '%';
+        document.getElementById('kpiLeakedValue').textContent = fmtMoney(uncollected);
+        document.getElementById('kpiLeakRate').textContent = leakRate + '%';
+        document.getElementById('kpiLostRevenue').textContent = fmtMoney(uncollected);
 
-        const tbody = document.getElementById('invoicesBody');
-        if (!list.length) {
-          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 20px; color: var(--text-muted);">لا توجد فواتير في هذه الفترة. أضف فاتورة أو اضغط "+ بيانات تجريبية".</td></tr>';
+        // التنبيهات العامة للمبالغ غير المحصلة
+        const gAlert = document.getElementById('globalAlertBox');
+        const lAlert = document.getElementById('leakageAlertDetail');
+        if (uncollected > 0) {
+          const msg = `⚠️ تنبيه مالي: توجد مبالغ غير محصلة بقيمة ${fmtMoney(uncollected)} (نسبة الفارق ${leakRate}%) في الفترة (${year} / ${month === 'ALL' ? 'كل الأشهر' : month}).`;
+          gAlert.className = 'alert-banner';
+          gAlert.textContent = msg;
+          lAlert.className = 'alert-banner';
+          lAlert.textContent = msg;
         } else {
-          tbody.innerHTML = list.map((inv) => {
-            const rem = inv.expected - inv.paid;
-            const st = inv.paid >= inv.expected ? 'مدفوعة' : inv.paid > 0 ? 'مدفوعة جزئياً' : 'غير مدفوعة';
-            return `<tr>
-              <td><strong>${inv.code}</strong></td>
-              <td>${inv.client}</td>
-              <td>${fmtMoney(inv.expected)}</td>
-              <td style="color:#10b981;">${fmtMoney(inv.paid)}</td>
-              <td style="color:${rem > 0 ? '#f59e0b' : 'inherit'};">${fmtMoney(rem)}</td>
-              <td>${st}</td>
-            </tr>`;
-          }).join('');
+          const okMsg = '✅ لا توجد مبالغ غير محصلة في الفترة المختارة حالياً.';
+          gAlert.className = 'alert-banner alert-ok';
+          gAlert.textContent = okMsg;
+          lAlert.className = 'alert-banner alert-ok';
+          lAlert.textContent = okMsg;
         }
 
+        // التحليل والرسم البياني الشهري للسنة المختارة
+        document.getElementById('anCollRate').textContent = collRate + '%';
+        document.getElementById('anLeakRate').textContent = leakRate + '%';
+        document.getElementById('anCollected').textContent = fmtMoney(col);
+        document.getElementById('anLost').textContent = fmtMoney(uncollected);
+
+        const yearInvoices = state.invoices.filter((i) => i.date.startsWith(year + '-'));
+        const monthStats = MONTHS.map(([mCode, mName]) => {
+          const mItems = yearInvoices.filter((i) => i.date.split('-')[1] === mCode);
+          const mExp = mItems.reduce((s, x) => s + x.expected, 0);
+          const mCol = mItems.reduce((s, x) => s + x.paid, 0);
+          return { mCode, mName, mExp, mCol, mRem: Math.max(0, mExp - mCol) };
+        });
+
+        const maxVal = Math.max(1, ...monthStats.map((x) => Math.max(x.mExp, x.mCol)));
+        document.getElementById('monthlyChart').innerHTML = monthStats.map((st) => {
+          const hExp = Math.round((st.mExp / maxVal) * 120);
+          const hCol = Math.round((st.mCol / maxVal) * 120);
+          return `<div class="month-col" title="${st.mName}: متوقع ${fmtMoney(st.mExp)} | محصل ${fmtMoney(st.mCol)}">
+            <div class="bars-pair">
+              <div class="bar-exp" style="height:${hExp}px;"></div>
+              <div class="bar-col" style="height:${hCol}px;"></div>
+            </div>
+            <div class="month-lbl">${st.mName.slice(0, 3)}</div>
+          </div>`;
+        }).join('');
+
+        document.getElementById('monthlyTableBody').innerHTML = monthStats.map((st) => {
+          const rateM = st.mExp > 0 ? ((st.mCol / st.mExp) * 100).toFixed(1) : '0.0';
+          return `<tr>
+            <td>${year}</td>
+            <td>${st.mName}</td>
+            <td>${fmtMoney(st.mExp)}</td>
+            <td style="color:#10b981;">${fmtMoney(st.mCol)}</td>
+            <td style="color:${st.mRem > 0 ? '#f59e0b' : 'inherit'};">${fmtMoney(st.mRem)}</td>
+            <td>${rateM}%</td>
+          </tr>`;
+        }).join('');
+
+        // كشف التسرب وأسباب النقص
         const leakBox = document.getElementById('leakageList');
         const flagged = list.filter((item) => item.paid < item.expected);
         if (!flagged.length) {
-          leakBox.innerHTML = '<div class="card" style="color: var(--text-muted); font-size: 13px;">لا توجد فروقات تحصيل مسجلة في الفترة المختارة.</div>';
+          leakBox.innerHTML = '<div class="card" style="color: var(--text-muted); font-size: 13px;">لا توجد حالات نقص أو تسرب مسجلة في هذه الفترة.</div>';
         } else {
           leakBox.innerHTML = flagged.map((inv) => {
             const rem = inv.expected - inv.paid;
             return `<div class="card">
               <div style="font-weight: 800; margin-bottom: 6px;">${inv.code} — ${inv.client}</div>
               <div style="font-size: 14px; color: #f59e0b;" class="tabular-nums">المبلغ غير المحصل: <strong>${fmtMoney(rem)}</strong></div>
-              <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">الإجراء المقترح: مراجعة الفاتورة وتأكيد موعد الاستحقاق.</div>
+              <div style="font-size: 12px; margin-top: 6px;">السبب المسجل: <strong>${inv.reason || 'غير محدد'}</strong> ${inv.overdue ? '• (متأخرة)' : ''}</div>
             </div>`;
           }).join('');
         }
+
+        // سجل العمليات
+        const q = (document.getElementById('ledgerSearch').value || '').trim().toLowerCase();
+        const stFilter = document.getElementById('ledgerStatusFilter').value;
+        const filteredLedger = list.filter((inv) => {
+          const st = getInvoiceStatus(inv);
+          if (stFilter !== 'ALL' && st !== stFilter) return false;
+          if (q && !inv.code.toLowerCase().includes(q) && !inv.client.toLowerCase().includes(q)) return false;
+          return true;
+        });
+
+        const tbody = document.getElementById('ledgerBody');
+        if (!filteredLedger.length) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 20px; color: var(--text-muted);">لا توجد عمليات في هذه الفترة.</td></tr>';
+        } else {
+          tbody.innerHTML = filteredLedger.map((inv) => {
+            const rem = Math.max(0, inv.expected - inv.paid);
+            return `<tr>
+              <td><strong>${inv.code}</strong></td>
+              <td>${inv.date}</td>
+              <td>${inv.client}</td>
+              <td>${fmtMoney(inv.expected)}</td>
+              <td style="color:#10b981;">${fmtMoney(inv.paid)}</td>
+              <td style="color:${rem > 0 ? '#f59e0b' : 'inherit'};">${fmtMoney(rem)}</td>
+              <td>${inv.reason || 'مكتملة'}</td>
+              <td><button type="button" class="btn btn-danger" onclick="deleteInvoice(${inv.id})" style="padding:4px 8px; font-size:11px;">حذف</button></td>
+            </tr>`;
+          }).join('');
+        }
+
+        // معاينة التقرير
+        document.getElementById('reportPreviewBox').innerHTML = `
+          <div><strong>الفترة:</strong> ${year} — ${month === 'ALL' ? 'كل الأشهر' : 'شهر ' + month}</div>
+          <div><strong>الإيرادات المتوقعة:</strong> ${fmtMoney(exp)}</div>
+          <div><strong>الإيرادات المحصلة:</strong> ${fmtMoney(col)}</div>
+          <div><strong>المستحقات غير المحصلة / الإيرادات المفقودة:</strong> ${fmtMoney(uncollected)}</div>
+          <div><strong>الإيرادات المتأخرة عن الدفع:</strong> ${fmtMoney(overdueSum)}</div>
+          <div><strong>نسبة التحصيل:</strong> ${collRate}% | <strong>نسبة التسرب المالي:</strong> ${leakRate}%</div>
+        `;
       }
 
       function askAI(e) {
@@ -748,11 +1157,13 @@
         const list = getFilteredInvoices();
         const exp = list.reduce((a, b) => a + b.expected, 0);
         const col = list.reduce((a, b) => a + b.paid, 0);
-        const diff = Math.max(0, exp - col);
+        const uncollected = Math.max(0, exp - col);
+        const collRate = exp > 0 ? ((col / exp) * 100).toFixed(1) : '0.0';
+        const leakRate = exp > 0 ? ((uncollected / exp) * 100).toFixed(1) : '0.0';
 
         const reply = list.length
-          ? `حسب البيانات الحالية (${list.length} فاتورة): الإيرادات المتوقعة ${fmtMoney(exp)}، المحصلة ${fmtMoney(col)}، والفرق الأولي ${fmtMoney(diff)}.`
-          : 'لا توجد بيانات كافية في الفترة المختارة حالياً. أضف فاتورة أو حمّل بيانات تجريبية.';
+          ? `حسب الفترة المختارة (${list.length} عملية): المتوقع ${fmtMoney(exp)}، المحصل ${fmtMoney(col)}، غير المحصل/المفقود ${fmtMoney(uncollected)}، نسبة التحصيل ${collRate}%، ونسبة التسرب ${leakRate}%.`
+          : 'لا توجد بيانات كافية في الفترة المختارة حالياً. أضف عمليات أو حمّل بيانات تجريبية.';
 
         box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; background:var(--bg-soft);">${reply}</div>`;
         box.scrollTop = box.scrollHeight;
@@ -763,11 +1174,10 @@
         try {
           const saved = localStorage.getItem(STORAGE_KEY);
           if (saved) state = { ...state, ...JSON.parse(saved) };
-        } catch (err) {}
+        } catch (e) {}
 
         document.getElementById('langSelect').value = state.lang;
         document.getElementById('currencySelect').value = state.currency;
-
         applyTheme();
         applyLangDir();
         renderAll();
@@ -792,6 +1202,13 @@
         document.getElementById('resetCalcBtn').addEventListener('click', resetCalc);
 
         document.getElementById('invoiceForm').addEventListener('submit', addInvoice);
+        document.getElementById('ledgerSearch').addEventListener('input', renderAll);
+        document.getElementById('ledgerStatusFilter').addEventListener('change', renderAll);
+
+        document.getElementById('exportExcelBtn').addEventListener('click', exportCSV);
+        document.getElementById('exportPdfBtn').addEventListener('click', () => window.print());
+
+        document.getElementById('generateSuggestionsBtn').addEventListener('click', generateSuggestions);
         document.getElementById('aiForm').addEventListener('submit', askAI);
 
         document.querySelectorAll('.nav-item').forEach((btn) => {
@@ -800,7 +1217,7 @@
 
         const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!reducedMotion) {
-          setTimeout(closeSplash, 4000);
+          setTimeout(closeSplash, 3500);
         }
       }
 
