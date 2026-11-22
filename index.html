@@ -56,7 +56,6 @@
         padding: 16px;
       }
 
-      /* شاشة الافتتاح */
       #splashScreen {
         position: fixed;
         inset: 0;
@@ -95,7 +94,6 @@
         line-height: 1.7;
       }
 
-      /* الشريط العلوي */
       header {
         position: sticky;
         top: 0;
@@ -152,7 +150,7 @@
         color: var(--text-main);
         border: 1px solid var(--border-color);
         border-radius: 10px;
-        padding: 8px 10px;
+        padding: 9px 11px;
         font-size: 13px;
       }
 
@@ -161,7 +159,7 @@
         background-color: var(--bg-soft);
         color: var(--text-main);
         border-radius: 10px;
-        padding: 8px 12px;
+        padding: 9px 13px;
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
@@ -202,9 +200,9 @@
         margin-bottom: 14px;
       }
 
-      .grid-3 {
+      .grid-2 {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 12px;
         margin-bottom: 14px;
       }
@@ -268,7 +266,15 @@
         background-color: rgba(16, 185, 129, 0.1);
       }
 
-      /* رسم بياني مقارنة المتوقع بالمحصل شهرياً */
+      .analysis-box {
+        margin-top: 10px;
+        padding: 12px;
+        border-radius: 12px;
+        background-color: var(--bg-soft);
+        font-size: 12.5px;
+        line-height: 1.75;
+      }
+
       .chart-grid {
         display: grid;
         grid-template-columns: repeat(12, minmax(46px, 1fr));
@@ -317,23 +323,6 @@
         font-weight: 700;
       }
 
-      .legend-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        font-size: 12px;
-        color: var(--text-muted);
-        margin-top: 10px;
-      }
-
-      .legend-dot {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        margin-inline-end: 5px;
-      }
-
       .rec-list {
         margin: 10px 0 0;
         padding-inline-start: 18px;
@@ -344,7 +333,6 @@
         line-height: 1.65;
       }
 
-      /* الشريط السفلي بالأيقونات */
       .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -405,7 +393,6 @@
     </style>
   </head>
   <body>
-    <!-- شاشة الافتتاح -->
     <div id="splashScreen">
       <div class="splash-box">
         <div class="splash-title">REVENUEGUARD AI</div>
@@ -419,7 +406,6 @@
       </div>
     </div>
 
-    <!-- الشريط العلوي -->
     <header>
       <div class="top-bar">
         <div class="brand">
@@ -480,12 +466,11 @@
     </header>
 
     <main class="container">
-      <!-- شريط التنبيهات الذكية للمبالغ غير المحصلة -->
       <div id="globalAlertBox" class="alert-banner alert-ok">
         لا توجد مبالغ غير محصلة مسجلة في الفترة المختارة حالياً.
       </div>
 
-      <!-- 1. الرئيسية / لوحة المؤشرات -->
+      <!-- 1. المؤشرات -->
       <section id="tab-dashboard" class="tab-panel active">
         <div class="grid-4">
           <div class="card">
@@ -512,7 +497,7 @@
             <div class="kpi-value tabular-nums" id="kpiCollectionRate" style="color: #10b981;">0.0%</div>
           </div>
           <div class="card">
-            <div class="kpi-label">قيمة الإيرادات المتسربة / المفقودة</div>
+            <div class="kpi-label">قيمة الإيرادات المتسربة</div>
             <div class="kpi-value tabular-nums" id="kpiLeakedValue" style="color: #ef4444;">0.00 د.ج</div>
           </div>
           <div class="card">
@@ -520,58 +505,64 @@
             <div class="kpi-value tabular-nums" id="kpiLeakRate" style="color: #ef4444;">0.0%</div>
           </div>
           <div class="card">
-            <div class="kpi-label">الإيرادات المفقودة (بعد استبعاد المؤجل)</div>
+            <div class="kpi-label">الإيرادات المفقودة</div>
             <div class="kpi-value tabular-nums" id="kpiLostRevenue" style="color: #f59e0b;">0.00 د.ج</div>
           </div>
         </div>
-
-        <div class="card" style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
-          <strong>تنبيه محاسبي:</strong> الفروقات المالية والمستحقات غير المحصلة لا تُعدّ تسرباً مؤكداً أو تلاعباً دون مراجعة بشرية والتحقق من آجال الاستحقاق والتسويات المحاسبية.
-        </div>
       </section>
 
-      <!-- 2. الحاسبة -->
+      <!-- 2. الحاسبة (خانات واضحة + النتيجة والتحليل مباشرة تحتها) -->
       <section id="tab-calculator" class="tab-panel">
         <div class="card">
-          <h2 style="margin: 0 0 14px; font-size: 17px;">حاسبة الإيرادات والتسرب المالي</h2>
-          <div class="grid-3">
+          <h2 style="margin: 0 0 14px; font-size: 17px;">حاسبة تسرب الإيرادات والتحليل الاستنتاجي</h2>
+
+          <div class="grid-2">
             <div>
-              <label style="display: block; font-size: 12px; margin-bottom: 6px;">الإيرادات المتوقعة</label>
-              <input id="calcExpected" type="number" step="0.01" placeholder="مثال: 1000000" style="width: 100%;" />
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;">اسم العميل (أدخليه يدوياً)</label>
+              <input id="calcClient" type="text" placeholder="مثال: شركة الهدى التجارية" style="width: 100%;" />
             </div>
             <div>
-              <label style="display: block; font-size: 12px; margin-bottom: 6px;">الإيرادات المحصلة</label>
-              <input id="calcCollected" type="number" step="0.01" placeholder="مثال: 920000" style="width: 100%;" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 12px; margin-bottom: 6px;">مستحقات لم يحن أجلها / تسويات</label>
-              <input id="calcPending" type="number" step="0.01" placeholder="مثال: 200000" style="width: 100%;" />
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;">سبب الفارق / الملاحظة</label>
+              <select id="calcCause" style="width: 100%;">
+                <option value="تأخر سداد المستحقات">تأخر سداد المستحقات</option>
+                <option value="تحصيل جزئي دون تسوية">تحصيل جزئي دون تسوية</option>
+                <option value="خصم غير موثق أو خطأ تسعير">خصم غير موثق أو خطأ تسعير</option>
+                <option value="مستحقات لم يحن أجلها">مستحقات لم يحن أجلها</option>
+              </select>
             </div>
           </div>
 
-          <div class="grid-3">
-            <div class="card" style="margin-bottom: 0;">
-              <div class="kpi-label">المستحقات غير المحصلة</div>
-              <div class="kpi-value tabular-nums" id="calcDiff">0.00 د.ج</div>
+          <div class="grid-4">
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;">الإيراد المتوقع</label>
+              <input id="calcExpected" type="number" step="0.01" placeholder="0.00" style="width: 100%;" />
             </div>
-            <div class="card" style="margin-bottom: 0;">
-              <div class="kpi-label">الإيرادات المفقودة / المتسربة</div>
-              <div class="kpi-value tabular-nums" id="calcSuspect" style="color: #ef4444;">0.00 د.ج</div>
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;">الإيراد المحصل</label>
+              <input id="calcCollected" type="number" step="0.01" placeholder="0.00" style="width: 100%;" />
             </div>
-            <div class="card" style="margin-bottom: 0;">
-              <div class="kpi-label">نسبة التسرب المالي</div>
-              <div class="kpi-value tabular-nums" id="calcPct" style="color: #f59e0b;">0.0%</div>
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;">مستحقات مؤجلة / تسويات</label>
+              <input id="calcPending" type="number" step="0.01" placeholder="0.00" style="width: 100%;" />
+            </div>
+            <div style="display: flex; align-items: flex-end; gap: 6px;">
+              <button type="button" class="btn btn-primary" id="runCalcBtn" style="flex: 1;">احسب الآن</button>
+              <button type="button" class="btn" id="resetCalcBtn">مسح</button>
             </div>
           </div>
 
-          <div class="controls-row" style="margin-top: 14px;">
-            <button type="button" class="btn btn-primary" id="saveCalcBtn">حفظ في سجل العمليات</button>
-            <button type="button" class="btn" id="resetCalcBtn">إعادة ضبط</button>
+          <!-- نتيجة الحساب مباشرة تحت الخانات -->
+          <div id="calcDirectResult" class="analysis-box" style="margin-top: 14px; border: 1px solid var(--border-color);">
+            <strong>نتيجة الحساب:</strong> أدخلي اسم العميل والمبالغ في الخانات أعلاه واضغطي "احسب الآن" أو عدّلي الأرقام ليظهر الحساب والتحليل الاستنتاجي مباشرة هنا.
+          </div>
+
+          <div class="controls-row" style="margin-top: 12px;">
+            <button type="button" class="btn btn-primary" id="saveCalcBtn">+ حفظ هذه العملية في السجل</button>
           </div>
         </div>
       </section>
 
-      <!-- 3. تحليل الإيرادات والرسوم البيانية -->
+      <!-- 3. التحليل -->
       <section id="tab-analytics" class="tab-panel">
         <div class="grid-4">
           <div class="card">
@@ -593,16 +584,12 @@
         </div>
 
         <div class="card" style="margin-bottom: 14px;">
-          <h3 style="margin: 0 0 8px; font-size: 16px;">رسم بياني: مقارنة الإيرادات المتوقعة بالمحصلة (حسب الأشهر)</h3>
+          <h3 style="margin: 0 0 8px; font-size: 16px;">مقارنة الإيرادات المتوقعة بالمحصلة حسب الأشهر</h3>
           <div class="chart-grid" id="monthlyChart"></div>
-          <div class="legend-row">
-            <span><span class="legend-dot" style="background:#38bdf8;"></span>الإيرادات المتوقعة</span>
-            <span><span class="legend-dot" style="background:#10b981;"></span>الإيرادات المحصلة</span>
-          </div>
         </div>
 
         <div class="card" style="overflow-x: auto;">
-          <h3 style="margin: 0 0 10px; font-size: 15px;">تحليل الإيرادات حسب كل شهر وسنة</h3>
+          <h3 style="margin: 0 0 10px; font-size: 15px;">الإيرادات حسب كل شهر وسنة</h3>
           <table>
             <thead>
               <tr>
@@ -619,34 +606,34 @@
         </div>
       </section>
 
-      <!-- 4. كشف التسرب والتنبيهات -->
+      <!-- 4. التسرب (تحليل استنتاجي: أين، علاه، كيف، وشنوه الحل) -->
       <section id="tab-leakage" class="tab-panel">
         <div id="leakageAlertDetail" class="alert-banner alert-ok">
           لا توجد تنبيهات لمبالغ غير محصلة في الفترة المختارة.
         </div>
-        <div id="leakageList" class="grid-3"></div>
+        <div id="leakageList" class="grid-2"></div>
       </section>
 
-      <!-- 5. سجل العمليات -->
+      <!-- 5. السجل -->
       <section id="tab-ledger" class="tab-panel">
         <form class="card" id="invoiceForm" style="margin-bottom: 14px;">
-          <div style="font-weight: 800; font-size: 15px; margin-bottom: 10px;">إضافة عملية / إيراد جديد</div>
+          <div style="font-weight: 800; font-size: 15px; margin-bottom: 10px;">إضافة عملية جديدة إلى السجل</div>
           <div class="grid-4" style="margin-bottom: 10px;">
             <input id="invCode" required placeholder="رقم العملية (OP-01)" />
-            <input id="invClient" required placeholder="العميل / البيان" />
+            <input id="invClient" required placeholder="اسم العميل (أدخليه يدوياً)" />
             <input id="invExpected" type="number" step="0.01" required placeholder="الإيراد المتوقع" />
             <input id="invPaid" type="number" step="0.01" required placeholder="الإيراد المحصل" />
           </div>
           <div class="controls-row" style="margin-bottom: 10px;">
             <select id="invReason">
-              <option value="تأخر دفع من العميل">سبب الفارق: تأخر دفع من العميل</option>
-              <option value="دفعة جزئية قيد المتابعة">سبب الفارق: دفعة جزئية قيد المتابعة</option>
-              <option value="خصم غير موثق / مراجعة">سبب الفارق: خصم غير موثق / مراجعة</option>
-              <option value="فرق تسوية / استحقاق">سبب الفارق: فرق تسوية / استحقاق</option>
+              <option value="تأخر سداد المستحقات">تأخر سداد المستحقات</option>
+              <option value="تحصيل جزئي دون تسوية">تحصيل جزئي دون تسوية</option>
+              <option value="خصم غير موثق أو خطأ تسعير">خصم غير موثق أو خطأ تسعير</option>
+              <option value="مستحقات لم يحن أجلها">مستحقات لم يحن أجلها</option>
             </select>
             <label style="font-size: 12px; display: flex; align-items: center; gap: 6px;">
               <input id="invOverdue" type="checkbox" />
-              متأخرة عن موعد الدفع
+              متأخرة عن الدفع
             </label>
           </div>
           <button type="submit" class="btn btn-primary">+ إضافة إلى السجل</button>
@@ -654,7 +641,7 @@
 
         <div class="card" style="margin-bottom: 14px;">
           <div class="controls-row">
-            <input id="ledgerSearch" type="search" placeholder="بحث برقم العملية أو العميل..." style="flex: 1; min-width: 200px;" />
+            <input id="ledgerSearch" type="search" placeholder="بحث برقم العملية أو اسم العميل..." style="flex: 1; min-width: 200px;" />
             <select id="ledgerStatusFilter">
               <option value="ALL">كل الحالات</option>
               <option value="PAID">مدفوعة</option>
@@ -674,7 +661,7 @@
                 <th>المتوقع</th>
                 <th>المحصل</th>
                 <th>غير المحصل</th>
-                <th>السبب / الحالة</th>
+                <th>السبب</th>
                 <th>حذف</th>
               </tr>
             </thead>
@@ -683,30 +670,23 @@
         </div>
       </section>
 
-      <!-- 6. التقارير (PDF و Excel) -->
+      <!-- 6. التقارير -->
       <section id="tab-reports" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
           <h2 style="margin: 0 0 8px; font-size: 17px;">استخراج وتصدير التقارير المالية</h2>
-          <p style="margin: 0 0 14px; font-size: 13px; color: var(--text-muted);">
-            تصدير تقرير الفترة المختارة بصيغة Excel (CSV) أو حفظه/طباعته كـ PDF.
-          </p>
           <div class="controls-row no-print">
             <button type="button" class="btn btn-primary" id="exportExcelBtn">📊 تصدير Excel (CSV)</button>
             <button type="button" class="btn" id="exportPdfBtn">📄 استخراج تقرير PDF / طباعة</button>
           </div>
         </div>
-
         <div class="card" id="reportPreviewBox" style="font-size: 13px; line-height: 1.8;"></div>
       </section>
 
-      <!-- 7. الذكاء الاصطناعي واقتراحات تقليل التسرب -->
+      <!-- 7. الذكاء -->
       <section id="tab-ai" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
           <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
-            <div>
-              <div style="font-weight: 800; font-size: 15px;">اقتراحات الذكاء الاصطناعي لتقليل التسرب المالي</div>
-              <div style="font-size: 12px; color: var(--text-muted);">مبنية على بيانات الفترة المختارة فقط</div>
-            </div>
+            <div style="font-weight: 800; font-size: 15px;">اقتراحات وتحليل استنتاجي لتقليل التسرب المالي</div>
             <button type="button" class="btn btn-primary" id="generateSuggestionsBtn">توليد اقتراحات</button>
           </div>
           <ul class="rec-list" id="aiSuggestionsList">
@@ -718,7 +698,7 @@
           <div style="font-weight: 700; margin-bottom: 10px;">محادثة مساعد RevenueGuard الذكي</div>
           <div id="aiMessages" style="max-height: 210px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;">
             <div class="card" style="padding: 10px; margin-bottom: 0; font-size: 13px;">
-              اسألني عن نسبة التحصيل، نسبة التسرب، المبالغ غير المحصلة، أو الإيرادات المتأخرة.
+              اسألني عن نسبة التحصيل، نسبة التسرب، أو المبالغ غير المحصلة في الفترة المختارة.
             </div>
           </div>
           <form id="aiForm" style="display: flex; gap: 8px;">
@@ -729,7 +709,6 @@
       </section>
     </main>
 
-    <!-- شريط الأيقونات السفلي الكامل لكاشف تسرب الإيرادات -->
     <nav class="bottom-nav" aria-label="أقسام كاشف تسرب الإيرادات">
       <div class="bottom-nav-inner">
         <button type="button" class="nav-item active" data-tab="dashboard">
@@ -764,7 +743,7 @@
     </nav>
 
     <script>
-      const STORAGE_KEY = 'revenueguard_v1_5_state';
+      const STORAGE_KEY = 'revenueguard_v1_6_state';
       const RATES_FROM_DZD = { DZD: 1, USD: 1 / 135, EUR: 1 / 146, GBP: 1 / 172 };
       const SYMBOLS = { DZD: 'د.ج', USD: '$', EUR: '€', GBP: '£' };
       const MONTHS = [
@@ -862,27 +841,50 @@
         return (parseFloat(amountInCurrent) || 0) / rate;
       }
 
-      function getInvoiceStatus(inv) {
-        if (inv.paid >= inv.expected && inv.expected > 0) return 'PAID';
-        if (inv.paid > 0 && inv.paid < inv.expected) return 'PARTIAL';
-        return 'UNPAID';
+      function buildCaseDeduction(inv) {
+        const rem = Math.max(0, inv.expected - inv.paid);
+        const how = inv.paid === 0
+          ? 'لم يتم تحصيل أي مبلغ مقابل الإيراد المتوقع (عدم تحصيل كامل).'
+          : 'تم تحصيل جزء من المبلغ وبقي رصيد غير محصل (تحصيل جزئي أو خصم/فرق).';
+        const why = inv.reason || 'تأخر سداد المستحقات';
+        const fix = 'مراجعة الفاتورة وسندات الدفع والتحقق من تاريخ الاستحقاق مع العميل قبل اعتماد أي قرار نهائي.';
+        return {
+          where: `العميل: ${inv.client} | العملية: ${inv.code} | التاريخ: ${inv.date} | الفارق: ${fmtMoney(rem)}`,
+          why,
+          how,
+          fix,
+        };
       }
 
       function calculateLeakage() {
+        const client = (document.getElementById('calcClient').value || '').trim() || 'عميل غير مسمّى';
+        const cause = document.getElementById('calcCause').value;
         const exp = toDZD(document.getElementById('calcExpected').value);
         const col = toDZD(document.getElementById('calcCollected').value);
         const pend = toDZD(document.getElementById('calcPending').value);
 
         const diff = Math.max(0, exp - col);
-        const suspect = Math.max(0, diff - pend);
-        const pct = exp > 0 ? ((suspect / exp) * 100).toFixed(1) : '0.0';
+        const lost = Math.max(0, diff - pend);
+        const pct = exp > 0 ? ((lost / exp) * 100).toFixed(1) : '0.0';
 
-        document.getElementById('calcDiff').textContent = fmtMoney(diff);
-        document.getElementById('calcSuspect').textContent = fmtMoney(suspect);
-        document.getElementById('calcPct').textContent = pct + '%';
+        const howText = col === 0 && diff > 0
+          ? 'لم يُسجل تحصيل مقابل الإيراد المتوقع.'
+          : diff > 0
+          ? 'توجد فجوة بين المبلغ المتوقع والمحصل الفعلي.'
+          : 'لا توجد فجوة بين المتوقع والمحصل.';
+
+        document.getElementById('calcDirectResult').innerHTML = `
+          <div style="font-weight:800; font-size:14px; margin-bottom:6px;">حساب العميل: ${client}</div>
+          <div class="tabular-nums">• الفرق الأولي: <strong>${fmtMoney(diff)}</strong> | الإيراد المفقود/المحتمل: <strong style="color:#ef4444;">${fmtMoney(lost)}</strong> | نسبة التسرب: <strong>${pct}%</strong></div>
+          <div>• <strong>أين التسرب؟</strong> ملف العميل (${client}) بقيمة فارق ${fmtMoney(lost)}.</div>
+          <div>• <strong>علاه (لماذا)؟</strong> ${cause}.</div>
+          <div>• <strong>كيف حدث؟</strong> ${howText}</div>
+          <div>• <strong>وشنوه الحل؟</strong> التحقق من المستندات وآجال الاستحقاق ومراجعة محاسبية قبل أي إجراء.</div>
+        `;
       }
 
       function resetCalc() {
+        document.getElementById('calcClient').value = '';
         document.getElementById('calcExpected').value = '';
         document.getElementById('calcCollected').value = '';
         document.getElementById('calcPending').value = '';
@@ -890,19 +892,21 @@
       }
 
       function saveCalcToInvoices() {
+        const client = (document.getElementById('calcClient').value || '').trim();
+        const cause = document.getElementById('calcCause').value;
         const exp = toDZD(document.getElementById('calcExpected').value);
         const col = toDZD(document.getElementById('calcCollected').value);
-        if (exp <= 0 && col <= 0) return;
+        if (!client || (exp <= 0 && col <= 0)) return;
 
         const y = document.getElementById('yearFilter').value;
         const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
         state.invoices.push({
           id: Date.now(),
-          code: 'CALC-' + String(Date.now()).slice(-4),
-          client: 'عملية حاسبة التسرب',
+          code: 'OP-' + String(Date.now()).slice(-4),
+          client,
           expected: exp,
           paid: col,
-          reason: 'مراجعة فرق الحاسبة',
+          reason: cause,
           overdue: exp > col,
           date: `${y}-${m}-22`,
         });
@@ -920,6 +924,12 @@
           if (m !== 'ALL' && im !== m) return false;
           return true;
         });
+      }
+
+      function getInvoiceStatus(inv) {
+        if (inv.paid >= inv.expected && inv.expected > 0) return 'PAID';
+        if (inv.paid > 0 && inv.paid < inv.expected) return 'PARTIAL';
+        return 'UNPAID';
       }
 
       function addInvoice(e) {
@@ -950,8 +960,8 @@
       function loadDemoData() {
         state.invoices = [
           { id: 1, code: 'OP-2026-101', client: 'مؤسسة الأمل (تجريبي)', expected: 250000, paid: 250000, reason: 'تحصيل كامل', overdue: false, date: '2026-10-05' },
-          { id: 2, code: 'OP-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, reason: 'دفعة جزئية قيد المتابعة', overdue: true, date: '2026-11-10' },
-          { id: 3, code: 'OP-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, reason: 'تأخر دفع من العميل', overdue: true, date: '2026-11-18' },
+          { id: 2, code: 'OP-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, reason: 'تحصيل جزئي دون تسوية', overdue: true, date: '2026-11-10' },
+          { id: 3, code: 'OP-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, reason: 'تأخر سداد المستحقات', overdue: true, date: '2026-11-18' },
         ];
         saveState();
         renderAll();
@@ -967,39 +977,27 @@
         const list = getFilteredInvoices();
         const ul = document.getElementById('aiSuggestionsList');
         if (!list.length) {
-          ul.innerHTML = '<li>لا توجد بيانات كافية في الفترة المختارة لتقديم اقتراحات دقيقة. أضف عمليات أو حمّل بيانات تجريبية.</li>';
+          ul.innerHTML = '<li>لا توجد بيانات كافية في الفترة المختارة لتقديم اقتراحات دقيقة.</li>';
           return;
         }
-        const exp = list.reduce((a, b) => a + b.expected, 0);
-        const col = list.reduce((a, b) => a + b.paid, 0);
-        const uncollected = Math.max(0, exp - col);
-        const overdueList = list.filter((i) => i.overdue && i.paid < i.expected);
-        const collRate = exp > 0 ? ((col / exp) * 100).toFixed(1) : '0.0';
-        const leakRate = exp > 0 ? ((uncollected / exp) * 100).toFixed(1) : '0.0';
-
-        const recs = [
-          `نسبة التحصيل الحالية ${collRate}% ونسبة الفارق/التسرب ${leakRate}% بقيمة إجمالية غير محصلة ${fmtMoney(uncollected)}.`,
-          overdueList.length
-            ? `يوجد ${overdueList.length} عملية متأخرة عن الدفع؛ يُنصح بإعطاء أولوية للمتابعة والاتصال بالعملاء المعنيين.`
-            : 'لا توجد عمليات متأخرة عن الدفع ضمن الفترة المختارة.',
-          'راجع أسباب النقص المسجلة (تأخر دفع، دفعات جزئية، أو خصومات) وتأكد من سندات الإثبات قبل اعتبار أي فرق تسرباً مؤكداً.',
-        ];
-        ul.innerHTML = recs.map((r) => `<li>${r}</li>`).join('');
+        const flagged = list.filter((i) => i.paid < i.expected);
+        if (!flagged.length) {
+          ul.innerHTML = '<li>جميع العمليات في الفترة المختارة محصلة بالكامل؛ استمر في المراقبة الدورية وتوثيق الفواتير.</li>';
+          return;
+        }
+        ul.innerHTML = flagged.map((inv) => {
+          const d = buildCaseDeduction(inv);
+          return `<li><strong>${inv.client}:</strong> السبب (${d.why}) — الحل المقترح: ${d.fix}</li>`;
+        }).join('');
       }
 
       function exportCSV() {
         const list = getFilteredInvoices();
         const rows = [
-          ['رقم العملية', 'التاريخ', 'العميل', 'المتوقع (DZD)', 'المحصل (DZD)', 'غير المحصل (DZD)', 'السبب', 'متأخرة'],
+          ['الرقم', 'التاريخ', 'العميل', 'المتوقع (DZD)', 'المحصل (DZD)', 'غير المحصل (DZD)', 'السبب'],
           ...list.map((i) => [
-            i.code,
-            i.date,
-            i.client,
-            i.expected.toFixed(2),
-            i.paid.toFixed(2),
-            Math.max(0, i.expected - i.paid).toFixed(2),
-            i.reason || '',
-            i.overdue ? 'نعم' : 'لا',
+            i.code, i.date, i.client, i.expected.toFixed(2), i.paid.toFixed(2),
+            Math.max(0, i.expected - i.paid).toFixed(2), i.reason || ''
           ]),
         ];
         const csv = '\uFEFF' + rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
@@ -1024,7 +1022,6 @@
         const collRate = exp > 0 ? ((col / exp) * 100).toFixed(1) : '0.0';
         const leakRate = exp > 0 ? ((uncollected / exp) * 100).toFixed(1) : '0.0';
 
-        // المؤشرات الرئيسية
         document.getElementById('kpiExpected').textContent = fmtMoney(exp);
         document.getElementById('kpiCollected').textContent = fmtMoney(col);
         document.getElementById('kpiReceivables').textContent = fmtMoney(uncollected);
@@ -1034,11 +1031,10 @@
         document.getElementById('kpiLeakRate').textContent = leakRate + '%';
         document.getElementById('kpiLostRevenue').textContent = fmtMoney(uncollected);
 
-        // التنبيهات العامة للمبالغ غير المحصلة
         const gAlert = document.getElementById('globalAlertBox');
         const lAlert = document.getElementById('leakageAlertDetail');
         if (uncollected > 0) {
-          const msg = `⚠️ تنبيه مالي: توجد مبالغ غير محصلة بقيمة ${fmtMoney(uncollected)} (نسبة الفارق ${leakRate}%) في الفترة (${year} / ${month === 'ALL' ? 'كل الأشهر' : month}).`;
+          const msg = `⚠️ تنبيه: توجد مبالغ غير محصلة بقيمة ${fmtMoney(uncollected)} (نسبة التسرب/الفارق ${leakRate}%) في الفترة (${year} / ${month === 'ALL' ? 'كل الأشهر' : month}).`;
           gAlert.className = 'alert-banner';
           gAlert.textContent = msg;
           lAlert.className = 'alert-banner';
@@ -1051,7 +1047,6 @@
           lAlert.textContent = okMsg;
         }
 
-        // التحليل والرسم البياني الشهري للسنة المختارة
         document.getElementById('anCollRate').textContent = collRate + '%';
         document.getElementById('anLeakRate').textContent = leakRate + '%';
         document.getElementById('anCollected').textContent = fmtMoney(col);
@@ -1069,7 +1064,7 @@
         document.getElementById('monthlyChart').innerHTML = monthStats.map((st) => {
           const hExp = Math.round((st.mExp / maxVal) * 120);
           const hCol = Math.round((st.mCol / maxVal) * 120);
-          return `<div class="month-col" title="${st.mName}: متوقع ${fmtMoney(st.mExp)} | محصل ${fmtMoney(st.mCol)}">
+          return `<div class="month-col">
             <div class="bars-pair">
               <div class="bar-exp" style="height:${hExp}px;"></div>
               <div class="bar-col" style="height:${hCol}px;"></div>
@@ -1090,23 +1085,26 @@
           </tr>`;
         }).join('');
 
-        // كشف التسرب وأسباب النقص
+        // كشف التسرب مع التحليل الاستنتاجي لكل حالة
         const leakBox = document.getElementById('leakageList');
         const flagged = list.filter((item) => item.paid < item.expected);
         if (!flagged.length) {
           leakBox.innerHTML = '<div class="card" style="color: var(--text-muted); font-size: 13px;">لا توجد حالات نقص أو تسرب مسجلة في هذه الفترة.</div>';
         } else {
           leakBox.innerHTML = flagged.map((inv) => {
-            const rem = inv.expected - inv.paid;
+            const d = buildCaseDeduction(inv);
             return `<div class="card">
-              <div style="font-weight: 800; margin-bottom: 6px;">${inv.code} — ${inv.client}</div>
-              <div style="font-size: 14px; color: #f59e0b;" class="tabular-nums">المبلغ غير المحصل: <strong>${fmtMoney(rem)}</strong></div>
-              <div style="font-size: 12px; margin-top: 6px;">السبب المسجل: <strong>${inv.reason || 'غير محدد'}</strong> ${inv.overdue ? '• (متأخرة)' : ''}</div>
+              <div style="font-weight: 800; font-size: 15px;">${inv.client} (${inv.code})</div>
+              <div class="analysis-box">
+                <div>• <strong>أين بالضبط تسرب؟</strong> ${d.where}</div>
+                <div>• <strong>علاه (لماذا) تسرب؟</strong> ${d.why}</div>
+                <div>• <strong>كيف تسرب؟</strong> ${d.how}</div>
+                <div>• <strong>وشنوه الحل؟</strong> ${d.fix}</div>
+              </div>
             </div>`;
           }).join('');
         }
 
-        // سجل العمليات
         const q = (document.getElementById('ledgerSearch').value || '').trim().toLowerCase();
         const stFilter = document.getElementById('ledgerStatusFilter').value;
         const filteredLedger = list.filter((inv) => {
@@ -1135,7 +1133,6 @@
           }).join('');
         }
 
-        // معاينة التقرير
         document.getElementById('reportPreviewBox').innerHTML = `
           <div><strong>الفترة:</strong> ${year} — ${month === 'ALL' ? 'كل الأشهر' : 'شهر ' + month}</div>
           <div><strong>الإيرادات المتوقعة:</strong> ${fmtMoney(exp)}</div>
@@ -1163,7 +1160,7 @@
 
         const reply = list.length
           ? `حسب الفترة المختارة (${list.length} عملية): المتوقع ${fmtMoney(exp)}، المحصل ${fmtMoney(col)}، غير المحصل/المفقود ${fmtMoney(uncollected)}، نسبة التحصيل ${collRate}%، ونسبة التسرب ${leakRate}%.`
-          : 'لا توجد بيانات كافية في الفترة المختارة حالياً. أضف عمليات أو حمّل بيانات تجريبية.';
+          : 'لا توجد بيانات كافية في الفترة المختارة حالياً.';
 
         box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; background:var(--bg-soft);">${reply}</div>`;
         box.scrollTop = box.scrollHeight;
@@ -1195,9 +1192,12 @@
         document.getElementById('demoDataBtn').addEventListener('click', loadDemoData);
         document.getElementById('clearDataBtn').addEventListener('click', clearData);
 
+        document.getElementById('calcClient').addEventListener('input', calculateLeakage);
+        document.getElementById('calcCause').addEventListener('change', calculateLeakage);
         document.getElementById('calcExpected').addEventListener('input', calculateLeakage);
         document.getElementById('calcCollected').addEventListener('input', calculateLeakage);
         document.getElementById('calcPending').addEventListener('input', calculateLeakage);
+        document.getElementById('runCalcBtn').addEventListener('click', calculateLeakage);
         document.getElementById('saveCalcBtn').addEventListener('click', saveCalcToInvoices);
         document.getElementById('resetCalcBtn').addEventListener('click', resetCalc);
 
