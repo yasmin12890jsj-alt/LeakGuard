@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RevenueGuard AI | نظام مراقبة وكشف تسرب الإيرادات</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#050d1a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -197,7 +199,6 @@
         border-color: rgba(239, 68, 68, 0.35);
       }
 
-      /* سطر واحد علوي مضغوط للسنة والأشهر وأزرار البيانات والتفريغ */
       .filter-bar {
         width: 100%;
         border-top: 1px solid var(--border-color);
@@ -530,7 +531,6 @@
         </div>
       </div>
 
-      <!-- 1. المؤشرات -->
       <section id="tab-dashboard" class="tab-panel active">
         <div class="grid-4">
           <div class="card">
@@ -571,7 +571,6 @@
         </div>
       </section>
 
-      <!-- 2. الحاسبة -->
       <section id="tab-calculator" class="tab-panel">
         <div class="card">
           <h2 style="margin: 0 0 14px; font-size: 17px;" data-i18n="calcHeading">حاسبة كشف التسرب والتحليل الاستنتاجي</h2>
@@ -618,7 +617,6 @@
         </div>
       </section>
 
-      <!-- 3. المطابقة المالية -->
       <section id="tab-reconcile" class="tab-panel">
         <div class="card" style="overflow-x: auto;">
           <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="recHeading">المطابقة المالية</h2>
@@ -638,13 +636,11 @@
         </div>
       </section>
 
-      <!-- 4. التسرب -->
       <section id="tab-leakage" class="tab-panel">
         <div id="leakageAlertDetail" class="alert-banner alert-ok"></div>
         <div id="leakageList" class="grid-2"></div>
       </section>
 
-      <!-- 5. السجل -->
       <section id="tab-ledger" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
           <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px;" data-i18n="importHeading">استيراد بيانات من Excel (CSV)</div>
@@ -693,7 +689,6 @@
         </div>
       </section>
 
-      <!-- 6. التقارير -->
       <section id="tab-reports" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
           <h2 style="margin: 0 0 8px; font-size: 17px;" data-i18n="repHeading">تصدير PDF و Excel + النسخ الاحتياطي</h2>
@@ -711,7 +706,6 @@
         <div class="card" id="reportPreviewBox" style="font-size: 13px; line-height: 1.8;"></div>
       </section>
 
-      <!-- 7. سجل التعديلات -->
       <section id="tab-audit" class="tab-panel">
         <div class="card">
           <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="auditHeading">سجل التعديلات</h2>
@@ -719,7 +713,6 @@
         </div>
       </section>
 
-      <!-- 8. المساعد الذكي -->
       <section id="tab-assistant" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
           <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
@@ -1562,6 +1555,12 @@
         document.querySelectorAll('.nav-item').forEach((btn) => {
           btn.addEventListener('click', () => switchTab(btn.dataset.tab));
         });
+
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js').catch(() => {});
+          });
+        }
 
         const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!reducedMotion) {
