@@ -529,6 +529,7 @@
           <input id="customCurrRate" type="number" step="0.000001" placeholder="Rate" style="width: 105px;" />
           <button type="button" class="btn" id="addCustomCurrBtn">+ إضافة عملة</button>
         </div>
+        <div id="fxStatusMsg" style="margin-top: 8px; font-size: 12px; color: var(--accent);"></div>
       </div>
 
       <section id="tab-dashboard" class="tab-panel active">
@@ -1090,8 +1091,12 @@
       }
 
       function updateFxRate() {
+        const statusEl = document.getElementById('fxStatusMsg');
         const val = parseFloat(document.getElementById('fxRateInput').value);
-        if (!val || val <= 0) return;
+        if (!val || val <= 0) {
+          if (statusEl) statusEl.textContent = 'أدخلي سعراً أكبر من 0.';
+          return;
+        }
         if (!state.currencies[state.currency]) {
           state.currencies[state.currency] = { symbol: state.currency, rateFromDZD: 1 };
         }
@@ -1101,13 +1106,18 @@
         rebuildCurrencySelect();
         renderAll();
         calculateLeakage();
+        if (statusEl) statusEl.textContent = `تم تحديث سعر ${state.currency}.`;
       }
 
       function addCustomCurrency() {
+        const statusEl = document.getElementById('fxStatusMsg');
         const code = (document.getElementById('customCurrCode').value || '').trim().toUpperCase();
         const sym = (document.getElementById('customCurrSymbol').value || code).trim();
         const rate = parseFloat(document.getElementById('customCurrRate').value);
-        if (!code || !rate || rate <= 0) return;
+        if (!code || !rate || rate <= 0) {
+          if (statusEl) statusEl.textContent = 'أدخلي رمز العملة (مثل CAD) وسعر التحويل (أكبر من 0) ثم اضغطي + إضافة عملة.';
+          return;
+        }
         state.currencies[code] = { symbol: sym, rateFromDZD: rate };
         state.currency = code;
         logAudit('إضافة عملة', `${code} (${sym}) = ${rate}`);
@@ -1115,6 +1125,10 @@
         rebuildCurrencySelect();
         renderAll();
         calculateLeakage();
+        document.getElementById('customCurrCode').value = '';
+        document.getElementById('customCurrSymbol').value = '';
+        document.getElementById('customCurrRate').value = '';
+        if (statusEl) statusEl.textContent = `تمت إضافة وتفعيل العملة ${code} (${sym}).`;
       }
 
       function toggleMute() {
@@ -1181,7 +1195,7 @@
         const pct = exp > 0 ? ((lost / exp) * 100).toFixed(1) : '0.0';
 
         document.getElementById('calcDirectResult').innerHTML = `
-          <div><strong>${client}</strong> — <span class="tabular-nums">${fmtMoney(lost)} (${pct}%)</span></div>
+          <div><strong>النتيجة — ${client}:</strong> <span class="tabular-nums" style="color:#ef4444; font-weight:800;">${fmtMoney(lost)} (${pct}%)</span></div>
           <div>• <strong>المصدر:</strong> ${client} | <strong>الفرق الأولي:</strong> ${fmtMoney(diff)}</div>
           <div>• <strong>السبب:</strong> ${cause}</div>
           <div>• <strong>التفسير:</strong> ${col === 0 && diff > 0 ? 'عدم تحصيل كامل مقابل الإيراد المتوقع.' : diff > 0 ? 'فرق بين المبلغ المتوقع والمحصل.' : 'لا يوجد فرق.'}</div>
