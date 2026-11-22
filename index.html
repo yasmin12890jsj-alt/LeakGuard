@@ -51,7 +51,7 @@
       }
 
       .container {
-        max-width: 1220px;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 16px;
       }
@@ -109,7 +109,7 @@
         justify-content: space-between;
         gap: 10px;
         padding: 12px 16px;
-        max-width: 1220px;
+        max-width: 1240px;
         margin: 0 auto;
       }
 
@@ -183,7 +183,7 @@
       }
 
       .filter-bar-inner {
-        max-width: 1220px;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 8px 16px;
         display: flex;
@@ -280,6 +280,38 @@
         line-height: 1.75;
       }
 
+      .audit-icon-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        padding: 12px 14px;
+      }
+
+      .audit-badge-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background-color: var(--bg-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .rec-list {
+        margin: 10px 0 0;
+        padding-inline-start: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
       .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -288,14 +320,14 @@
         z-index: 50;
         background-color: var(--bg-card);
         border-top: 1px solid var(--border-color);
-        padding: 6px 4px;
+        padding: 6px 2px;
       }
 
       .bottom-nav-inner {
-        max-width: 1120px;
+        max-width: 1180px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(8, 1fr);
         gap: 2px;
       }
 
@@ -304,18 +336,18 @@
         border: none;
         color: var(--text-muted);
         border-radius: 10px;
-        padding: 6px 2px;
+        padding: 6px 1px;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 2px;
-        font-size: 10px;
+        font-size: 9.5px;
         font-weight: 700;
         cursor: pointer;
       }
 
       .nav-item .icon {
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1;
       }
 
@@ -417,12 +449,10 @@
     </header>
 
     <main class="container">
-      <!-- نظام الإنذارات الفورية -->
       <div id="globalAlertBox" class="alert-banner alert-ok">
         نظام الإنذارات: لا توجد فروقات مالية أو تأخر في التحصيل في الفترة المختارة.
       </div>
 
-      <!-- إعداد العملات وسعر الصرف مقابل الدينار الجزائري DZD -->
       <div class="card" style="margin-bottom: 14px;">
         <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 8px;" id="fxTitleText">
           العملة الرئيسية: الدينار الجزائري (DZD) — إدارة العملات وسعر الصرف (مقابل 1 DZD)
@@ -431,9 +461,9 @@
           <span style="font-size: 12px; color: var(--text-muted);" id="fxRateLabel">سعر التحويل للعملة المختارة:</span>
           <input id="fxRateInput" type="number" step="0.000001" style="width: 150px;" />
           <button type="button" class="btn btn-primary" id="saveFxRateBtn">تحديث السعر</button>
-          <input id="customCurrCode" type="text" placeholder="رمز عملة (CAD)" style="width: 140px;" />
-          <input id="customCurrSymbol" type="text" placeholder="الرمز (C$)" style="width: 90px;" />
-          <input id="customCurrRate" type="number" step="0.000001" placeholder="السعر / DZD" style="width: 125px;" />
+          <input id="customCurrCode" type="text" placeholder="CAD" style="width: 110px;" />
+          <input id="customCurrSymbol" type="text" placeholder="C$" style="width: 85px;" />
+          <input id="customCurrRate" type="number" step="0.000001" placeholder="Rate" style="width: 115px;" />
           <button type="button" class="btn" id="addCustomCurrBtn">+ إضافة عملة</button>
         </div>
       </div>
@@ -486,7 +516,7 @@
           <div class="grid-2">
             <div>
               <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="clientName">اسم العميل (إدخال يدوي)</label>
-              <input id="calcClient" type="text" placeholder="مثال: شركة الهدى" style="width: 100%;" />
+              <input id="calcClient" type="text" placeholder="اسم العميل" style="width: 100%;" />
             </div>
             <div>
               <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="causeLabel">السبب المحتمل للنقص</label>
@@ -529,7 +559,7 @@
       <!-- 3. المطابقة المالية -->
       <section id="tab-reconcile" class="tab-panel">
         <div class="card" style="overflow-x: auto;">
-          <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="recHeading">المطابقة المالية (الفواتير والمدفوعات والإيرادات)</h2>
+          <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="recHeading">المطابقة المالية</h2>
           <table>
             <thead>
               <tr>
@@ -546,37 +576,37 @@
         </div>
       </section>
 
-      <!-- 4. كشف التسرب التلقائي وتحديد المصدر وتحليل الأسباب -->
+      <!-- 4. التسرب -->
       <section id="tab-leakage" class="tab-panel">
         <div id="leakageAlertDetail" class="alert-banner alert-ok"></div>
         <div id="leakageList" class="grid-2"></div>
       </section>
 
-      <!-- 5. السجل + استيراد Excel + تعديل العمليات -->
+      <!-- 5. السجل -->
       <section id="tab-ledger" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
-          <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px;" data-i18n="importHeading">استيراد بيانات من Excel (ملف CSV)</div>
+          <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px;" data-i18n="importHeading">استيراد بيانات من Excel (CSV)</div>
           <div class="controls-row">
             <input type="file" id="csvFileInput" accept=".csv,text/csv" />
-            <button type="button" class="btn btn-primary" id="importCsvBtn" data-i18n="importBtn">استيراد وتحليل الملف</button>
+            <button type="button" class="btn btn-primary" id="importCsvBtn" data-i18n="importBtn">استيراد</button>
           </div>
           <div id="importStatusMsg" style="margin-top: 8px; font-size: 12.5px;"></div>
         </div>
 
         <form class="card" id="invoiceForm" style="margin-bottom: 14px;">
-          <div style="font-weight: 800; font-size: 15px; margin-bottom: 10px;" data-i18n="addOpHeading">إضافة عملية جديدة إلى السجل</div>
+          <div style="font-weight: 800; font-size: 15px; margin-bottom: 10px;" data-i18n="addOpHeading">إضافة عملية جديدة</div>
           <div class="grid-4" style="margin-bottom: 10px;">
             <input id="invCode" required placeholder="OP-01" />
-            <input id="invClient" required placeholder="اسم العميل / Client" />
+            <input id="invClient" required placeholder="اسم العميل" />
             <input id="invExpected" type="number" step="0.01" required placeholder="0.00" />
             <input id="invPaid" type="number" step="0.01" required placeholder="0.00" />
           </div>
           <div class="controls-row" style="margin-bottom: 10px;">
             <select id="invReason">
-              <option value="تأخر في التحصيل">السبب: تأخر في التحصيل</option>
-              <option value="تحصيل جزئي دون تسوية">السبب: تحصيل جزئي دون تسوية</option>
-              <option value="خصم غير موثق أو فرق تسعير">السبب: خصم غير موثق أو فرق تسعير</option>
-              <option value="مستحقات لم يحن أجلها">السبب: مستحقات لم يحن أجلها</option>
+              <option value="تأخر في التحصيل">تأخر في التحصيل</option>
+              <option value="تحصيل جزئي دون تسوية">تحصيل جزئي دون تسوية</option>
+              <option value="خصم غير موثق أو فرق تسعير">خصم غير موثق أو فرق تسعير</option>
+              <option value="مستحقات لم يحن أجلها">مستحقات لم يحن أجلها</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary" data-i18n="addBtn">+ إضافة إلى السجل</button>
@@ -601,38 +631,49 @@
         </div>
       </section>
 
-      <!-- 6. التقارير (PDF و Excel) + النسخ الاحتياطي ونقل البيانات بين الأجهزة -->
+      <!-- 6. التقارير -->
       <section id="tab-reports" class="tab-panel">
         <div class="card" style="margin-bottom: 14px;">
-          <h2 style="margin: 0 0 8px; font-size: 17px;" data-i18n="repHeading">تصدير PDF و Excel + حفظ البيانات بين الأجهزة</h2>
+          <h2 style="margin: 0 0 8px; font-size: 17px;" data-i18n="repHeading">تصدير PDF و Excel + النسخ الاحتياطي</h2>
           <div class="controls-row no-print" style="margin-bottom: 12px;">
-            <button type="button" class="btn btn-primary" id="exportExcelBtn">📊 تصدير Excel (CSV)</button>
-            <button type="button" class="btn" id="exportPdfBtn">📄 تصدير / طباعة PDF</button>
-            <button type="button" class="btn" id="exportJsonBtn">💾 حفظ نسخة بيانات (JSON)</button>
+            <button type="button" class="btn btn-primary" id="exportExcelBtn">📊 Excel (CSV)</button>
+            <button type="button" class="btn" id="exportPdfBtn">📄 PDF / Print</button>
+            <button type="button" class="btn" id="exportJsonBtn">💾 JSON</button>
           </div>
           <div class="controls-row no-print">
             <input type="file" id="jsonRestoreInput" accept=".json,application/json" />
-            <button type="button" class="btn" id="restoreJsonBtn">📥 استعادة نسخة البيانات</button>
+            <button type="button" class="btn" id="restoreJsonBtn">📥 Restore</button>
           </div>
           <div id="backupStatusMsg" style="margin-top: 8px; font-size: 12.5px;"></div>
         </div>
         <div class="card" id="reportPreviewBox" style="font-size: 13px; line-height: 1.8;"></div>
       </section>
 
-      <!-- 7. سجل التعديلات -->
+      <!-- 7. سجل التعديلات على شكل أيقونات -->
       <section id="tab-audit" class="tab-panel">
-        <div class="card" style="overflow-x: auto;">
-          <h2 style="margin: 0 0 12px; font-size: 17px;">سجل التعديلات والعمليات</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>الوقت</th>
-                <th>النوع</th>
-                <th>التفاصيل</th>
-              </tr>
-            </thead>
-            <tbody id="auditBody"></tbody>
-          </table>
+        <div class="card">
+          <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="auditHeading">سجل التعديلات (أيقونات)</h2>
+          <div id="auditIconsGrid" class="grid-2" style="margin-bottom: 0;"></div>
+        </div>
+      </section>
+
+      <!-- 8. المساعد الذكي (أيقونة مستقلة في الأسفل) -->
+      <section id="tab-assistant" class="tab-panel">
+        <div class="card" style="margin-bottom: 14px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+            <div style="font-weight: 800; font-size: 15px;" data-i18n="aiHeading">المساعد الذكي والتحليل والتوصيات</div>
+            <button type="button" class="btn btn-primary" id="generateSuggestionsBtn" data-i18n="genSolutions">تحليل وتوصيات</button>
+          </div>
+          <ul class="rec-list" id="aiSuggestionsList"></ul>
+        </div>
+
+        <div class="card">
+          <div style="font-weight: 700; margin-bottom: 10px;" data-i18n="aiChatTitle">دردشة المساعد الذكي</div>
+          <div id="aiMessages" style="max-height: 220px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;"></div>
+          <form id="aiForm" style="display: flex; gap: 8px;">
+            <input id="aiInput" required placeholder="..." style="flex: 1;" />
+            <button type="submit" class="btn btn-primary" data-i18n="sendBtn">إرسال</button>
+          </form>
         </div>
       </section>
     </main>
@@ -665,13 +706,17 @@
         </button>
         <button type="button" class="nav-item" data-tab="audit">
           <span class="icon">📝</span>
-          <span>التعديلات</span>
+          <span data-i18n="navAudit">التعديلات</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="assistant">
+          <span class="icon">🤖</span>
+          <span data-i18n="navAi">المساعد</span>
         </button>
       </div>
     </nav>
 
     <script>
-      const STORAGE_KEY = 'revenueguard_v1_9_state';
+      const STORAGE_KEY = 'revenueguard_v2_0_state';
 
       const I18N = {
         ar: {
@@ -701,24 +746,31 @@
           calcBtn: 'احسب الآن',
           clearBtn: 'مسح',
           saveToLedger: '+ حفظ في السجل',
-          recHeading: 'المطابقة المالية (الفواتير والمدفوعات والإيرادات)',
+          recHeading: 'المطابقة المالية',
           colCode: 'الرقم',
           colClient: 'العميل',
           colDiff: 'الفارق',
           colMatch: 'نتيجة المطابقة',
-          importHeading: 'استيراد بيانات من Excel (ملف CSV)',
-          importBtn: 'استيراد وتحليل الملف',
-          addOpHeading: 'إضافة عملية جديدة إلى السجل',
+          importHeading: 'استيراد بيانات من Excel (CSV)',
+          importBtn: 'استيراد',
+          addOpHeading: 'إضافة عملية جديدة',
           addBtn: '+ إضافة إلى السجل',
           colDate: 'التاريخ',
           colReason: 'السبب',
-          repHeading: 'تصدير PDF و Excel + حفظ البيانات بين الأجهزة',
+          repHeading: 'تصدير PDF و Excel + النسخ الاحتياطي',
+          auditHeading: 'سجل التعديلات (أيقونات)',
+          aiHeading: 'المساعد الذكي والتحليل والتوصيات',
+          genSolutions: 'تحليل وتوصيات',
+          aiChatTitle: 'دردشة المساعد الذكي',
+          sendBtn: 'إرسال',
           navDash: 'المؤشرات',
           navCalc: 'الحاسبة',
           navRec: 'المطابقة',
           navLeak: 'التسرب',
           navLedger: 'السجل',
           navRep: 'التقارير',
+          navAudit: 'التعديلات',
+          navAi: 'المساعد',
         },
         en: {
           splashSub: 'Smart System for Revenue Leakage Monitoring & Detection',
@@ -753,18 +805,25 @@
           colDiff: 'Variance',
           colMatch: 'Status',
           importHeading: 'Import from Excel (CSV)',
-          importBtn: 'Import & Analyze',
-          addOpHeading: 'Add Operation to Ledger',
+          importBtn: 'Import',
+          addOpHeading: 'Add Operation',
           addBtn: '+ Add',
           colDate: 'Date',
           colReason: 'Cause',
-          repHeading: 'PDF & Excel Export + Cross-Device Backup',
+          repHeading: 'PDF & Excel Export + Backup',
+          auditHeading: 'Changes Log (Icons)',
+          aiHeading: 'AI Assistant, Analysis & Solutions',
+          genSolutions: 'Analyze & Suggest',
+          aiChatTitle: 'AI Assistant Chat',
+          sendBtn: 'Send',
           navDash: 'KPIs',
-          navCalc: 'Calculator',
+          navCalc: 'Calc',
           navRec: 'Reconcile',
           navLeak: 'Leakage',
           navLedger: 'Ledger',
           navRep: 'Reports',
+          navAudit: 'Changes',
+          navAi: 'Assistant',
         },
         fr: {
           splashSub: 'Système Intelligent de Détection des Fuites de Revenus',
@@ -805,12 +864,19 @@
           colDate: 'Date',
           colReason: 'Cause',
           repHeading: 'Export PDF & Excel + Sauvegarde',
+          auditHeading: 'Journal des modifications (Icônes)',
+          aiHeading: 'Assistant IA, Analyse & Solutions',
+          genSolutions: 'Analyser & proposer',
+          aiChatTitle: 'Chat Assistant IA',
+          sendBtn: 'Envoyer',
           navDash: 'Indicateurs',
-          navCalc: 'Calculateur',
-          navRec: 'Rapprochement',
+          navCalc: 'Calcul',
+          navRec: 'Rapproch.',
           navLeak: 'Fuites',
           navLedger: 'Journal',
           navRep: 'Rapports',
+          navAudit: 'Modifs',
+          navAi: 'Assistant',
         },
       };
 
@@ -832,6 +898,16 @@
         invoices: [],
         auditLog: [],
       };
+
+      function getAuditIcon(type) {
+        if (type.includes('إضافة')) return '➕';
+        if (type.includes('تعديل')) return '✎';
+        if (type.includes('حذف') || type.includes('تفريغ')) return '🗑️';
+        if (type.includes('استيراد') || type.includes('CSV')) return '📥';
+        if (type.includes('عملة')) return '💱';
+        if (type.includes('نسخة')) return '💾';
+        return '🔔';
+      }
 
       function logAudit(type, details) {
         const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
@@ -1013,7 +1089,7 @@
         return {
           gap,
           abnormal,
-          source: `العميل: ${inv.client} | العملية: ${inv.code} | الشهر: ${monthStr}`,
+          source: `${inv.client} | ${inv.code} | ${monthStr}`,
           why,
           how,
         };
@@ -1083,7 +1159,7 @@
       function editInvoice(id) {
         const item = state.invoices.find((x) => x.id === id);
         if (!item) return;
-        const newPaidInput = prompt(`تعديل المبلغ المحصل للعملية ${item.code} (${item.client}) بالعملة الحالية:`, (item.paid * (state.currencies[state.currency]?.rateFromDZD || 1)).toFixed(2));
+        const newPaidInput = prompt(`تعديل المحصل (${item.code} - ${item.client}):`, (item.paid * (state.currencies[state.currency]?.rateFromDZD || 1)).toFixed(2));
         if (newPaidInput === null) return;
         const parsed = parseFloat(newPaidInput);
         if (Number.isNaN(parsed) || parsed < 0) return;
@@ -1175,7 +1251,7 @@
           { id: 2, code: 'OP-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, reason: 'تحصيل جزئي دون تسوية', date: '2026-11-10' },
           { id: 3, code: 'OP-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, reason: 'تأخر في التحصيل', date: '2026-11-18' },
         ];
-        logAudit('بيانات تجريبية', '3');
+        logAudit('إضافة بيانات تجريبية', '3');
         saveState();
         renderAll();
       }
@@ -1185,6 +1261,22 @@
         logAudit('تفريغ السجل', '0');
         saveState();
         renderAll();
+      }
+
+      function generateSuggestions() {
+        const list = getFilteredInvoices();
+        const ul = document.getElementById('aiSuggestionsList');
+        const gaps = list.map((i) => Math.max(0, i.expected - i.paid)).filter((g) => g > 0);
+        const avgGap = gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0;
+        const flagged = list.filter((i) => i.paid < i.expected);
+        if (!flagged.length) {
+          ul.innerHTML = '<li>—</li>';
+          return;
+        }
+        ul.innerHTML = flagged.map((inv) => {
+          const a = analyzeCase(inv, avgGap);
+          return `<li><strong>${a.source}</strong> — ${fmtMoney(a.gap)} | ${a.why} | ${a.how}</li>`;
+        }).join('');
       }
 
       function exportCSV() {
@@ -1270,7 +1362,7 @@
                 <div style="font-weight:800; font-size:14px;">${info.source}</div>
                 <div class="analysis-box">
                   <div>• <strong>الفارق:</strong> ${fmtMoney(info.gap)} ${info.abnormal ? '• <strong>فارق غير طبيعي</strong>' : ''}</div>
-                  <div>• <strong>التفسير / السبب:</strong> ${info.why}</div>
+                  <div>• <strong>السبب:</strong> ${info.why}</div>
                   <div>• <strong>كيف وقع:</strong> ${info.how}</div>
                 </div>
               </div>
@@ -1302,14 +1394,41 @@
           <div>${collRate}% | ${leakRate}%</div>
         `;
 
-        const auditBody = document.getElementById('auditBody');
-        auditBody.innerHTML = !state.auditLog.length
-          ? '<tr><td colspan="3" style="text-align:center; padding:18px; color:var(--text-muted);">—</td></tr>'
-          : state.auditLog.map((a) => `<tr>
-              <td>${a.time}</td>
-              <td><strong>${a.type}</strong></td>
-              <td>${a.details}</td>
-            </tr>`).join('');
+        // سجل التعديلات على شكل بطاقات أيقونات
+        const auditGrid = document.getElementById('auditIconsGrid');
+        auditGrid.innerHTML = !state.auditLog.length
+          ? '<div class="audit-icon-card"><div class="audit-badge-icon">ℹ️</div><div style="color:var(--text-muted); font-size:13px;">—</div></div>'
+          : state.auditLog.map((a) => `
+              <div class="audit-icon-card">
+                <div class="audit-badge-icon">${getAuditIcon(a.type)}</div>
+                <div>
+                  <div style="font-weight:800; font-size:13px;">${a.type}</div>
+                  <div style="font-size:12.5px; margin-top:2px;">${a.details}</div>
+                  <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">🕒 ${a.time}</div>
+                </div>
+              </div>
+            `).join('');
+      }
+
+      function askAI(e) {
+        e.preventDefault();
+        const input = document.getElementById('aiInput');
+        const q = input.value.trim();
+        if (!q) return;
+        const box = document.getElementById('aiMessages');
+        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; border-color:#38bdf8;">${q}</div>`;
+
+        const list = getFilteredInvoices();
+        const exp = list.reduce((a, b) => a + b.expected, 0);
+        const col = list.reduce((a, b) => a + b.paid, 0);
+        const uncollected = Math.max(0, exp - col);
+        const reply = list.length
+          ? `${fmtMoney(exp)} / ${fmtMoney(col)} / ${fmtMoney(uncollected)}`
+          : '—';
+
+        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; background:var(--bg-soft);">${reply}</div>`;
+        box.scrollTop = box.scrollHeight;
+        input.value = '';
       }
 
       function initApp() {
@@ -1355,6 +1474,9 @@
         document.getElementById('exportPdfBtn').addEventListener('click', () => window.print());
         document.getElementById('exportJsonBtn').addEventListener('click', exportBackupJSON);
         document.getElementById('restoreJsonBtn').addEventListener('click', restoreBackupJSON);
+
+        document.getElementById('generateSuggestionsBtn').addEventListener('click', generateSuggestions);
+        document.getElementById('aiForm').addEventListener('submit', askAI);
 
         document.querySelectorAll('.nav-item').forEach((btn) => {
           btn.addEventListener('click', () => switchTab(btn.dataset.tab));
