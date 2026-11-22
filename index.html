@@ -341,6 +341,28 @@
         line-height: 1.75;
       }
 
+      .guide-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .guide-item {
+        background-color: var(--bg-soft);
+        border-radius: 12px;
+        padding: 11px 12px;
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .guide-item-title {
+        font-weight: 800;
+        color: var(--accent);
+        margin-bottom: 4px;
+        font-size: 12.5px;
+      }
+
       .audit-icon-card {
         display: flex;
         align-items: flex-start;
@@ -530,6 +552,19 @@
           <button type="button" class="btn" id="addCustomCurrBtn">+ إضافة عملة</button>
         </div>
         <div id="fxStatusMsg" style="margin-top: 8px; font-size: 12px; color: var(--accent);"></div>
+        <div class="guide-grid">
+          <div class="guide-item">
+            <div class="guide-item-title">قوانين العملات</div>
+            <div>• العرض: المبلغ (DZD) × معامل التحويل</div>
+            <div>• الإدخال: المبلغ المدخل ÷ معامل التحويل</div>
+          </div>
+          <div class="guide-item">
+            <div class="guide-item-title">تفسير وتحليل واستنتاج العملات</div>
+            <div>• التفسير: حفظ الأساس بـ DZD يوحّد المرجع المحاسبي.</div>
+            <div>• التحليل: أي معامل تحويل يجب أن يكون أكبر من 0.</div>
+            <div>• الاستنتاج: تبديل العملة يغيّر العرض فقط دون إتلاف القيمة الأصلية.</div>
+          </div>
+        </div>
       </div>
 
       <section id="tab-dashboard" class="tab-panel active">
@@ -568,6 +603,31 @@
           <div class="card">
             <div class="kpi-label" data-i18n="anomalies">فروقات غير طبيعية</div>
             <div class="kpi-value tabular-nums" id="kpiAnomalyCount" style="color: #f59e0b;">0</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-weight: 800; font-size: 14px; margin-bottom: 6px;">قوانين المؤشرات وتفسيرها وتحليلها واستنتاجها</div>
+          <div class="guide-grid">
+            <div class="guide-item">
+              <div class="guide-item-title">القوانين الحسابية للمؤشرات</div>
+              <div>• غير المحصل = max(0، المتوقع − المحصل)</div>
+              <div>• نسبة التحصيل = (المحصل ÷ المتوقع) × 100</div>
+              <div>• نسبة التسرب = (غير المحصل ÷ المتوقع) × 100</div>
+              <div>• الفارق غير الطبيعي: الفارق &gt; 1.35 × متوسط الفروقات</div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-title">التفسير</div>
+              <div>تعكس المؤشرات مدى التزام التحصيل الفعلي بالخطط والإيرادات المتوقعة في السنة والشهر المحددين.</div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-title">التحليل</div>
+              <div>الجمع بين نسبة التحصيل، قيمة المتسرب، وعدد الفروقات غير الطبيعية يكشف هل النقص منتشر أم متركز في حالات حادة.</div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-title">الاستنتاج</div>
+              <div>ارتفاع حالات الفارق مع نسبة تسرب منخفضة يعني مبالغ صغيرة متفرقة، بينما ارتفاع الفروقات غير الطبيعية يفرض متابعة فورية للحالات الكبرى.</div>
+            </div>
           </div>
         </div>
       </section>
@@ -619,7 +679,7 @@
       </section>
 
       <section id="tab-reconcile" class="tab-panel">
-        <div class="card" style="overflow-x: auto;">
+        <div class="card" style="overflow-x: auto; margin-bottom: 14px;">
           <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="recHeading">المطابقة المالية</h2>
           <table>
             <thead>
@@ -635,11 +695,36 @@
             <tbody id="reconcileBody" class="tabular-nums"></tbody>
           </table>
         </div>
+        <div class="card">
+          <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 6px;">قانون المطابقة وتفسيره وتحليله واستنتاجه</div>
+          <div class="analysis-box" style="margin-top: 0;">
+            <div>• <strong>القانون:</strong> الفارق = المتوقع − المحصل (صفر = OK، موجب = GAP نقص، سالب = + زيادة).</div>
+            <div>• <strong>التفسير:</strong> يقارن كل عملية مسجلة بقيمتها المتوقعة لكشف التطابق أو الاختلاف.</div>
+            <div>• <strong>التحليل:</strong> ظهور GAP متكرر يدل على فجوة تحصيل أو تسعير تحتاج مراجعة.</div>
+            <div>• <strong>الاستنتاج:</strong> الفصل بين العمليات المتطابقة والمنقوصة يحدد بدقة العمليات التي تتطلب إجراءً تصحيحياً.</div>
+          </div>
+        </div>
       </section>
 
       <section id="tab-leakage" class="tab-panel">
         <div id="leakageAlertDetail" class="alert-banner alert-ok"></div>
         <div id="leakageList" class="grid-2"></div>
+        <div class="card">
+          <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 6px;">منهجية تحليل التسرب (قوانين، تفسير، تحليل، استنتاج)</div>
+          <div class="guide-grid">
+            <div class="guide-item">
+              <div class="guide-item-title">القوانين</div>
+              <div>• الفارق = max(0، المتوقع − المحصل)</div>
+              <div>• الفارق غير الطبيعي يتحقق إذا كان الفارق &gt; 1.35 × متوسط الفروقات</div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-title">التفسير والتحليل والاستنتاج</div>
+              <div>• التفسير: ربط الفارق بالسبب يوضح طبيعة الخلل.</div>
+              <div>• التحليل: تحصيل صفر يعني تعثراً كاملاً؛ تحصيل جزئي يعني رصيداً متبقياً.</div>
+              <div>• الاستنتاج: التركيز على الحالات غير الطبيعية والخصومات غير الموثقة يقلل التسرب بأسرع وقت.</div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="tab-ledger" class="tab-panel">
@@ -721,6 +806,31 @@
             <button type="button" class="btn btn-primary" id="generateSuggestionsBtn" data-i18n="genSolutions">تحليل وتوصيات</button>
           </div>
           <ul class="rec-list" id="aiSuggestionsList"></ul>
+        </div>
+
+        <div class="card" style="margin-bottom: 14px;">
+          <div style="font-weight: 800; font-size: 14px; margin-bottom: 6px;">مرجع القوانين والتفسير والتحليل والاستنتاج (المالية والعملات وPWA)</div>
+          <div class="guide-grid">
+            <div class="guide-item">
+              <div class="guide-item-title">القوانين المالية والعملات</div>
+              <div>• غير المحصل = max(0، المتوقع − المحصل)</div>
+              <div>• المفقود في الحاسبة = max(0، (المتوقع − المحصل) − المؤجل)</div>
+              <div>• نسبة التسرب = (غير المحصل ÷ المتوقع) × 100</div>
+              <div>• التحويل: DZD × معامل التحويل (أو ÷ للعودة لـ DZD)</div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-title">التفسير والتحليل والاستنتاج</div>
+              <div>• التفسير: ربط الأرقام بالسبب يميز التأخر عن النقص الحقيقي.</div>
+              <div>• التحليل: متوسط الفروقات وعامل 1.35 يكشفان الحالات الشاذة.</div>
+              <div>• الاستنتاج: معالجة الفروقات الكبرى والخصومات غير الموثقة ترفع نسبة التحصيل وتحمي الإيرادات.</div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-title">متطلبات PWA والتثبيت</div>
+              <div>• ملف manifest.json ببيانات التطبيق وأيقونة finance_dashboard_512.png</div>
+              <div>• ربط manifest.json وتسجيل sw.js داخل index.html</div>
+              <div>• نشر GitHub Pages من فرع main ومجلد / (root)</div>
+            </div>
+          </div>
         </div>
 
         <div class="card">
@@ -1180,7 +1290,12 @@
           ? 'لم يُسجل تحصيل مقابل الإيراد المتوقع.'
           : 'تم تحصيل جزء من المبلغ وبقي رصيد غير محصل.';
         const why = inv.reason || 'تأخر في التحصيل';
-        return { gap, abnormal, source: `${inv.client} | ${inv.code} | ${monthStr}`, why, how };
+        const conclusion = inv.paid === 0
+          ? 'استنتاج: تعثر تحصيل كامل يتطلب متابعة فورية لتأكيد سبب التأخير أو الإلغاء.'
+          : abnormal
+            ? 'استنتاج: فارق أكبر من المعتاد بشكل ملحوظ يتطلب تدقيقاً عاجلاً للرصيد والخصومات.'
+            : 'استنتاج: نقص تحصيل جزئي ضمن النطاق المعتاد ويتطلب متابعة تحصيل الرصيد المتبقي.';
+        return { gap, abnormal, source: `${inv.client} | ${inv.code} | ${monthStr}`, why, how, conclusion };
       }
 
       function calculateLeakage() {
@@ -1194,11 +1309,31 @@
         const lost = Math.max(0, diff - pend);
         const pct = exp > 0 ? ((lost / exp) * 100).toFixed(1) : '0.0';
 
+        const interpretation = exp === 0 && col === 0
+          ? 'أدخلي الإيراد المتوقع والمحصل لعرض التفسير والتحليل والاستنتاج.'
+          : col === 0 && diff > 0
+            ? 'التفسير: لم يُسجل أي تحصيل مقابل الإيراد المتوقع.'
+            : diff > 0
+              ? 'التفسير: يوجد فرق بين الإيراد المتوقع والمحصل الفعلي.'
+              : 'التفسير: الإيراد المحصل يغطي أو يتجاوز الإيراد المتوقع دون نقص.';
+
+        const analysisText = diff > 0
+          ? `التحليل: الفرق الأولي ${fmtMoney(diff)}، وبعد خصم المؤجلات/التسويات (${fmtMoney(pend)}) تصبح القيمة المتسربة/المفقودة ${fmtMoney(lost)} بنسبة ${pct}%.`
+          : 'التحليل: لا يوجد فرق مالي سلبي يستدعي خصم تسرب.';
+
+        const conclusionText = lost > 0
+          ? `الاستنتاج: يتطلب الملف معالجة بند (${cause}) ومتابعة قيمة ${fmtMoney(lost)} لمنع استمرار التسرب.`
+          : diff > 0
+            ? 'الاستنتاج: الفارق مغطى بالكامل بمستحقات مؤجلة أو تسويات ولا يُعدّ تسرباً فائقاً.'
+            : 'الاستنتاج: العملية متوازنة مالياً ولا تحتاج إلى إجراء علاجي للتسرب.';
+
         document.getElementById('calcDirectResult').innerHTML = `
           <div><strong>النتيجة — ${client}:</strong> <span class="tabular-nums" style="color:#ef4444; font-weight:800;">${fmtMoney(lost)} (${pct}%)</span></div>
-          <div>• <strong>المصدر:</strong> ${client} | <strong>الفرق الأولي:</strong> ${fmtMoney(diff)}</div>
-          <div>• <strong>السبب:</strong> ${cause}</div>
-          <div>• <strong>التفسير:</strong> ${col === 0 && diff > 0 ? 'عدم تحصيل كامل مقابل الإيراد المتوقع.' : diff > 0 ? 'فرق بين المبلغ المتوقع والمحصل.' : 'لا يوجد فرق.'}</div>
+          <div>• <strong>القوانين:</strong> الفرق = max(0، المتوقع − المحصل) | المفقود = max(0، الفرق − المؤجل) | النسبة = (المفقود ÷ المتوقع) × 100</div>
+          <div>• <strong>المصدر:</strong> ${client} | <strong>الفرق الأولي:</strong> ${fmtMoney(diff)} | <strong>السبب:</strong> ${cause}</div>
+          <div>• ${interpretation}</div>
+          <div>• ${analysisText}</div>
+          <div>• <strong>${conclusionText}</strong></div>
         `;
       }
 
@@ -1358,12 +1493,12 @@
         const avgGap = gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0;
         const flagged = list.filter((i) => i.paid < i.expected);
         if (!flagged.length) {
-          ul.innerHTML = '<li>—</li>';
+          ul.innerHTML = '<li>لا توجد حالات تسرب نشطة في الفترة المختارة؛ يُنصح بمواصلة المطابقة الدورية والتحقق من التسويات.</li>';
           return;
         }
         ul.innerHTML = flagged.map((inv) => {
           const a = analyzeCase(inv, avgGap);
-          return `<li><strong>${a.source}</strong> — ${fmtMoney(a.gap)} | ${a.why} | ${a.how}</li>`;
+          return `<li><strong>${a.source}</strong> — ${fmtMoney(a.gap)} | التفسير: ${a.how} | السبب: ${a.why} | ${a.conclusion}</li>`;
         }).join('');
       }
 
@@ -1414,16 +1549,16 @@
         const gAlert = document.getElementById('globalAlertBox');
         const lAlert = document.getElementById('leakageAlertDetail');
         if (uncollected > 0) {
-          const msg = `⚠️ ${fmtMoney(uncollected)} (${leakRate}%) — ${year} / ${month}`;
+          const msg = `⚠️ تنبيه مالي (${year} / ${month}): مستحقات/فروقات ${fmtMoney(uncollected)} بنسبة تسرب ${leakRate}% (${anomalies.length} حالة غير طبيعية). الاستنتاج: متابعة الفروقات الكبرى والبنود غير المحصلة.`;
           gAlert.className = anomalies.length ? 'alert-banner alert-err' : 'alert-banner';
           gAlert.textContent = msg;
           lAlert.className = anomalies.length ? 'alert-banner alert-err' : 'alert-banner';
           lAlert.textContent = msg;
         } else {
           gAlert.className = 'alert-banner alert-ok';
-          gAlert.textContent = '✅ 0.00';
+          gAlert.textContent = `✅ (${year} / ${month}): لا توجد فروقات سلبية أو تسرب مسجل (0.00). الاستنتاج: التحصيل متوازن في الفترة المختارة.`;
           lAlert.className = 'alert-banner alert-ok';
-          lAlert.textContent = '✅ 0.00';
+          lAlert.textContent = `✅ (${year} / ${month}): لا توجد حالات تسرب نشطة في هذه الفترة.`;
         }
 
         const recBody = document.getElementById('reconcileBody');
@@ -1431,7 +1566,7 @@
           ? '<tr><td colspan="6" style="text-align:center; padding:18px; color:var(--text-muted);">—</td></tr>'
           : list.map((inv) => {
               const diff = inv.expected - inv.paid;
-              const matchLabel = diff === 0 ? '✅ OK' : diff > 0 ? '⚠️ GAP' : 'ℹ️ +';
+              const matchLabel = diff === 0 ? '✅ OK (مطابق)' : diff > 0 ? '⚠️ GAP (نقص)' : 'ℹ️ + (زيادة)';
               return `<tr>
                 <td><strong>${inv.code}</strong></td>
                 <td>${inv.client}</td>
@@ -1444,14 +1579,15 @@
 
         const leakBox = document.getElementById('leakageList');
         leakBox.innerHTML = !analyzed.length
-          ? '<div class="card" style="color:var(--text-muted); font-size:13px;">—</div>'
+          ? '<div class="card" style="color:var(--text-muted); font-size:13px;">لا توجد حالات تسرب لعرض تحليلها في هذه الفترة.</div>'
           : analyzed.map(({ inv, info }) => `
               <div class="card">
                 <div style="font-weight:800; font-size:14px;">${info.source}</div>
                 <div class="analysis-box">
-                  <div>• <strong>الفارق:</strong> ${fmtMoney(info.gap)} ${info.abnormal ? '• <strong>فارق غير طبيعي</strong>' : ''}</div>
+                  <div>• <strong>الفارق:</strong> ${fmtMoney(info.gap)} ${info.abnormal ? '• <strong>فارق غير طبيعي (&gt; 1.35× المتوسط)</strong>' : ''}</div>
+                  <div>• <strong>التفسير:</strong> ${info.how}</div>
                   <div>• <strong>السبب:</strong> ${info.why}</div>
-                  <div>• <strong>كيف وقع:</strong> ${info.how}</div>
+                  <div>• <strong>${info.conclusion}</strong></div>
                 </div>
               </div>
             `).join('');
@@ -1476,10 +1612,15 @@
               </tr>`;
             }).join('');
 
+        const reportConclusion = uncollected > 0
+          ? `الاستنتاج: يوجد رصيد غير محصل قدره ${fmtMoney(uncollected)} (${leakRate}%)، يُنصح بمتابعة الحالات غير المكتملة حسب أسبابها.`
+          : 'الاستنتاج: جميع العمليات المسجلة في الفترة محصلة بالكامل دون تسرب.';
+
         document.getElementById('reportPreviewBox').innerHTML = `
-          <div><strong>${year} / ${month}</strong></div>
-          <div>${fmtMoney(exp)} | ${fmtMoney(col)} | ${fmtMoney(uncollected)}</div>
-          <div>${collRate}% | ${leakRate}%</div>
+          <div><strong>الفترة: ${year} / ${month}</strong></div>
+          <div>• <strong>التفسير والقوانين:</strong> المتوقع ${fmtMoney(exp)} | المحصل ${fmtMoney(col)} | غير المحصل ${fmtMoney(uncollected)}</div>
+          <div>• <strong>التحليل:</strong> نسبة التحصيل ${collRate}% | نسبة التسرب ${leakRate}% | الفروقات غير الطبيعية ${anomalies.length}</div>
+          <div>• <strong>${reportConclusion}</strong></div>
         `;
 
         const auditGrid = document.getElementById('auditIconsGrid');
@@ -1509,9 +1650,10 @@
         const exp = list.reduce((a, b) => a + b.expected, 0);
         const col = list.reduce((a, b) => a + b.paid, 0);
         const uncollected = Math.max(0, exp - col);
+        const leakRate = exp > 0 ? ((uncollected / exp) * 100).toFixed(1) : '0.0';
         const reply = list.length
-          ? `${fmtMoney(exp)} / ${fmtMoney(col)} / ${fmtMoney(uncollected)}`
-          : '—';
+          ? `التفسير: المتوقع ${fmtMoney(exp)} والمحصل ${fmtMoney(col)}. التحليل: الفارق ${fmtMoney(uncollected)} بنسبة تسرب ${leakRate}%. الاستنتاج: ${uncollected > 0 ? 'مراجعة الفروقات والبنود غير المحصلة وتحسين التحصيل.' : 'الوضع المالي للفترة متوازن.'}`
+          : 'لا توجد بيانات في الفترة المحددة؛ القوانين والمنهجية معروضة في البطاقة أعلاه.';
 
         box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; background:var(--bg-soft);">${reply}</div>`;
         box.scrollTop = box.scrollHeight;
