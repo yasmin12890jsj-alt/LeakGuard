@@ -60,7 +60,7 @@
       #splashScreen {
         position: fixed;
         inset: 0;
-        z-index: 100;
+        z-index: 999;
         background: radial-gradient(circle at top, #0c2444, #050d1a 70%);
         color: #ffffff;
         display: flex;
@@ -68,10 +68,6 @@
         justify-content: center;
         padding: 24px;
         text-align: center;
-      }
-
-      #splashScreen.hidden {
-        display: none;
       }
 
       .splash-box {
@@ -193,7 +189,6 @@
         gap: 8px;
       }
 
-      /* البطاقات والأقسام */
       .grid-4 {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -252,7 +247,6 @@
         font-size: 12px;
       }
 
-      /* الشريط السفلي بالأيقونات */
       .bottom-nav {
         position: fixed;
         bottom: 0;
@@ -306,9 +300,9 @@
         <div class="splash-sub">نظام ذكي لمراقبة وكشف تسرب الإيرادات</div>
         <p class="splash-desc">احمِ إيراداتك، اكتشف التسرب، وسيطر على مستقبلك المالي.</p>
         <div class="controls-row" style="justify-content: center;">
-          <button class="btn btn-primary" onclick="closeSplash()">الدخول إلى النظام</button>
-          <button class="btn" id="muteBtn" onclick="toggleMute()">🔊 الصوت: مفعل</button>
-          <button class="btn" onclick="closeSplash()">تخطي (Skip)</button>
+          <button type="button" class="btn btn-primary" id="enterSystemBtn">الدخول إلى النظام</button>
+          <button type="button" class="btn" id="muteBtn">🔊 الصوت: مفعل</button>
+          <button type="button" class="btn" id="skipSplashBtn">تخطي (Skip)</button>
         </div>
       </div>
     </div>
@@ -325,30 +319,30 @@
         </div>
 
         <div class="controls-row">
-          <button class="btn" id="themeToggle" onclick="toggleTheme()">☀️ صباحي</button>
-          <select id="langSelect" onchange="setLanguage(this.value)">
+          <button type="button" class="btn" id="themeToggle">☀️ صباحي</button>
+          <select id="langSelect">
             <option value="ar">العربية (RTL)</option>
             <option value="en">English (LTR)</option>
             <option value="fr">Français (LTR)</option>
           </select>
-          <select id="currencySelect" onchange="setCurrency(this.value)">
+          <select id="currencySelect">
             <option value="DZD">DZD (د.ج)</option>
             <option value="USD">USD ($)</option>
             <option value="EUR">EUR (€)</option>
             <option value="GBP">GBP (£)</option>
           </select>
-          <button class="btn" onclick="openSplash()">Intro</button>
+          <button type="button" class="btn" id="reopenSplashBtn">Intro</button>
         </div>
       </div>
 
       <div class="filter-bar">
         <div class="filter-bar-inner">
           <div class="controls-row">
-            <select id="yearFilter" onchange="renderAll()">
+            <select id="yearFilter">
               <option value="2026">2026</option>
               <option value="2025">2025</option>
             </select>
-            <select id="monthFilter" onchange="renderAll()">
+            <select id="monthFilter">
               <option value="ALL">كل الأشهر</option>
               <option value="01">يناير (01)</option>
               <option value="02">فبراير (02)</option>
@@ -366,8 +360,8 @@
           </div>
 
           <div class="controls-row">
-            <button class="btn" onclick="loadDemoData()">+ بيانات تجريبية</button>
-            <button class="btn" onclick="clearData()">تفريغ</button>
+            <button type="button" class="btn" id="demoDataBtn">+ بيانات تجريبية</button>
+            <button type="button" class="btn" id="clearDataBtn">تفريغ</button>
           </div>
         </div>
       </div>
@@ -389,3 +383,428 @@
             <div class="kpi-label">الفرق الأولي</div>
             <div class="kpi-value tabular-nums" id="kpiVariance" style="color: #f59e0b;">0.00 د.ج</div>
           </div>
+          <div class="card">
+            <div class="kpi-label">نسبة الفرق الأولي</div>
+            <div class="kpi-value tabular-nums" id="kpiRate" style="color: #ef4444;">0.0%</div>
+          </div>
+        </div>
+
+        <div class="card" style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
+          <strong>ملاحظة محاسبية:</strong> الفرق الأولي لا يُعدّ تسرباً مؤكداً أو تلاعباً دون مراجعة بشرية والتحقق من آجال الاستحقاق والتسويات المحاسبية. اضغط على أيقونة <strong>الحاسبة</strong> في الأسفل لحساب الفروقات مباشرة.
+        </div>
+      </section>
+
+      <!-- 2. حاسبة كشف التسرب -->
+      <section id="tab-calculator" class="tab-panel">
+        <div class="card">
+          <h2 style="margin: 0 0 14px; font-size: 17px;">حاسبة كشف تسرب الإيرادات</h2>
+          <div class="grid-3">
+            <div>
+              <label style="display: block; font-size: 12px; margin-bottom: 6px;">الإيرادات المتوقعة</label>
+              <input id="calcExpected" type="number" step="0.01" placeholder="مثال: 1000000" style="width: 100%;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 12px; margin-bottom: 6px;">الإيرادات المحصلة</label>
+              <input id="calcCollected" type="number" step="0.01" placeholder="مثال: 920000" style="width: 100%;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 12px; margin-bottom: 6px;">مستحقات لم يحن أجلها / تسويات</label>
+              <input id="calcPending" type="number" step="0.01" placeholder="مثال: 200000" style="width: 100%;" />
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="card" style="margin-bottom: 0;">
+              <div class="kpi-label">الفرق الأولي</div>
+              <div class="kpi-value tabular-nums" id="calcDiff">0.00 د.ج</div>
+            </div>
+            <div class="card" style="margin-bottom: 0;">
+              <div class="kpi-label">تسرب محتمل</div>
+              <div class="kpi-value tabular-nums" id="calcSuspect" style="color: #f59e0b;">0.00 د.ج</div>
+            </div>
+            <div class="card" style="margin-bottom: 0;">
+              <div class="kpi-label">نسبة التسرب المحتمل</div>
+              <div class="kpi-value tabular-nums" id="calcPct" style="color: #ef4444;">0.0%</div>
+            </div>
+          </div>
+
+          <div class="controls-row" style="margin-top: 14px;">
+            <button type="button" class="btn btn-primary" id="saveCalcBtn">حفظ في الفواتير</button>
+            <button type="button" class="btn" id="resetCalcBtn">إعادة ضبط</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. الفواتير -->
+      <section id="tab-invoices" class="tab-panel">
+        <form class="card" id="invoiceForm" style="margin-bottom: 14px;">
+          <div class="grid-4" style="margin-bottom: 10px;">
+            <input id="invCode" required placeholder="رقم الفاتورة (INV-01)" />
+            <input id="invClient" required placeholder="اسم العميل" />
+            <input id="invExpected" type="number" step="0.01" required placeholder="المبلغ المتوقع" />
+            <input id="invPaid" type="number" step="0.01" required placeholder="المبلغ المحصل" />
+          </div>
+          <button type="submit" class="btn btn-primary">+ إضافة فاتورة</button>
+        </form>
+
+        <div class="card" style="overflow-x: auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>الرقم</th>
+                <th>العميل</th>
+                <th>المتوقع</th>
+                <th>المحصل</th>
+                <th>الفرق</th>
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody id="invoicesBody" class="tabular-nums"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. حالات التسرب -->
+      <section id="tab-leakage" class="tab-panel">
+        <div id="leakageList" class="grid-3"></div>
+      </section>
+
+      <!-- 5. المساعد الذكي -->
+      <section id="tab-ai" class="tab-panel">
+        <div class="card">
+          <div style="font-weight: 700; margin-bottom: 10px;">مساعد RevenueGuard الذكي</div>
+          <div id="aiMessages" style="max-height: 240px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div class="card" style="padding: 10px; margin-bottom: 0; font-size: 13px;">
+              اسألني عن إجمالي الإيرادات المتوقعة، المحصلة، أو الفرق الأولي للفترة المختارة.
+            </div>
+          </div>
+          <form id="aiForm" style="display: flex; gap: 8px;">
+            <input id="aiInput" required placeholder="اكتب سؤالك هنا..." style="flex: 1;" />
+            <button type="submit" class="btn btn-primary">إرسال</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- شريط الأيقونات السفلي لكاشف تسرب الإيرادات -->
+    <nav class="bottom-nav" aria-label="أقسام كاشف تسرب الإيرادات">
+      <div class="bottom-nav-inner">
+        <button type="button" class="nav-item active" data-tab="dashboard">
+          <span class="icon">📊</span>
+          <span>الرئيسية</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="calculator">
+          <span class="icon">🧮</span>
+          <span>الحاسبة</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="invoices">
+          <span class="icon">🧾</span>
+          <span>الفواتير</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="leakage">
+          <span class="icon">🛡️</span>
+          <span>التسرب</span>
+        </button>
+        <button type="button" class="nav-item" data-tab="ai">
+          <span class="icon">🤖</span>
+          <span>المساعد</span>
+        </button>
+      </div>
+    </nav>
+
+    <script>
+      const STORAGE_KEY = 'revenueguard_v1_3_state';
+      const RATES_FROM_DZD = { DZD: 1, USD: 1 / 135, EUR: 1 / 146, GBP: 1 / 172 };
+      const SYMBOLS = { DZD: 'د.ج', USD: '$', EUR: '€', GBP: '£' };
+
+      let state = {
+        lang: 'ar',
+        currency: 'DZD',
+        theme: 'dark',
+        muted: false,
+        invoices: [],
+      };
+
+      function closeSplash() {
+        const splash = document.getElementById('splashScreen');
+        if (splash) splash.style.display = 'none';
+      }
+
+      function openSplash() {
+        const splash = document.getElementById('splashScreen');
+        if (splash) splash.style.display = 'flex';
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (err) {}
+      }
+
+      function applyTheme() {
+        const btn = document.getElementById('themeToggle');
+        if (state.theme === 'light') {
+          document.body.classList.add('light-mode');
+          if (btn) btn.textContent = '🌙 ليلي';
+        } else {
+          document.body.classList.remove('light-mode');
+          if (btn) btn.textContent = '☀️ صباحي';
+        }
+      }
+
+      function toggleTheme() {
+        state.theme = state.theme === 'dark' ? 'light' : 'dark';
+        applyTheme();
+        saveState();
+      }
+
+      function applyLangDir() {
+        document.documentElement.lang = state.lang;
+        document.documentElement.dir = state.lang === 'ar' ? 'rtl' : 'ltr';
+      }
+
+      function setLanguage(lang) {
+        state.lang = lang;
+        applyLangDir();
+        saveState();
+      }
+
+      function setCurrency(curr) {
+        state.currency = curr;
+        saveState();
+        renderAll();
+        calculateLeakage();
+      }
+
+      function toggleMute() {
+        state.muted = !state.muted;
+        const muteBtn = document.getElementById('muteBtn');
+        if (muteBtn) muteBtn.textContent = state.muted ? '🔇 الصوت: مكتوم' : '🔊 الصوت: مفعل';
+      }
+
+      function switchTab(tabName) {
+        document.querySelectorAll('.tab-panel').forEach((el) => el.classList.remove('active'));
+        const target = document.getElementById('tab-' + tabName);
+        if (target) target.classList.add('active');
+
+        document.querySelectorAll('.nav-item').forEach((btn) => {
+          btn.classList.toggle('active', btn.dataset.tab === tabName);
+        });
+      }
+
+      function fmtMoney(amountDZD) {
+        const rate = RATES_FROM_DZD[state.currency] || 1;
+        const val = (amountDZD * rate).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+        return `${val} ${SYMBOLS[state.currency] || state.currency}`;
+      }
+
+      function toDZD(amountInCurrent) {
+        const rate = RATES_FROM_DZD[state.currency] || 1;
+        return (parseFloat(amountInCurrent) || 0) / rate;
+      }
+
+      function calculateLeakage() {
+        const exp = toDZD(document.getElementById('calcExpected').value);
+        const col = toDZD(document.getElementById('calcCollected').value);
+        const pend = toDZD(document.getElementById('calcPending').value);
+
+        const diff = Math.max(0, exp - col);
+        const suspect = Math.max(0, diff - pend);
+        const pct = exp > 0 ? ((suspect / exp) * 100).toFixed(1) : '0.0';
+
+        document.getElementById('calcDiff').textContent = fmtMoney(diff);
+        document.getElementById('calcSuspect').textContent = fmtMoney(suspect);
+        document.getElementById('calcPct').textContent = pct + '%';
+      }
+
+      function resetCalc() {
+        document.getElementById('calcExpected').value = '';
+        document.getElementById('calcCollected').value = '';
+        document.getElementById('calcPending').value = '';
+        calculateLeakage();
+      }
+
+      function saveCalcToInvoices() {
+        const exp = toDZD(document.getElementById('calcExpected').value);
+        const col = toDZD(document.getElementById('calcCollected').value);
+        if (exp <= 0 && col <= 0) return;
+
+        const y = document.getElementById('yearFilter').value;
+        const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
+        state.invoices.push({
+          id: Date.now(),
+          code: 'CALC-' + String(Date.now()).slice(-4),
+          client: 'عملية حاسبة التسرب',
+          expected: exp,
+          paid: col,
+          date: `${y}-${m}-22`,
+        });
+        saveState();
+        renderAll();
+        switchTab('invoices');
+      }
+
+      function getFilteredInvoices() {
+        const y = document.getElementById('yearFilter').value;
+        const m = document.getElementById('monthFilter').value;
+        return state.invoices.filter((inv) => {
+          const [iy, im] = inv.date.split('-');
+          if (y && iy !== y) return false;
+          if (m !== 'ALL' && im !== m) return false;
+          return true;
+        });
+      }
+
+      function addInvoice(e) {
+        e.preventDefault();
+        const y = document.getElementById('yearFilter').value;
+        const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
+        state.invoices.push({
+          id: Date.now(),
+          code: document.getElementById('invCode').value.trim(),
+          client: document.getElementById('invClient').value.trim(),
+          expected: toDZD(document.getElementById('invExpected').value),
+          paid: toDZD(document.getElementById('invPaid').value),
+          date: `${y}-${m}-15`,
+        });
+        saveState();
+        e.target.reset();
+        renderAll();
+      }
+
+      function loadDemoData() {
+        state.invoices = [
+          { id: 1, code: 'INV-2026-101', client: 'مؤسسة الأمل (تجريبي)', expected: 250000, paid: 250000, date: '2026-11-03' },
+          { id: 2, code: 'INV-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, date: '2026-11-10' },
+          { id: 3, code: 'INV-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, date: '2026-11-18' },
+        ];
+        saveState();
+        renderAll();
+      }
+
+      function clearData() {
+        state.invoices = [];
+        saveState();
+        renderAll();
+      }
+
+      function renderAll() {
+        const list = getFilteredInvoices();
+        const exp = list.reduce((acc, item) => acc + item.expected, 0);
+        const col = list.reduce((acc, item) => acc + item.paid, 0);
+        const diff = Math.max(0, exp - col);
+        const rate = exp > 0 ? ((diff / exp) * 100).toFixed(1) : '0.0';
+
+        document.getElementById('kpiExpected').textContent = fmtMoney(exp);
+        document.getElementById('kpiCollected').textContent = fmtMoney(col);
+        document.getElementById('kpiVariance').textContent = fmtMoney(diff);
+        document.getElementById('kpiRate').textContent = rate + '%';
+
+        const tbody = document.getElementById('invoicesBody');
+        if (!list.length) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 20px; color: var(--text-muted);">لا توجد فواتير في هذه الفترة. أضف فاتورة أو اضغط "+ بيانات تجريبية".</td></tr>';
+        } else {
+          tbody.innerHTML = list.map((inv) => {
+            const rem = inv.expected - inv.paid;
+            const st = inv.paid >= inv.expected ? 'مدفوعة' : inv.paid > 0 ? 'مدفوعة جزئياً' : 'غير مدفوعة';
+            return `<tr>
+              <td><strong>${inv.code}</strong></td>
+              <td>${inv.client}</td>
+              <td>${fmtMoney(inv.expected)}</td>
+              <td style="color:#10b981;">${fmtMoney(inv.paid)}</td>
+              <td style="color:${rem > 0 ? '#f59e0b' : 'inherit'};">${fmtMoney(rem)}</td>
+              <td>${st}</td>
+            </tr>`;
+          }).join('');
+        }
+
+        const leakBox = document.getElementById('leakageList');
+        const flagged = list.filter((item) => item.paid < item.expected);
+        if (!flagged.length) {
+          leakBox.innerHTML = '<div class="card" style="color: var(--text-muted); font-size: 13px;">لا توجد فروقات تحصيل مسجلة في الفترة المختارة.</div>';
+        } else {
+          leakBox.innerHTML = flagged.map((inv) => {
+            const rem = inv.expected - inv.paid;
+            return `<div class="card">
+              <div style="font-weight: 800; margin-bottom: 6px;">${inv.code} — ${inv.client}</div>
+              <div style="font-size: 14px; color: #f59e0b;" class="tabular-nums">المبلغ غير المحصل: <strong>${fmtMoney(rem)}</strong></div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">الإجراء المقترح: مراجعة الفاتورة وتأكيد موعد الاستحقاق.</div>
+            </div>`;
+          }).join('');
+        }
+      }
+
+      function askAI(e) {
+        e.preventDefault();
+        const input = document.getElementById('aiInput');
+        const q = input.value.trim();
+        if (!q) return;
+        const box = document.getElementById('aiMessages');
+        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; border-color:#38bdf8;">${q}</div>`;
+
+        const list = getFilteredInvoices();
+        const exp = list.reduce((a, b) => a + b.expected, 0);
+        const col = list.reduce((a, b) => a + b.paid, 0);
+        const diff = Math.max(0, exp - col);
+
+        const reply = list.length
+          ? `حسب البيانات الحالية (${list.length} فاتورة): الإيرادات المتوقعة ${fmtMoney(exp)}، المحصلة ${fmtMoney(col)}، والفرق الأولي ${fmtMoney(diff)}.`
+          : 'لا توجد بيانات كافية في الفترة المختارة حالياً. أضف فاتورة أو حمّل بيانات تجريبية.';
+
+        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; background:var(--bg-soft);">${reply}</div>`;
+        box.scrollTop = box.scrollHeight;
+        input.value = '';
+      }
+
+      function initApp() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) state = { ...state, ...JSON.parse(saved) };
+        } catch (err) {}
+
+        document.getElementById('langSelect').value = state.lang;
+        document.getElementById('currencySelect').value = state.currency;
+
+        applyTheme();
+        applyLangDir();
+        renderAll();
+        calculateLeakage();
+
+        document.getElementById('enterSystemBtn').addEventListener('click', closeSplash);
+        document.getElementById('skipSplashBtn').addEventListener('click', closeSplash);
+        document.getElementById('reopenSplashBtn').addEventListener('click', openSplash);
+        document.getElementById('muteBtn').addEventListener('click', toggleMute);
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.getElementById('langSelect').addEventListener('change', (e) => setLanguage(e.target.value));
+        document.getElementById('currencySelect').addEventListener('change', (e) => setCurrency(e.target.value));
+        document.getElementById('yearFilter').addEventListener('change', renderAll);
+        document.getElementById('monthFilter').addEventListener('change', renderAll);
+        document.getElementById('demoDataBtn').addEventListener('click', loadDemoData);
+        document.getElementById('clearDataBtn').addEventListener('click', clearData);
+
+        document.getElementById('calcExpected').addEventListener('input', calculateLeakage);
+        document.getElementById('calcCollected').addEventListener('input', calculateLeakage);
+        document.getElementById('calcPending').addEventListener('input', calculateLeakage);
+        document.getElementById('saveCalcBtn').addEventListener('click', saveCalcToInvoices);
+        document.getElementById('resetCalcBtn').addEventListener('click', resetCalc);
+
+        document.getElementById('invoiceForm').addEventListener('submit', addInvoice);
+        document.getElementById('aiForm').addEventListener('submit', askAI);
+
+        document.querySelectorAll('.nav-item').forEach((btn) => {
+          btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+
+        const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reducedMotion) {
+          setTimeout(closeSplash, 4000);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+  </body>
+</html>
