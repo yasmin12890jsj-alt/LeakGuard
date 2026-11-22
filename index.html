@@ -49,7 +49,7 @@
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-semibold">
           <span>AI Financial Shield</span>
           <span>•</span>
-          <span>v1.1</span>
+          <span>v1.2</span>
         </div>
 
         <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight bg-gradient-to-l from-sky-300 via-white to-indigo-300 bg-clip-text text-transparent drop-shadow">
@@ -63,13 +63,13 @@
         </p>
 
         <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
-          <button onclick="closeSplash()" class="px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold transition shadow-lg shadow-sky-500/25">
+          <button id="enterSystemBtn" type="button" class="px-6 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 active:scale-95 text-slate-950 font-bold transition shadow-lg shadow-sky-500/25 cursor-pointer">
             الدخول إلى النظام
           </button>
-          <button id="muteToggleBtn" onclick="toggleMute()" class="px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-sm text-slate-200 transition">
+          <button id="muteToggleBtn" type="button" class="px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-sm text-slate-200 transition cursor-pointer">
             🔊 الصوت: مفعل
           </button>
-          <button onclick="closeSplash()" class="px-4 py-2.5 rounded-xl text-sm text-slate-400 hover:text-white transition">
+          <button id="skipSplashBtn" type="button" class="px-4 py-2.5 rounded-xl text-sm text-slate-400 hover:text-white transition cursor-pointer">
             تخطي (Skip) ←
           </button>
         </div>
@@ -93,19 +93,19 @@
 
           <div class="flex flex-wrap items-center gap-2">
             <!-- زر تبديل الوضع الليلي والصباحي -->
-            <button id="themeBtn" onclick="toggleTheme()" class="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-xs font-bold transition" title="تبديل الوضع الليلي والصباحي">
+            <button id="themeBtn" type="button" class="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-xs font-bold transition" title="تبديل الوضع الليلي والصباحي">
               ☀️ صباحي
             </button>
 
             <!-- اختيار اللغة -->
-            <select id="langSelect" onchange="setLanguage(this.value)" class="bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-sky-400">
+            <select id="langSelect" class="bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-sky-400">
               <option value="ar">العربية (RTL)</option>
               <option value="en">English (LTR)</option>
               <option value="fr">Français (LTR)</option>
             </select>
 
             <!-- اختيار العملة -->
-            <select id="currencySelect" onchange="setCurrency(this.value)" class="bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-sky-400">
+            <select id="currencySelect" class="bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold focus:outline-none focus:border-sky-400">
               <option value="DZD">DZD (د.ج)</option>
               <option value="USD">USD ($)</option>
               <option value="EUR">EUR (€)</option>
@@ -113,7 +113,7 @@
             </select>
 
             <!-- إعادة عرض الافتتاحية -->
-            <button onclick="openSplash()" class="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-xs transition">
+            <button id="reopenSplashBtn" type="button" class="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-xs transition">
               Intro
             </button>
           </div>
@@ -123,11 +123,11 @@
         <div class="border-t border-slate-200 dark:border-slate-800/60 bg-slate-50/90 dark:bg-slate-950/50">
           <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
             <div class="flex flex-wrap items-center gap-2">
-              <select id="yearFilter" onchange="renderAll()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 font-semibold">
+              <select id="yearFilter" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 font-semibold">
                 <option value="2026">2026</option>
                 <option value="2025">2025</option>
               </select>
-              <select id="monthFilter" onchange="renderAll()" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 font-semibold">
+              <select id="monthFilter" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 font-semibold">
                 <option value="ALL">كل الأشهر</option>
                 <option value="01">يناير / Jan / Janv</option>
                 <option value="02">فبراير / Feb / Févr</option>
@@ -145,54 +145,4 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
-              <button onclick="loadDemoData()" class="px-2.5 py-1 rounded-lg bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-400/40 text-indigo-700 dark:text-indigo-200 font-semibold">
-                + بيانات تجريبية
-              </button>
-              <button onclick="clearData()" class="px-2.5 py-1 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-400/30 text-rose-700 dark:text-rose-200 font-semibold">
-                تفريغ
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <!-- المحتوى -->
-      <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 space-y-6">
-        <!-- تبويب لوحة التحكم -->
-        <section id="tab-dashboard" class="tab-panel space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-              <div class="text-xs text-slate-500 dark:text-slate-400">الإيرادات المتوقعة</div>
-              <div id="kpiExpected" class="text-2xl font-extrabold mt-1 tabular-nums">0.00</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-              <div class="text-xs text-slate-500 dark:text-slate-400">الإيرادات المحصلة</div>
-              <div id="kpiCollected" class="text-2xl font-extrabold mt-1 tabular-nums text-emerald-600 dark:text-emerald-400">0.00</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-              <div class="text-xs text-slate-500 dark:text-slate-400">الفرق الأولي / التسرب المحتمل</div>
-              <div id="kpiVariance" class="text-2xl font-extrabold mt-1 tabular-nums text-amber-600 dark:text-amber-400">0.00</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-              <div class="text-xs text-slate-500 dark:text-slate-400">نسبة الفرق الأولي</div>
-              <div id="kpiRate" class="text-2xl font-extrabold mt-1 tabular-nums text-rose-600 dark:text-rose-400">0.0%</div>
-            </div>
-          </div>
-
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            <strong class="text-sky-600 dark:text-sky-300">تنبيه محاسبي:</strong> الفرق بين الإيرادات المتوقعة والمحصلة يُعدّ <em>فرقاً أولياً</em> ولا يُعتبر تسرباً مؤكداً أو تلاعباً دون مراجعة بشرية والتحقق من آجال الاستحقاق والتسويات المحاسبية. يمكنك استخدام أيقونة <strong>الحاسبة</strong> في الأسفل لحساب الفروقات مباشرة.
-          </div>
-        </section>
-
-        <!-- تبويب حاسبة كشف التسرب -->
-        <section id="tab-calculator" class="tab-panel hidden space-y-5">
-          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
-            <div class="flex items-center justify-between">
-              <h2 class="text-base font-extrabold text-sky-600 dark:text-sky-300">🧮 حاسبة تسرب الإيرادات والفروقات المالية</h2>
-              <span class="text-xs text-slate-500 dark:text-slate-400">بالعملة المختارة</span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label class="block text-xs font-semibold mb-1">الإيرادات المتوقعة / المفوترة</label>
-                <input id="calcExpected" oninput="calculateLeakage()" type="number" step="0.01" placeholder="مثال: 10000000" class="w-full bg
+              <button id
