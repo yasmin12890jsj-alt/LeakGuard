@@ -46,14 +46,10 @@
         transition: background-color 0.25s ease, color 0.25s ease;
       }
 
-      .tabular-nums {
-        font-variant-numeric: tabular-nums;
-      }
-
       .container {
         max-width: 1240px;
         margin: 0 auto;
-        padding: 16px;
+        padding: 14px 16px;
       }
 
       #splashScreen {
@@ -73,10 +69,21 @@
         max-width: 560px;
       }
 
+      .splash-logo-img {
+        width: 112px;
+        height: 112px;
+        border-radius: 26px;
+        object-fit: cover;
+        border: 2px solid rgba(125, 211, 252, 0.45);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        margin: 0 auto 14px;
+        display: none;
+      }
+
       .splash-title {
-        font-size: 36px;
+        font-size: 34px;
         font-weight: 800;
-        margin: 12px 0 8px;
+        margin: 8px 0 8px;
         color: #7dd3fc;
       }
 
@@ -107,10 +114,9 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
-        padding: 12px 16px;
-        max-width: 1240px;
-        margin: 0 auto;
+        gap: 8px;
+        padding: 10px 16px;
+        width: 100%;
       }
 
       .brand {
@@ -119,10 +125,19 @@
         gap: 10px;
       }
 
-      .logo-badge {
+      .header-logo-img {
         width: 40px;
         height: 40px;
-        border-radius: 12px;
+        border-radius: 11px;
+        object-fit: cover;
+        border: 1px solid var(--border-color);
+        display: none;
+      }
+
+      .logo-fallback {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
         background: linear-gradient(135deg, #38bdf8, #4f46e5);
         color: #050d1a;
         font-weight: 800;
@@ -150,8 +165,8 @@
         color: var(--text-main);
         border: 1px solid var(--border-color);
         border-radius: 10px;
-        padding: 9px 11px;
-        font-size: 13px;
+        padding: 8px 10px;
+        font-size: 12.5px;
       }
 
       .btn {
@@ -159,10 +174,11 @@
         background-color: var(--bg-soft);
         color: var(--text-main);
         border-radius: 10px;
-        padding: 9px 13px;
-        font-size: 13px;
+        padding: 8px 12px;
+        font-size: 12.5px;
         font-weight: 700;
         cursor: pointer;
+        white-space: nowrap;
       }
 
       .btn-primary {
@@ -171,40 +187,40 @@
         border-color: transparent;
       }
 
-      .btn-danger {
-        background-color: rgba(239, 68, 68, 0.14);
-        color: #ef4444;
-        border-color: rgba(239, 68, 68, 0.35);
-      }
-
+      /* شريط السنة والأشهر والتفريغ بكامل عرض الأعلى */
       .filter-bar {
+        width: 100%;
         border-top: 1px solid var(--border-color);
-        background-color: var(--bg-main);
+        background-color: var(--bg-card);
       }
 
       .filter-bar-inner {
-        max-width: 1240px;
-        margin: 0 auto;
+        width: 100%;
         padding: 8px 16px;
         display: flex;
-        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         gap: 8px;
       }
 
-      .grid-4 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-        gap: 12px;
-        margin-bottom: 14px;
+      .filter-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
       }
 
-      .grid-2 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 12px;
-        margin-bottom: 14px;
+      #monthFilter {
+        flex: 1;
+        min-width: 120px;
+      }
+
+      .filter-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
       }
 
       .card {
@@ -212,104 +228,7 @@
         border: 1px solid var(--border-color);
         border-radius: 16px;
         padding: 16px;
-      }
-
-      .kpi-label {
-        font-size: 12px;
-        color: var(--text-muted);
-      }
-
-      .kpi-value {
-        font-size: 20px;
-        font-weight: 800;
-        margin-top: 6px;
-      }
-
-      .tab-panel {
-        display: none;
-      }
-
-      .tab-panel.active {
-        display: block;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-      }
-
-      th,
-      td {
-        padding: 10px 12px;
-        border-bottom: 1px solid var(--border-color);
-        text-align: start;
-      }
-
-      th {
-        color: var(--text-muted);
-        font-size: 12px;
-      }
-
-      .alert-banner {
-        border-radius: 14px;
-        padding: 12px 14px;
         margin-bottom: 14px;
-        font-size: 13px;
-        line-height: 1.65;
-        border: 1px solid rgba(245, 158, 11, 0.45);
-        background-color: rgba(245, 158, 11, 0.12);
-      }
-
-      .alert-ok {
-        border-color: rgba(16, 185, 129, 0.4);
-        background-color: rgba(16, 185, 129, 0.1);
-      }
-
-      .alert-err {
-        border-color: rgba(239, 68, 68, 0.45);
-        background-color: rgba(239, 68, 68, 0.12);
-      }
-
-      .analysis-box {
-        margin-top: 10px;
-        padding: 12px;
-        border-radius: 12px;
-        background-color: var(--bg-soft);
-        font-size: 12.5px;
-        line-height: 1.75;
-      }
-
-      .audit-icon-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        background-color: var(--bg-card);
-        border: 1px solid var(--border-color);
-        border-radius: 14px;
-        padding: 12px 14px;
-      }
-
-      .audit-badge-icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 11px;
-        background-color: var(--bg-soft);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        flex-shrink: 0;
-      }
-
-      .rec-list {
-        margin: 10px 0 0;
-        padding-inline-start: 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        font-size: 13px;
-        line-height: 1.65;
       }
 
       .bottom-nav {
@@ -327,8 +246,8 @@
         max-width: 1180px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        gap: 2px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
       }
 
       .nav-item {
@@ -336,51 +255,32 @@
         border: none;
         color: var(--text-muted);
         border-radius: 10px;
-        padding: 6px 1px;
+        padding: 7px 4px;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 2px;
-        font-size: 9.5px;
+        font-size: 11px;
         font-weight: 700;
         cursor: pointer;
-      }
-
-      .nav-item .icon {
-        font-size: 15px;
-        line-height: 1;
       }
 
       .nav-item.active {
         background-color: rgba(56, 189, 248, 0.16);
         color: var(--accent);
       }
-
-      @media print {
-        header,
-        .bottom-nav,
-        #splashScreen,
-        .no-print {
-          display: none !important;
-        }
-        body {
-          padding-bottom: 0;
-          background: #ffffff;
-          color: #000000;
-        }
-      }
     </style>
   </head>
   <body>
     <div id="splashScreen">
       <div class="splash-box">
+        <img id="splashLogoImg" alt="شعار التطبيق" class="splash-logo-img" />
         <div class="splash-title">REVENUEGUARD AI</div>
-        <div class="splash-sub" id="splashSubText">نظام ذكي لمراقبة وكشف تسرب الإيرادات</div>
-        <p class="splash-desc" id="splashDescText">احمِ إيراداتك، اكتشف التسرب، وسيطر على مستقبلك المالي.</p>
+        <div class="splash-sub">نظام ذكي لمراقبة وكشف تسرب الإيرادات</div>
+        <p class="splash-desc">احمِ إيراداتك، اكتشف التسرب، وسيطر على مستقبلك المالي.</p>
         <div class="controls-row" style="justify-content: center;">
           <button type="button" class="btn btn-primary" id="enterSystemBtn">الدخول إلى النظام</button>
-          <button type="button" class="btn" id="muteBtn">🔊 الصوت: مفعل</button>
-          <button type="button" class="btn" id="skipSplashBtn">تخطي (Skip)</button>
+          <button type="button" class="btn" id="skipSplashBtn">تخطي</button>
         </div>
       </div>
     </div>
@@ -388,59 +288,45 @@
     <header>
       <div class="top-bar">
         <div class="brand">
-          <div class="logo-badge">RG</div>
+          <img id="headerLogoImg" alt="شعار التطبيق" class="header-logo-img" />
+          <div class="logo-fallback" id="headerLogoFallback">RG</div>
           <div>
             <div style="font-weight: 800; font-size: 16px;">REVENUEGUARD AI</div>
-            <div style="font-size: 11px; color: var(--text-muted);" id="headerSubText">مراقبة الإيرادات والتحليل المالي</div>
+            <div style="font-size: 11px; color: var(--text-muted);">مراقبة الإيرادات والتحليل المالي</div>
           </div>
         </div>
 
         <div class="controls-row">
           <button type="button" class="btn" id="themeToggle">☀️ صباحي</button>
-          <select id="langSelect" aria-label="Language">
-            <option value="ar">العربية (RTL)</option>
-            <option value="en">English (LTR)</option>
-            <option value="fr">Français (LTR)</option>
-          </select>
-          <select id="currencySelect" aria-label="Currency">
-            <option value="DZD">DZD — دينار جزائري (أساسية)</option>
-            <option value="USD">USD — دولار أمريكي ($)</option>
-            <option value="EUR">EUR — يورو (€)</option>
-            <option value="GBP">GBP — جنيه إسترليني (£)</option>
-            <option value="SAR">SAR — ريال سعودي</option>
-            <option value="AED">AED — درهم إماراتي</option>
-            <option value="MAD">MAD — درهم مغربي</option>
-            <option value="TND">TND — دينار تونسي</option>
-          </select>
           <button type="button" class="btn" id="reopenSplashBtn">Intro</button>
         </div>
       </div>
 
       <div class="filter-bar">
         <div class="filter-bar-inner">
-          <div class="controls-row">
+          <div class="filter-left">
             <select id="yearFilter">
               <option value="2026">2026</option>
               <option value="2025">2025</option>
             </select>
             <select id="monthFilter">
-              <option value="ALL">كل الأشهر / All / Tous</option>
-              <option value="01">01 — يناير / Jan / Janv</option>
-              <option value="02">02 — فبراير / Feb / Févr</option>
-              <option value="03">03 — مارس / Mar / Mars</option>
-              <option value="04">04 — أبريل / Apr / Avr</option>
-              <option value="05">05 — مايو / May / Mai</option>
-              <option value="06">06 — يونيو / Jun / Juin</option>
-              <option value="07">07 — يوليو / Jul / Juil</option>
-              <option value="08">08 — أغسطس / Aug / Août</option>
-              <option value="09">09 — سبتمبر / Sep / Sept</option>
-              <option value="10">10 — أكتوبر / Oct / Oct</option>
-              <option value="11">11 — نوفمبر / Nov / Nov</option>
-              <option value="12">12 — ديسمبر / Dec / Déc</option>
+              <option value="ALL">كل الأشهر</option>
+              <option value="01">01 — يناير</option>
+              <option value="02">02 — فبراير</option>
+              <option value="03">03 — مارس</option>
+              <option value="04">04 — أبريل</option>
+              <option value="05">05 — مايو</option>
+              <option value="06">06 — يونيو</option>
+              <option value="07">07 — يوليو</option>
+              <option value="08">08 — أغسطس</option>
+              <option value="09">09 — سبتمبر</option>
+              <option value="10">10 — أكتوبر</option>
+              <option value="11">11 — نوفمبر</option>
+              <option value="12">12 — ديسمبر</option>
             </select>
           </div>
 
-          <div class="controls-row">
+          <div class="filter-right">
             <button type="button" class="btn" id="demoDataBtn">+ بيانات تجريبية</button>
             <button type="button" class="btn" id="clearDataBtn">تفريغ</button>
           </div>
@@ -449,1046 +335,77 @@
     </header>
 
     <main class="container">
-      <div id="globalAlertBox" class="alert-banner alert-ok">
-        نظام الإنذارات: لا توجد فروقات مالية أو تأخر في التحصيل في الفترة المختارة.
-      </div>
-
-      <div class="card" style="margin-bottom: 14px;">
-        <div style="font-weight: 800; font-size: 13.5px; margin-bottom: 8px;" id="fxTitleText">
-          العملة الرئيسية: الدينار الجزائري (DZD) — إدارة العملات وسعر الصرف (مقابل 1 DZD)
-        </div>
-        <div class="controls-row">
-          <span style="font-size: 12px; color: var(--text-muted);" id="fxRateLabel">سعر التحويل للعملة المختارة:</span>
-          <input id="fxRateInput" type="number" step="0.000001" style="width: 150px;" />
-          <button type="button" class="btn btn-primary" id="saveFxRateBtn">تحديث السعر</button>
-          <input id="customCurrCode" type="text" placeholder="CAD" style="width: 110px;" />
-          <input id="customCurrSymbol" type="text" placeholder="C$" style="width: 85px;" />
-          <input id="customCurrRate" type="number" step="0.000001" placeholder="Rate" style="width: 115px;" />
-          <button type="button" class="btn" id="addCustomCurrBtn">+ إضافة عملة</button>
+      <div class="card">
+        <div style="font-weight: 800; font-size: 15px; margin-bottom: 6px;">الخطوة 1: الصورة في ملف مستقل + شريط الأشهر والتفريغ بكامل الأعلى</div>
+        <div style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
+          تم ضبط شريط السنة والأشهر وأزرار <strong>+ بيانات تجريبية</strong> و<strong>تفريغ</strong> ليمتد بكامل عرض الأعلى، مع قراءة الشعار من <code>logo-config.js</code>.
         </div>
       </div>
-
-      <!-- 1. المؤشرات -->
-      <section id="tab-dashboard" class="tab-panel active">
-        <div class="grid-4">
-          <div class="card">
-            <div class="kpi-label" data-i18n="expected">الإيرادات المتوقعة</div>
-            <div class="kpi-value tabular-nums" id="kpiExpected">0.00 د.ج</div>
-          </div>
-          <div class="card">
-            <div class="kpi-label" data-i18n="collected">الإيرادات المحصلة</div>
-            <div class="kpi-value tabular-nums" id="kpiCollected" style="color: #10b981;">0.00 د.ج</div>
-          </div>
-          <div class="card">
-            <div class="kpi-label" data-i18n="uncollected">المستحقات غير المحصلة</div>
-            <div class="kpi-value tabular-nums" id="kpiReceivables" style="color: #f59e0b;">0.00 د.ج</div>
-          </div>
-          <div class="card">
-            <div class="kpi-label" data-i18n="casesCount">حالات التسرب / الفارق المكتشفة</div>
-            <div class="kpi-value tabular-nums" id="kpiLeakCount" style="color: #ef4444;">0</div>
-          </div>
-        </div>
-
-        <div class="grid-4">
-          <div class="card">
-            <div class="kpi-label" data-i18n="collRate">نسبة تحصيل الإيرادات</div>
-            <div class="kpi-value tabular-nums" id="kpiCollectionRate" style="color: #10b981;">0.0%</div>
-          </div>
-          <div class="card">
-            <div class="kpi-label" data-i18n="leakedVal">قيمة الإيرادات المتسربة / المفقودة</div>
-            <div class="kpi-value tabular-nums" id="kpiLeakedValue" style="color: #ef4444;">0.00 د.ج</div>
-          </div>
-          <div class="card">
-            <div class="kpi-label" data-i18n="leakRate">نسبة التسرب المالي</div>
-            <div class="kpi-value tabular-nums" id="kpiLeakRate" style="color: #ef4444;">0.0%</div>
-          </div>
-          <div class="card">
-            <div class="kpi-label" data-i18n="anomalies">فروقات غير طبيعية</div>
-            <div class="kpi-value tabular-nums" id="kpiAnomalyCount" style="color: #f59e0b;">0</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. الحاسبة -->
-      <section id="tab-calculator" class="tab-panel">
-        <div class="card">
-          <h2 style="margin: 0 0 14px; font-size: 17px;" data-i18n="calcHeading">حاسبة كشف التسرب والتحليل الاستنتاجي</h2>
-          <div class="grid-2">
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="clientName">اسم العميل (إدخال يدوي)</label>
-              <input id="calcClient" type="text" placeholder="اسم العميل" style="width: 100%;" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="causeLabel">السبب المحتمل للنقص</label>
-              <select id="calcCause" style="width: 100%;">
-                <option value="تأخر في التحصيل">تأخر في التحصيل</option>
-                <option value="تحصيل جزئي دون تسوية">تحصيل جزئي دون تسوية</option>
-                <option value="خصم غير موثق أو فرق تسعير">خصم غير موثق أو فرق تسعير</option>
-                <option value="مستحقات لم يحن أجلها">مستحقات لم يحن أجلها</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="grid-4">
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="expected">الإيراد المتوقع</label>
-              <input id="calcExpected" type="number" step="0.01" placeholder="0.00" style="width: 100%;" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="collected">الإيراد المحصل</label>
-              <input id="calcCollected" type="number" step="0.01" placeholder="0.00" style="width: 100%;" />
-            </div>
-            <div>
-              <label style="display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px;" data-i18n="pending">مستحقات مؤجلة / تسويات</label>
-              <input id="calcPending" type="number" step="0.01" placeholder="0.00" style="width: 100%;" />
-            </div>
-            <div style="display: flex; align-items: flex-end; gap: 6px;">
-              <button type="button" class="btn btn-primary" id="runCalcBtn" style="flex: 1;" data-i18n="calcBtn">احسب الآن</button>
-              <button type="button" class="btn" id="resetCalcBtn" data-i18n="clearBtn">مسح</button>
-            </div>
-          </div>
-
-          <div id="calcDirectResult" class="analysis-box" style="margin-top: 14px; border: 1px solid var(--border-color);"></div>
-
-          <div class="controls-row" style="margin-top: 12px;">
-            <button type="button" class="btn btn-primary" id="saveCalcBtn" data-i18n="saveToLedger">+ حفظ في السجل</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. المطابقة المالية -->
-      <section id="tab-reconcile" class="tab-panel">
-        <div class="card" style="overflow-x: auto;">
-          <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="recHeading">المطابقة المالية</h2>
-          <table>
-            <thead>
-              <tr>
-                <th data-i18n="colCode">الرقم</th>
-                <th data-i18n="colClient">العميل</th>
-                <th data-i18n="expected">المتوقع</th>
-                <th data-i18n="collected">المحصل</th>
-                <th data-i18n="colDiff">الفارق</th>
-                <th data-i18n="colMatch">نتيجة المطابقة</th>
-              </tr>
-            </thead>
-            <tbody id="reconcileBody" class="tabular-nums"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- 4. التسرب -->
-      <section id="tab-leakage" class="tab-panel">
-        <div id="leakageAlertDetail" class="alert-banner alert-ok"></div>
-        <div id="leakageList" class="grid-2"></div>
-      </section>
-
-      <!-- 5. السجل -->
-      <section id="tab-ledger" class="tab-panel">
-        <div class="card" style="margin-bottom: 14px;">
-          <div style="font-weight: 800; font-size: 15px; margin-bottom: 8px;" data-i18n="importHeading">استيراد بيانات من Excel (CSV)</div>
-          <div class="controls-row">
-            <input type="file" id="csvFileInput" accept=".csv,text/csv" />
-            <button type="button" class="btn btn-primary" id="importCsvBtn" data-i18n="importBtn">استيراد</button>
-          </div>
-          <div id="importStatusMsg" style="margin-top: 8px; font-size: 12.5px;"></div>
-        </div>
-
-        <form class="card" id="invoiceForm" style="margin-bottom: 14px;">
-          <div style="font-weight: 800; font-size: 15px; margin-bottom: 10px;" data-i18n="addOpHeading">إضافة عملية جديدة</div>
-          <div class="grid-4" style="margin-bottom: 10px;">
-            <input id="invCode" required placeholder="OP-01" />
-            <input id="invClient" required placeholder="اسم العميل" />
-            <input id="invExpected" type="number" step="0.01" required placeholder="0.00" />
-            <input id="invPaid" type="number" step="0.01" required placeholder="0.00" />
-          </div>
-          <div class="controls-row" style="margin-bottom: 10px;">
-            <select id="invReason">
-              <option value="تأخر في التحصيل">تأخر في التحصيل</option>
-              <option value="تحصيل جزئي دون تسوية">تحصيل جزئي دون تسوية</option>
-              <option value="خصم غير موثق أو فرق تسعير">خصم غير موثق أو فرق تسعير</option>
-              <option value="مستحقات لم يحن أجلها">مستحقات لم يحن أجلها</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary" data-i18n="addBtn">+ إضافة إلى السجل</button>
-        </form>
-
-        <div class="card" style="overflow-x: auto;">
-          <table>
-            <thead>
-              <tr>
-                <th data-i18n="colCode">الرقم</th>
-                <th data-i18n="colDate">التاريخ</th>
-                <th data-i18n="colClient">العميل</th>
-                <th data-i18n="expected">المتوقع</th>
-                <th data-i18n="collected">المحصل</th>
-                <th data-i18n="uncollected">غير المحصل</th>
-                <th data-i18n="colReason">السبب</th>
-                <th>تعديل / حذف</th>
-              </tr>
-            </thead>
-            <tbody id="ledgerBody" class="tabular-nums"></tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- 6. التقارير -->
-      <section id="tab-reports" class="tab-panel">
-        <div class="card" style="margin-bottom: 14px;">
-          <h2 style="margin: 0 0 8px; font-size: 17px;" data-i18n="repHeading">تصدير PDF و Excel + النسخ الاحتياطي</h2>
-          <div class="controls-row no-print" style="margin-bottom: 12px;">
-            <button type="button" class="btn btn-primary" id="exportExcelBtn">📊 Excel (CSV)</button>
-            <button type="button" class="btn" id="exportPdfBtn">📄 PDF / Print</button>
-            <button type="button" class="btn" id="exportJsonBtn">💾 JSON</button>
-          </div>
-          <div class="controls-row no-print">
-            <input type="file" id="jsonRestoreInput" accept=".json,application/json" />
-            <button type="button" class="btn" id="restoreJsonBtn">📥 Restore</button>
-          </div>
-          <div id="backupStatusMsg" style="margin-top: 8px; font-size: 12.5px;"></div>
-        </div>
-        <div class="card" id="reportPreviewBox" style="font-size: 13px; line-height: 1.8;"></div>
-      </section>
-
-      <!-- 7. سجل التعديلات على شكل أيقونات -->
-      <section id="tab-audit" class="tab-panel">
-        <div class="card">
-          <h2 style="margin: 0 0 12px; font-size: 17px;" data-i18n="auditHeading">سجل التعديلات (أيقونات)</h2>
-          <div id="auditIconsGrid" class="grid-2" style="margin-bottom: 0;"></div>
-        </div>
-      </section>
-
-      <!-- 8. المساعد الذكي (أيقونة مستقلة في الأسفل) -->
-      <section id="tab-assistant" class="tab-panel">
-        <div class="card" style="margin-bottom: 14px;">
-          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
-            <div style="font-weight: 800; font-size: 15px;" data-i18n="aiHeading">المساعد الذكي والتحليل والتوصيات</div>
-            <button type="button" class="btn btn-primary" id="generateSuggestionsBtn" data-i18n="genSolutions">تحليل وتوصيات</button>
-          </div>
-          <ul class="rec-list" id="aiSuggestionsList"></ul>
-        </div>
-
-        <div class="card">
-          <div style="font-weight: 700; margin-bottom: 10px;" data-i18n="aiChatTitle">دردشة المساعد الذكي</div>
-          <div id="aiMessages" style="max-height: 220px; overflow-y: auto; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;"></div>
-          <form id="aiForm" style="display: flex; gap: 8px;">
-            <input id="aiInput" required placeholder="..." style="flex: 1;" />
-            <button type="submit" class="btn btn-primary" data-i18n="sendBtn">إرسال</button>
-          </form>
-        </div>
-      </section>
     </main>
 
     <nav class="bottom-nav">
       <div class="bottom-nav-inner">
-        <button type="button" class="nav-item active" data-tab="dashboard">
-          <span class="icon">📊</span>
-          <span data-i18n="navDash">المؤشرات</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="calculator">
-          <span class="icon">🧮</span>
-          <span data-i18n="navCalc">الحاسبة</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="reconcile">
-          <span class="icon">🔗</span>
-          <span data-i18n="navRec">المطابقة</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="leakage">
-          <span class="icon">🛡️</span>
-          <span data-i18n="navLeak">التسرب</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="ledger">
-          <span class="icon">🧾</span>
-          <span data-i18n="navLedger">السجل</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="reports">
-          <span class="icon">📄</span>
-          <span data-i18n="navRep">التقارير</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="audit">
-          <span class="icon">📝</span>
-          <span data-i18n="navAudit">التعديلات</span>
-        </button>
-        <button type="button" class="nav-item" data-tab="assistant">
-          <span class="icon">🤖</span>
-          <span data-i18n="navAi">المساعد</span>
-        </button>
+        <button type="button" class="nav-item active"><span>📊</span><span>المؤشرات</span></button>
+        <button type="button" class="nav-item"><span>🧮</span><span>الحاسبة</span></button>
+        <button type="button" class="nav-item"><span>🧾</span><span>السجل</span></button>
+        <button type="button" class="nav-item"><span>🤖</span><span>المساعد</span></button>
       </div>
     </nav>
 
+    <script src="logo-config.js"></script>
     <script>
-      const STORAGE_KEY = 'revenueguard_v2_0_state';
+      function loadLogoFromConfig() {
+        const src = typeof APP_LOGO_SRC === 'string' ? APP_LOGO_SRC.trim() : 'finance_dashboard_512.png';
+        const splashImg = document.getElementById('splashLogoImg');
+        const headerImg = document.getElementById('headerLogoImg');
+        const fallback = document.getElementById('headerLogoFallback');
 
-      const I18N = {
-        ar: {
-          splashSub: 'نظام ذكي لمراقبة وكشف تسرب الإيرادات',
-          splashDesc: 'احمِ إيراداتك، اكتشف التسرب، وسيطر على مستقبلك المالي.',
-          enterBtn: 'الدخول إلى النظام',
-          skipBtn: 'تخطي (Skip)',
-          headerSub: 'مراقبة الإيرادات والتحليل المالي',
-          demoBtn: '+ بيانات تجريبية',
-          clearAllBtn: 'تفريغ',
-          fxTitle: 'العملة الرئيسية: الدينار الجزائري (DZD) — إدارة العملات وسعر الصرف (مقابل 1 DZD)',
-          fxRateLabel: 'سعر التحويل للعملة المختارة:',
-          updateFxBtn: 'تحديث السعر',
-          addCurrBtn: '+ إضافة عملة',
-          expected: 'الإيرادات المتوقعة',
-          collected: 'الإيرادات المحصلة',
-          uncollected: 'المستحقات غير المحصلة',
-          casesCount: 'حالات التسرب / الفارق المكتشفة',
-          collRate: 'نسبة تحصيل الإيرادات',
-          leakedVal: 'قيمة الإيرادات المتسربة / المفقودة',
-          leakRate: 'نسبة التسرب المالي',
-          anomalies: 'فروقات غير طبيعية',
-          calcHeading: 'حاسبة كشف التسرب والتحليل الاستنتاجي',
-          clientName: 'اسم العميل (إدخال يدوي)',
-          causeLabel: 'السبب المحتمل للنقص',
-          pending: 'مستحقات مؤجلة / تسويات',
-          calcBtn: 'احسب الآن',
-          clearBtn: 'مسح',
-          saveToLedger: '+ حفظ في السجل',
-          recHeading: 'المطابقة المالية',
-          colCode: 'الرقم',
-          colClient: 'العميل',
-          colDiff: 'الفارق',
-          colMatch: 'نتيجة المطابقة',
-          importHeading: 'استيراد بيانات من Excel (CSV)',
-          importBtn: 'استيراد',
-          addOpHeading: 'إضافة عملية جديدة',
-          addBtn: '+ إضافة إلى السجل',
-          colDate: 'التاريخ',
-          colReason: 'السبب',
-          repHeading: 'تصدير PDF و Excel + النسخ الاحتياطي',
-          auditHeading: 'سجل التعديلات (أيقونات)',
-          aiHeading: 'المساعد الذكي والتحليل والتوصيات',
-          genSolutions: 'تحليل وتوصيات',
-          aiChatTitle: 'دردشة المساعد الذكي',
-          sendBtn: 'إرسال',
-          navDash: 'المؤشرات',
-          navCalc: 'الحاسبة',
-          navRec: 'المطابقة',
-          navLeak: 'التسرب',
-          navLedger: 'السجل',
-          navRep: 'التقارير',
-          navAudit: 'التعديلات',
-          navAi: 'المساعد',
-        },
-        en: {
-          splashSub: 'Smart System for Revenue Leakage Monitoring & Detection',
-          splashDesc: 'Protect your revenue, detect leakage, and control your financial future.',
-          enterBtn: 'Enter System',
-          skipBtn: 'Skip',
-          headerSub: 'Revenue Monitoring & Financial Analytics',
-          demoBtn: '+ Demo Data',
-          clearAllBtn: 'Clear',
-          fxTitle: 'Base Currency: Algerian Dinar (DZD) — Currencies & Exchange Rate (per 1 DZD)',
-          fxRateLabel: 'Rate for selected currency:',
-          updateFxBtn: 'Update Rate',
-          addCurrBtn: '+ Add Currency',
-          expected: 'Expected Revenue',
-          collected: 'Collected Revenue',
-          uncollected: 'Uncollected Receivables',
-          casesCount: 'Detected Variance Cases',
-          collRate: 'Collection Rate',
-          leakedVal: 'Leaked / Lost Revenue',
-          leakRate: 'Financial Leakage Rate',
-          anomalies: 'Abnormal Variances',
-          calcHeading: 'Leakage Calculator & Analysis',
-          clientName: 'Client Name (Manual)',
-          causeLabel: 'Likely Cause',
-          pending: 'Deferred / Settlements',
-          calcBtn: 'Calculate',
-          clearBtn: 'Reset',
-          saveToLedger: '+ Save to Ledger',
-          recHeading: 'Financial Reconciliation',
-          colCode: 'Code',
-          colClient: 'Client',
-          colDiff: 'Variance',
-          colMatch: 'Status',
-          importHeading: 'Import from Excel (CSV)',
-          importBtn: 'Import',
-          addOpHeading: 'Add Operation',
-          addBtn: '+ Add',
-          colDate: 'Date',
-          colReason: 'Cause',
-          repHeading: 'PDF & Excel Export + Backup',
-          auditHeading: 'Changes Log (Icons)',
-          aiHeading: 'AI Assistant, Analysis & Solutions',
-          genSolutions: 'Analyze & Suggest',
-          aiChatTitle: 'AI Assistant Chat',
-          sendBtn: 'Send',
-          navDash: 'KPIs',
-          navCalc: 'Calc',
-          navRec: 'Reconcile',
-          navLeak: 'Leakage',
-          navLedger: 'Ledger',
-          navRep: 'Reports',
-          navAudit: 'Changes',
-          navAi: 'Assistant',
-        },
-        fr: {
-          splashSub: 'Système Intelligent de Détection des Fuites de Revenus',
-          splashDesc: 'Protégez vos revenus, détectez les fuites et maîtrisez votre avenir financier.',
-          enterBtn: 'Entrer',
-          skipBtn: 'Passer',
-          headerSub: 'Suivi des Revenus & Analyse Financière',
-          demoBtn: '+ Démo',
-          clearAllBtn: 'Effacer',
-          fxTitle: 'Devise de base : Dinar algérien (DZD) — Devises & Taux (par 1 DZD)',
-          fxRateLabel: 'Taux de la devise :',
-          updateFxBtn: 'Mettre à jour',
-          addCurrBtn: '+ Ajouter',
-          expected: 'Revenus prévus',
-          collected: 'Revenus encaissés',
-          uncollected: 'Créances non encaissées',
-          casesCount: 'Cas d’écart détectés',
-          collRate: 'Taux de recouvrement',
-          leakedVal: 'Revenus perdus / fuyants',
-          leakRate: 'Taux de fuite',
-          anomalies: 'Écarts anormaux',
-          calcHeading: 'Calculateur & Analyse',
-          clientName: 'Client (manuel)',
-          causeLabel: 'Cause probable',
-          pending: 'Échéances / régularisations',
-          calcBtn: 'Calculer',
-          clearBtn: 'Effacer',
-          saveToLedger: '+ Enregistrer',
-          recHeading: 'Rapprochement Financier',
-          colCode: 'Réf',
-          colClient: 'Client',
-          colDiff: 'Écart',
-          colMatch: 'Statut',
-          importHeading: 'Importer depuis Excel (CSV)',
-          importBtn: 'Importer',
-          addOpHeading: 'Ajouter une opération',
-          addBtn: '+ Ajouter',
-          colDate: 'Date',
-          colReason: 'Cause',
-          repHeading: 'Export PDF & Excel + Sauvegarde',
-          auditHeading: 'Journal des modifications (Icônes)',
-          aiHeading: 'Assistant IA, Analyse & Solutions',
-          genSolutions: 'Analyser & proposer',
-          aiChatTitle: 'Chat Assistant IA',
-          sendBtn: 'Envoyer',
-          navDash: 'Indicateurs',
-          navCalc: 'Calcul',
-          navRec: 'Rapproch.',
-          navLeak: 'Fuites',
-          navLedger: 'Journal',
-          navRep: 'Rapports',
-          navAudit: 'Modifs',
-          navAi: 'Assistant',
-        },
-      };
+        if (splashImg && src) {
+          splashImg.src = src;
+          splashImg.onload = () => {
+            splashImg.style.display = 'block';
+          };
+          splashImg.onerror = () => {
+            splashImg.style.display = 'none';
+          };
+        }
 
-      let state = {
-        lang: 'ar',
-        currency: 'DZD',
-        theme: 'dark',
-        muted: false,
-        currencies: {
-          DZD: { symbol: 'د.ج', rateFromDZD: 1 },
-          USD: { symbol: '$', rateFromDZD: 1 / 135 },
-          EUR: { symbol: '€', rateFromDZD: 1 / 146 },
-          GBP: { symbol: '£', rateFromDZD: 1 / 172 },
-          SAR: { symbol: 'ر.س', rateFromDZD: 1 / 36 },
-          AED: { symbol: 'د.إ', rateFromDZD: 1 / 36.7 },
-          MAD: { symbol: 'د.م', rateFromDZD: 1 / 13.5 },
-          TND: { symbol: 'د.ت', rateFromDZD: 1 / 43 },
-        },
-        invoices: [],
-        auditLog: [],
-      };
-
-      function getAuditIcon(type) {
-        if (type.includes('إضافة')) return '➕';
-        if (type.includes('تعديل')) return '✎';
-        if (type.includes('حذف') || type.includes('تفريغ')) return '🗑️';
-        if (type.includes('استيراد') || type.includes('CSV')) return '📥';
-        if (type.includes('عملة')) return '💱';
-        if (type.includes('نسخة')) return '💾';
-        return '🔔';
-      }
-
-      function logAudit(type, details) {
-        const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
-        state.auditLog.unshift({ id: Date.now() + Math.random(), time: now, type, details });
-        if (state.auditLog.length > 100) state.auditLog.length = 100;
+        if (headerImg && src) {
+          headerImg.src = src;
+          headerImg.onload = () => {
+            headerImg.style.display = 'block';
+            if (fallback) fallback.style.display = 'none';
+          };
+          headerImg.onerror = () => {
+            headerImg.style.display = 'none';
+            if (fallback) fallback.style.display = 'flex';
+          };
+        }
       }
 
       function closeSplash() {
         const s = document.getElementById('splashScreen');
         if (s) s.style.display = 'none';
       }
-
       function openSplash() {
         const s = document.getElementById('splashScreen');
         if (s) s.style.display = 'flex';
       }
-
-      function saveState() {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-        } catch (e) {}
-      }
-
-      function applyTheme() {
-        const btn = document.getElementById('themeToggle');
-        if (state.theme === 'light') {
-          document.body.classList.add('light-mode');
-          if (btn) btn.textContent = state.lang === 'en' ? '🌙 Dark' : state.lang === 'fr' ? '🌙 Sombre' : '🌙 ليلي';
-        } else {
-          document.body.classList.remove('light-mode');
-          if (btn) btn.textContent = state.lang === 'en' ? '☀️ Light' : state.lang === 'fr' ? '☀️ Clair' : '☀️ صباحي';
-        }
-      }
-
       function toggleTheme() {
-        state.theme = state.theme === 'dark' ? 'light' : 'dark';
-        saveState();
-        applyTheme();
-      }
-
-      function applyLanguage() {
-        const t = I18N[state.lang] || I18N.ar;
-        document.documentElement.lang = state.lang;
-        document.documentElement.dir = state.lang === 'ar' ? 'rtl' : 'ltr';
-
-        document.getElementById('splashSubText').textContent = t.splashSub;
-        document.getElementById('splashDescText').textContent = t.splashDesc;
-        document.getElementById('enterSystemBtn').textContent = t.enterBtn;
-        document.getElementById('skipSplashBtn').textContent = t.skipBtn;
-        document.getElementById('headerSubText').textContent = t.headerSub;
-        document.getElementById('demoDataBtn').textContent = t.demoBtn;
-        document.getElementById('clearDataBtn').textContent = t.clearAllBtn;
-        document.getElementById('fxTitleText').textContent = t.fxTitle;
-        document.getElementById('fxRateLabel').textContent = t.fxRateLabel;
-        document.getElementById('saveFxRateBtn').textContent = t.updateFxBtn;
-        document.getElementById('addCustomCurrBtn').textContent = t.addCurrBtn;
-
-        document.querySelectorAll('[data-i18n]').forEach((el) => {
-          const key = el.dataset.i18n;
-          if (t[key]) el.textContent = t[key];
-        });
-
-        applyTheme();
-      }
-
-      function setLanguage(lang) {
-        state.lang = lang;
-        saveState();
-        applyLanguage();
-        renderAll();
-        calculateLeakage();
-      }
-
-      function rebuildCurrencySelect() {
-        const sel = document.getElementById('currencySelect');
-        const names = {
-          DZD: 'DZD — دينار جزائري (أساسية)',
-          USD: 'USD — دولار أمريكي ($)',
-          EUR: 'EUR — يورو (€)',
-          GBP: 'GBP — جنيه إسترليني (£)',
-          SAR: 'SAR — ريال سعودي',
-          AED: 'AED — درهم إماراتي',
-          MAD: 'MAD — درهم مغربي',
-          TND: 'TND — دينار تونسي',
-        };
-        sel.innerHTML = Object.keys(state.currencies)
-          .map((code) => `<option value="${code}">${names[code] || `${code} (${state.currencies[code].symbol})`}</option>`)
-          .join('');
-        sel.value = state.currency;
-        const currObj = state.currencies[state.currency] || { rateFromDZD: 1 };
-        document.getElementById('fxRateInput').value = currObj.rateFromDZD;
-      }
-
-      function setCurrency(curr) {
-        state.currency = curr;
-        saveState();
-        rebuildCurrencySelect();
-        renderAll();
-        calculateLeakage();
-      }
-
-      function updateFxRate() {
-        const val = parseFloat(document.getElementById('fxRateInput').value);
-        if (!val || val <= 0) return;
-        if (!state.currencies[state.currency]) {
-          state.currencies[state.currency] = { symbol: state.currency, rateFromDZD: 1 };
+        document.body.classList.toggle('light-mode');
+        const btn = document.getElementById('themeToggle');
+        if (btn) {
+          btn.textContent = document.body.classList.contains('light-mode') ? '🌙 ليلي' : '☀️ صباحي';
         }
-        state.currencies[state.currency].rateFromDZD = state.currency === 'DZD' ? 1 : val;
-        logAudit('تحديث عملة', `${state.currency} -> ${state.currencies[state.currency].rateFromDZD}`);
-        saveState();
-        rebuildCurrencySelect();
-        renderAll();
-        calculateLeakage();
       }
-
-      function addCustomCurrency() {
-        const code = (document.getElementById('customCurrCode').value || '').trim().toUpperCase();
-        const sym = (document.getElementById('customCurrSymbol').value || code).trim();
-        const rate = parseFloat(document.getElementById('customCurrRate').value);
-        if (!code || !rate || rate <= 0) return;
-        state.currencies[code] = { symbol: sym, rateFromDZD: rate };
-        state.currency = code;
-        logAudit('إضافة عملة', `${code} (${sym}) = ${rate}`);
-        saveState();
-        rebuildCurrencySelect();
-        renderAll();
-        calculateLeakage();
-      }
-
-      function toggleMute() {
-        state.muted = !state.muted;
-        const b = document.getElementById('muteBtn');
-        if (b) b.textContent = state.muted ? '🔇 Muted' : '🔊 Sound';
-      }
-
-      function switchTab(tabName) {
-        document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
-        const el = document.getElementById('tab-' + tabName);
-        if (el) el.classList.add('active');
-
-        document.querySelectorAll('.nav-item').forEach((btn) => {
-          btn.classList.toggle('active', btn.dataset.tab === tabName);
-        });
-      }
-
-      function fmtMoney(amountDZD) {
-        const c = state.currencies[state.currency] || { symbol: 'د.ج', rateFromDZD: 1 };
-        const val = (amountDZD * (c.rateFromDZD || 1)).toLocaleString('en-US', {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        });
-        return `${val} ${c.symbol}`;
-      }
-
-      function toDZD(amountInCurrent) {
-        const c = state.currencies[state.currency] || { rateFromDZD: 1 };
-        return (parseFloat(amountInCurrent) || 0) / (c.rateFromDZD || 1);
-      }
-
-      function getFilteredInvoices() {
-        const y = document.getElementById('yearFilter').value;
-        const m = document.getElementById('monthFilter').value;
-        return state.invoices.filter((inv) => {
-          const [iy, im] = inv.date.split('-');
-          if (y && iy !== y) return false;
-          if (m !== 'ALL' && im !== m) return false;
-          return true;
-        });
-      }
-
-      function analyzeCase(inv, avgGap) {
-        const gap = Math.max(0, inv.expected - inv.paid);
-        const abnormal = gap > 0 && avgGap > 0 && gap > avgGap * 1.35;
-        const monthStr = inv.date.slice(0, 7);
-        const how = inv.paid === 0
-          ? 'لم يُسجل تحصيل مقابل الإيراد المتوقع.'
-          : 'تم تحصيل جزء من المبلغ وبقي رصيد غير محصل.';
-        const why = inv.reason || 'تأخر في التحصيل';
-        return {
-          gap,
-          abnormal,
-          source: `${inv.client} | ${inv.code} | ${monthStr}`,
-          why,
-          how,
-        };
-      }
-
-      function calculateLeakage() {
-        const client = (document.getElementById('calcClient').value || '').trim() || '—';
-        const cause = document.getElementById('calcCause').value;
-        const exp = toDZD(document.getElementById('calcExpected').value);
-        const col = toDZD(document.getElementById('calcCollected').value);
-        const pend = toDZD(document.getElementById('calcPending').value);
-
-        const diff = Math.max(0, exp - col);
-        const lost = Math.max(0, diff - pend);
-        const pct = exp > 0 ? ((lost / exp) * 100).toFixed(1) : '0.0';
-
-        document.getElementById('calcDirectResult').innerHTML = `
-          <div><strong>${client}</strong> — <span class="tabular-nums">${fmtMoney(lost)} (${pct}%)</span></div>
-          <div>• <strong>المصدر:</strong> ${client} | <strong>الفرق الأولي:</strong> ${fmtMoney(diff)}</div>
-          <div>• <strong>السبب:</strong> ${cause}</div>
-          <div>• <strong>التفسير:</strong> ${col === 0 && diff > 0 ? 'عدم تحصيل كامل مقابل الإيراد المتوقع.' : diff > 0 ? 'فرق بين المبلغ المتوقع والمحصل.' : 'لا يوجد فرق.'}</div>
-        `;
-      }
-
-      function resetCalc() {
-        document.getElementById('calcClient').value = '';
-        document.getElementById('calcExpected').value = '';
-        document.getElementById('calcCollected').value = '';
-        document.getElementById('calcPending').value = '';
-        calculateLeakage();
-      }
-
-      function saveCalcToInvoices() {
-        const client = (document.getElementById('calcClient').value || '').trim();
-        const cause = document.getElementById('calcCause').value;
-        const exp = toDZD(document.getElementById('calcExpected').value);
-        const col = toDZD(document.getElementById('calcCollected').value);
-        if (!client || (exp <= 0 && col <= 0)) return;
-
-        const y = document.getElementById('yearFilter').value;
-        const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
-        const code = 'OP-' + String(Date.now()).slice(-4);
-        state.invoices.push({ id: Date.now(), code, client, expected: exp, paid: col, reason: cause, date: `${y}-${m}-22` });
-        logAudit('إضافة من الحاسبة', `${code} | ${client} | ${exp.toFixed(2)}`);
-        saveState();
-        renderAll();
-        switchTab('ledger');
-      }
-
-      function addInvoice(e) {
-        e.preventDefault();
-        const y = document.getElementById('yearFilter').value;
-        const m = document.getElementById('monthFilter').value === 'ALL' ? '11' : document.getElementById('monthFilter').value;
-        const code = document.getElementById('invCode').value.trim();
-        const client = document.getElementById('invClient').value.trim();
-        const exp = toDZD(document.getElementById('invExpected').value);
-        const col = toDZD(document.getElementById('invPaid').value);
-        const reason = document.getElementById('invReason').value;
-
-        state.invoices.push({ id: Date.now(), code, client, expected: exp, paid: col, reason, date: `${y}-${m}-15` });
-        logAudit('إضافة عملية', `${code} | ${client} | ${exp.toFixed(2)}`);
-        saveState();
-        e.target.reset();
-        renderAll();
-      }
-
-      function editInvoice(id) {
-        const item = state.invoices.find((x) => x.id === id);
-        if (!item) return;
-        const newPaidInput = prompt(`تعديل المحصل (${item.code} - ${item.client}):`, (item.paid * (state.currencies[state.currency]?.rateFromDZD || 1)).toFixed(2));
-        if (newPaidInput === null) return;
-        const parsed = parseFloat(newPaidInput);
-        if (Number.isNaN(parsed) || parsed < 0) return;
-
-        const oldPaid = item.paid;
-        item.paid = toDZD(parsed);
-        logAudit('تعديل تحصيل', `${item.code} | ${item.client}: ${oldPaid.toFixed(2)} -> ${item.paid.toFixed(2)}`);
-        saveState();
-        renderAll();
-      }
-
-      function deleteInvoice(id) {
-        const item = state.invoices.find((x) => x.id === id);
-        state.invoices = state.invoices.filter((item) => item.id !== id);
-        if (item) logAudit('حذف عملية', `${item.code} | ${item.client}`);
-        saveState();
-        renderAll();
-      }
-
-      function importCSVFile() {
-        const fileInput = document.getElementById('csvFileInput');
-        const msgEl = document.getElementById('importStatusMsg');
-        const file = fileInput.files && fileInput.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function (ev) {
-          const lines = String(ev.target.result || '').split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-          let added = 0;
-          for (let i = 1; i < lines.length; i++) {
-            const cols = lines[i].split(',').map((c) => c.replace(/^"|"$/g, '').trim());
-            const code = cols[0] || `IMP-${i}`;
-            const client = cols[1] || '';
-            const exp = parseFloat(cols[2]);
-            const col = parseFloat(cols[3]);
-            const rawDate = cols[4] || `${document.getElementById('yearFilter').value}-11-15`;
-            const validDate = /^\d{4}-\d{2}-\d{2}$/.test(rawDate) ? rawDate : `${document.getElementById('yearFilter').value}-11-15`;
-            const reason = cols[5] || 'CSV';
-            if (!client || Number.isNaN(exp) || Number.isNaN(col)) continue;
-            state.invoices.push({ id: Date.now() + i, code, client, expected: exp, paid: col, reason, date: validDate });
-            added++;
-          }
-          logAudit('استيراد CSV', `${file.name} (+${added})`);
-          saveState();
-          renderAll();
-          msgEl.textContent = `+${added}`;
-        };
-        reader.readAsText(file, 'utf-8');
-      }
-
-      function exportBackupJSON() {
-        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `revenueguard-backup-${new Date().toISOString().slice(0, 10)}.json`;
-        a.click();
-        URL.revokeObjectURL(url);
-        document.getElementById('backupStatusMsg').textContent = 'JSON';
-      }
-
-      function restoreBackupJSON() {
-        const fileInput = document.getElementById('jsonRestoreInput');
-        const file = fileInput.files && fileInput.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (ev) {
-          try {
-            const parsed = JSON.parse(String(ev.target.result || '{}'));
-            if (Array.isArray(parsed.invoices)) {
-              state = { ...state, ...parsed };
-              logAudit('استعادة نسخة بيانات', file.name);
-              saveState();
-              rebuildCurrencySelect();
-              applyLanguage();
-              renderAll();
-              document.getElementById('backupStatusMsg').textContent = '✓';
-            }
-          } catch (e) {
-            document.getElementById('backupStatusMsg').textContent = '!';
-          }
-        };
-        reader.readAsText(file, 'utf-8');
-      }
-
-      function loadDemoData() {
-        state.invoices = [
-          { id: 1, code: 'OP-2026-101', client: 'مؤسسة الأمل (تجريبي)', expected: 250000, paid: 250000, reason: 'تحصيل كامل', date: '2026-10-05' },
-          { id: 2, code: 'OP-2026-102', client: 'شركة النور (تجريبي)', expected: 180000, paid: 120000, reason: 'تحصيل جزئي دون تسوية', date: '2026-11-10' },
-          { id: 3, code: 'OP-2026-103', client: 'مكتب الخدمات (تجريبي)', expected: 95000, paid: 0, reason: 'تأخر في التحصيل', date: '2026-11-18' },
-        ];
-        logAudit('إضافة بيانات تجريبية', '3');
-        saveState();
-        renderAll();
-      }
-
-      function clearData() {
-        state.invoices = [];
-        logAudit('تفريغ السجل', '0');
-        saveState();
-        renderAll();
-      }
-
-      function generateSuggestions() {
-        const list = getFilteredInvoices();
-        const ul = document.getElementById('aiSuggestionsList');
-        const gaps = list.map((i) => Math.max(0, i.expected - i.paid)).filter((g) => g > 0);
-        const avgGap = gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0;
-        const flagged = list.filter((i) => i.paid < i.expected);
-        if (!flagged.length) {
-          ul.innerHTML = '<li>—</li>';
-          return;
-        }
-        ul.innerHTML = flagged.map((inv) => {
-          const a = analyzeCase(inv, avgGap);
-          return `<li><strong>${a.source}</strong> — ${fmtMoney(a.gap)} | ${a.why} | ${a.how}</li>`;
-        }).join('');
-      }
-
-      function exportCSV() {
-        const list = getFilteredInvoices();
-        const rows = [
-          ['Code', 'Date', 'Client', 'Expected_DZD', 'Collected_DZD', 'Gap_DZD', 'Cause'],
-          ...list.map((i) => [
-            i.code, i.date, i.client, i.expected.toFixed(2), i.paid.toFixed(2),
-            Math.max(0, i.expected - i.paid).toFixed(2), i.reason || ''
-          ]),
-        ];
-        const csv = '\uFEFF' + rows.map((r) => r.map((c) => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
-        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `revenueguard-report-${document.getElementById('yearFilter').value}.csv`;
-        a.click();
-        URL.revokeObjectURL(url);
-      }
-
-      function renderAll() {
-        const year = document.getElementById('yearFilter').value;
-        const month = document.getElementById('monthFilter').value;
-        const list = getFilteredInvoices();
-
-        const exp = list.reduce((acc, item) => acc + item.expected, 0);
-        const col = list.reduce((acc, item) => acc + item.paid, 0);
-        const uncollected = Math.max(0, exp - col);
-        const collRate = exp > 0 ? ((col / exp) * 100).toFixed(1) : '0.0';
-        const leakRate = exp > 0 ? ((uncollected / exp) * 100).toFixed(1) : '0.0';
-
-        const gaps = list.map((i) => Math.max(0, i.expected - i.paid)).filter((g) => g > 0);
-        const avgGap = gaps.length ? gaps.reduce((a, b) => a + b, 0) / gaps.length : 0;
-        const analyzed = list.filter((i) => i.paid < i.expected).map((i) => ({ inv: i, info: analyzeCase(i, avgGap) }));
-        const anomalies = analyzed.filter((x) => x.info.abnormal);
-
-        document.getElementById('kpiExpected').textContent = fmtMoney(exp);
-        document.getElementById('kpiCollected').textContent = fmtMoney(col);
-        document.getElementById('kpiReceivables').textContent = fmtMoney(uncollected);
-        document.getElementById('kpiLeakCount').textContent = String(analyzed.length);
-        document.getElementById('kpiCollectionRate').textContent = collRate + '%';
-        document.getElementById('kpiLeakedValue').textContent = fmtMoney(uncollected);
-        document.getElementById('kpiLeakRate').textContent = leakRate + '%';
-        document.getElementById('kpiAnomalyCount').textContent = String(anomalies.length);
-
-        const gAlert = document.getElementById('globalAlertBox');
-        const lAlert = document.getElementById('leakageAlertDetail');
-        if (uncollected > 0) {
-          const msg = `⚠️ ${fmtMoney(uncollected)} (${leakRate}%) — ${year} / ${month}`;
-          gAlert.className = anomalies.length ? 'alert-banner alert-err' : 'alert-banner';
-          gAlert.textContent = msg;
-          lAlert.className = anomalies.length ? 'alert-banner alert-err' : 'alert-banner';
-          lAlert.textContent = msg;
-        } else {
-          gAlert.className = 'alert-banner alert-ok';
-          gAlert.textContent = '✅ 0.00';
-          lAlert.className = 'alert-banner alert-ok';
-          lAlert.textContent = '✅ 0.00';
-        }
-
-        const recBody = document.getElementById('reconcileBody');
-        recBody.innerHTML = !list.length
-          ? '<tr><td colspan="6" style="text-align:center; padding:18px; color:var(--text-muted);">—</td></tr>'
-          : list.map((inv) => {
-              const diff = inv.expected - inv.paid;
-              const matchLabel = diff === 0 ? '✅ OK' : diff > 0 ? '⚠️ GAP' : 'ℹ️ +';
-              return `<tr>
-                <td><strong>${inv.code}</strong></td>
-                <td>${inv.client}</td>
-                <td>${fmtMoney(inv.expected)}</td>
-                <td style="color:#10b981;">${fmtMoney(inv.paid)}</td>
-                <td style="color:${diff > 0 ? '#ef4444' : 'inherit'};">${fmtMoney(Math.abs(diff))}</td>
-                <td>${matchLabel}</td>
-              </tr>`;
-            }).join('');
-
-        const leakBox = document.getElementById('leakageList');
-        leakBox.innerHTML = !analyzed.length
-          ? '<div class="card" style="color:var(--text-muted); font-size:13px;">—</div>'
-          : analyzed.map(({ inv, info }) => `
-              <div class="card">
-                <div style="font-weight:800; font-size:14px;">${info.source}</div>
-                <div class="analysis-box">
-                  <div>• <strong>الفارق:</strong> ${fmtMoney(info.gap)} ${info.abnormal ? '• <strong>فارق غير طبيعي</strong>' : ''}</div>
-                  <div>• <strong>السبب:</strong> ${info.why}</div>
-                  <div>• <strong>كيف وقع:</strong> ${info.how}</div>
-                </div>
-              </div>
-            `).join('');
-
-        const tbody = document.getElementById('ledgerBody');
-        tbody.innerHTML = !list.length
-          ? '<tr><td colspan="8" style="text-align:center; padding:18px; color:var(--text-muted);">—</td></tr>'
-          : list.map((inv) => {
-              const rem = Math.max(0, inv.expected - inv.paid);
-              return `<tr>
-                <td><strong>${inv.code}</strong></td>
-                <td>${inv.date}</td>
-                <td>${inv.client}</td>
-                <td>${fmtMoney(inv.expected)}</td>
-                <td style="color:#10b981;">${fmtMoney(inv.paid)}</td>
-                <td style="color:${rem > 0 ? '#f59e0b' : 'inherit'};">${fmtMoney(rem)}</td>
-                <td>${inv.reason || '—'}</td>
-                <td style="white-space:nowrap;">
-                  <button type="button" class="btn" onclick="editInvoice(${inv.id})" style="padding:4px 8px; font-size:11px;">✎</button>
-                  <button type="button" class="btn btn-danger" onclick="deleteInvoice(${inv.id})" style="padding:4px 8px; font-size:11px;">×</button>
-                </td>
-              </tr>`;
-            }).join('');
-
-        document.getElementById('reportPreviewBox').innerHTML = `
-          <div><strong>${year} / ${month}</strong></div>
-          <div>${fmtMoney(exp)} | ${fmtMoney(col)} | ${fmtMoney(uncollected)}</div>
-          <div>${collRate}% | ${leakRate}%</div>
-        `;
-
-        // سجل التعديلات على شكل بطاقات أيقونات
-        const auditGrid = document.getElementById('auditIconsGrid');
-        auditGrid.innerHTML = !state.auditLog.length
-          ? '<div class="audit-icon-card"><div class="audit-badge-icon">ℹ️</div><div style="color:var(--text-muted); font-size:13px;">—</div></div>'
-          : state.auditLog.map((a) => `
-              <div class="audit-icon-card">
-                <div class="audit-badge-icon">${getAuditIcon(a.type)}</div>
-                <div>
-                  <div style="font-weight:800; font-size:13px;">${a.type}</div>
-                  <div style="font-size:12.5px; margin-top:2px;">${a.details}</div>
-                  <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">🕒 ${a.time}</div>
-                </div>
-              </div>
-            `).join('');
-      }
-
-      function askAI(e) {
-        e.preventDefault();
-        const input = document.getElementById('aiInput');
-        const q = input.value.trim();
-        if (!q) return;
-        const box = document.getElementById('aiMessages');
-        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; border-color:#38bdf8;">${q}</div>`;
-
-        const list = getFilteredInvoices();
-        const exp = list.reduce((a, b) => a + b.expected, 0);
-        const col = list.reduce((a, b) => a + b.paid, 0);
-        const uncollected = Math.max(0, exp - col);
-        const reply = list.length
-          ? `${fmtMoney(exp)} / ${fmtMoney(col)} / ${fmtMoney(uncollected)}`
-          : '—';
-
-        box.innerHTML += `<div class="card" style="padding:10px; margin-bottom:0; font-size:13px; background:var(--bg-soft);">${reply}</div>`;
-        box.scrollTop = box.scrollHeight;
-        input.value = '';
-      }
-
-      function initApp() {
-        try {
-          const saved = localStorage.getItem(STORAGE_KEY);
-          if (saved) state = { ...state, ...JSON.parse(saved) };
-        } catch (e) {}
-
-        document.getElementById('langSelect').value = state.lang;
-        rebuildCurrencySelect();
-        applyLanguage();
-        renderAll();
-        calculateLeakage();
-
+      document.addEventListener('DOMContentLoaded', () => {
+        loadLogoFromConfig();
         document.getElementById('enterSystemBtn').addEventListener('click', closeSplash);
         document.getElementById('skipSplashBtn').addEventListener('click', closeSplash);
         document.getElementById('reopenSplashBtn').addEventListener('click', openSplash);
-        document.getElementById('muteBtn').addEventListener('click', toggleMute);
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-        document.getElementById('langSelect').addEventListener('change', (e) => setLanguage(e.target.value));
-        document.getElementById('currencySelect').addEventListener('change', (e) => setCurrency(e.target.value));
-        document.getElementById('saveFxRateBtn').addEventListener('click', updateFxRate);
-        document.getElementById('addCustomCurrBtn').addEventListener('click', addCustomCurrency);
-
-        document.getElementById('yearFilter').addEventListener('change', renderAll);
-        document.getElementById('monthFilter').addEventListener('change', renderAll);
-        document.getElementById('demoDataBtn').addEventListener('click', loadDemoData);
-        document.getElementById('clearDataBtn').addEventListener('click', clearData);
-
-        document.getElementById('calcClient').addEventListener('input', calculateLeakage);
-        document.getElementById('calcCause').addEventListener('change', calculateLeakage);
-        document.getElementById('calcExpected').addEventListener('input', calculateLeakage);
-        document.getElementById('calcCollected').addEventListener('input', calculateLeakage);
-        document.getElementById('calcPending').addEventListener('input', calculateLeakage);
-        document.getElementById('runCalcBtn').addEventListener('click', calculateLeakage);
-        document.getElementById('saveCalcBtn').addEventListener('click', saveCalcToInvoices);
-        document.getElementById('resetCalcBtn').addEventListener('click', resetCalc);
-
-        document.getElementById('importCsvBtn').addEventListener('click', importCSVFile);
-        document.getElementById('invoiceForm').addEventListener('submit', addInvoice);
-
-        document.getElementById('exportExcelBtn').addEventListener('click', exportCSV);
-        document.getElementById('exportPdfBtn').addEventListener('click', () => window.print());
-        document.getElementById('exportJsonBtn').addEventListener('click', exportBackupJSON);
-        document.getElementById('restoreJsonBtn').addEventListener('click', restoreBackupJSON);
-
-        document.getElementById('generateSuggestionsBtn').addEventListener('click', generateSuggestions);
-        document.getElementById('aiForm').addEventListener('submit', askAI);
-
-        document.querySelectorAll('.nav-item').forEach((btn) => {
-          btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-        });
-
-        const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!reducedMotion) {
-          setTimeout(closeSplash, 3500);
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', initApp);
+        setTimeout(closeSplash, 3500);
+      });
     </script>
   </body>
 </html>
